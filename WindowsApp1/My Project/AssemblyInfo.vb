@@ -7,10 +7,10 @@ Imports System.Runtime.InteropServices
 
 '查看程序集特性的值
 
-<Assembly: AssemblyTitle("抽号发生器.NET alpha")>
-<Assembly: AssemblyDescription("")>
+<Assembly: AssemblyTitle("抽号发生器.NET 5.0")>
+<Assembly: AssemblyDescription("Invalid")>
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("抽号发生器.NET alpha")>
+<Assembly: AssemblyProduct("抽号发生器.NET 5.0 b")>
 <Assembly: AssemblyCopyright("Copyright © Hu Yantao 2021")>
 <Assembly: AssemblyTrademark("")>
 
@@ -30,5 +30,5 @@ Imports System.Runtime.InteropServices
 ' 方法是按如下所示使用“*”: :
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("5.0.0.0")>
+<Assembly: AssemblyFileVersion("5.0.0.0")>

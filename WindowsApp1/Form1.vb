@@ -413,6 +413,8 @@ EROR2:
         End If
     End Sub
 
+
+
     Private Sub CheckBox1_Click(sender As Object, e As EventArgs) Handles CheckBox1.Click
         If CheckBox1.Checked = True Then
             makesure = 1

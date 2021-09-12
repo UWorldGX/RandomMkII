@@ -50,6 +50,7 @@ Partial Class Form1
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripLabel4 = New System.Windows.Forms.ToolStripLabel()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Button7 = New System.Windows.Forms.Button()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
@@ -80,7 +81,6 @@ Partial Class Form1
         Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.Button7 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -113,7 +113,7 @@ Partial Class Form1
         Me.Label1.AutoEllipsis = True
         Me.Label1.BackColor = System.Drawing.Color.Black
         Me.Label1.Cursor = System.Windows.Forms.Cursors.No
-        Me.Label1.Font = New System.Drawing.Font("微软雅黑", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Label1.Font = New System.Drawing.Font("方正像素12", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Black
         Me.Label1.Image = CType(resources.GetObject("Label1.Image"), System.Drawing.Image)
         Me.Label1.Location = New System.Drawing.Point(38, 3)
@@ -321,6 +321,20 @@ Partial Class Form1
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(762, 347)
         Me.Panel1.TabIndex = 21
+        '
+        'Button7
+        '
+        Me.Button7.BackColor = System.Drawing.Color.Transparent
+        Me.Button7.BackgroundImage = CType(resources.GetObject("Button7.BackgroundImage"), System.Drawing.Image)
+        Me.Button7.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Button7.ForeColor = System.Drawing.Color.White
+        Me.Button7.Location = New System.Drawing.Point(339, 285)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(77, 30)
+        Me.Button7.TabIndex = 26
+        Me.Button7.Text = "保存记录"
+        Me.Button7.UseVisualStyleBackColor = False
+        Me.Button7.Visible = False
         '
         'CheckBox1
         '
@@ -672,20 +686,6 @@ Partial Class Form1
         Me.OpenFileDialog1.DefaultExt = "txt"
         Me.OpenFileDialog1.FileName = "default"
         Me.OpenFileDialog1.RestoreDirectory = True
-        '
-        'Button7
-        '
-        Me.Button7.BackColor = System.Drawing.Color.Transparent
-        Me.Button7.BackgroundImage = CType(resources.GetObject("Button7.BackgroundImage"), System.Drawing.Image)
-        Me.Button7.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button7.ForeColor = System.Drawing.Color.White
-        Me.Button7.Location = New System.Drawing.Point(339, 285)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(77, 30)
-        Me.Button7.TabIndex = 26
-        Me.Button7.Text = "保存记录"
-        Me.Button7.UseVisualStyleBackColor = False
-        Me.Button7.Visible = False
         '
         'Form1
         '
