@@ -38,11 +38,11 @@ Partial Class SplashScreen1
         '
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Comic Sans MS", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("方正像素12", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label1.ForeColor = System.Drawing.SystemColors.Window
-        Me.Label1.Location = New System.Drawing.Point(291, 54)
+        Me.Label1.Location = New System.Drawing.Point(267, 58)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(134, 26)
+        Me.Label1.Size = New System.Drawing.Size(163, 19)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Now Loading..."
         '
@@ -90,9 +90,9 @@ Partial Class SplashScreen1
         Me.Label3.ForeColor = System.Drawing.SystemColors.Window
         Me.Label3.Location = New System.Drawing.Point(8, 61)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(73, 17)
+        Me.Label3.Size = New System.Drawing.Size(103, 17)
         Me.Label3.TabIndex = 3
-        Me.Label3.Text = "Version 4.0" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.Label3.Text = "Version 5.0 beta"
         '
         'SplashScreen1
         '
