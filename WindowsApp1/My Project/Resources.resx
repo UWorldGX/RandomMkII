@@ -121,11 +121,23 @@
   <data name="SINNOH" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SINNOH.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="空间邮件" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\空间邮件1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="彩嵌邮件" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\彩嵌邮件1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="初次邮件" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\初次邮件1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="LATITWINS2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LATITWINS2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="STEENEE" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\STEENEE.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="桥梁邮件Ｗ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\桥梁邮件Ｗ1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MELOETTA" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MELOETTA.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,16 +148,7 @@
   <data name="CELEBI" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CELEBI.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="彩嵌邮件" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\彩嵌邮件1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="初次邮件" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\初次邮件1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="空间邮件" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\空间邮件1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="桥梁邮件Ｗ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\桥梁邮件Ｗ1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="青草邮件" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\青草邮件.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

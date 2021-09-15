@@ -258,6 +258,7 @@
     <None Include="Resources\初次邮件1.png" />
     <None Include="Resources\空间邮件1.png" />
     <None Include="Resources\桥梁邮件Ｗ1.png" />
+    <None Include="Resources\青草邮件.png" />
     <Content Include="S9.ico" />
     <None Include="RandomMaker_TemporaryKey.pfx" />
     <None Include="Resources\MELOETTA.png" />
