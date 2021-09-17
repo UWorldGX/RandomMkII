@@ -59,6 +59,10 @@ Partial Class Form1
         Me.Label4 = New System.Windows.Forms.Label()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Saver = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.Button6 = New System.Windows.Forms.Button()
@@ -91,10 +95,6 @@ Partial Class Form1
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer4 = New System.Windows.Forms.Timer(Me.components)
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Saver = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -108,7 +108,6 @@ Partial Class Form1
         Me.Panel3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.Panel4.SuspendLayout()
-        CType(Me.pool, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button1
@@ -460,6 +459,52 @@ Partial Class Form1
         Me.Panel2.TabIndex = 22
         Me.Panel2.Visible = False
         '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.Color.Transparent
+        Me.Button4.BackgroundImage = CType(resources.GetObject("Button4.BackgroundImage"), System.Drawing.Image)
+        Me.Button4.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Button4.ForeColor = System.Drawing.Color.White
+        Me.Button4.Location = New System.Drawing.Point(89, 253)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(131, 30)
+        Me.Button4.TabIndex = 32
+        Me.Button4.Text = "编辑已有模式......"
+        Me.Button4.UseVisualStyleBackColor = False
+        '
+        'Saver
+        '
+        Me.Saver.BackColor = System.Drawing.Color.Transparent
+        Me.Saver.BackgroundImage = CType(resources.GetObject("Saver.BackgroundImage"), System.Drawing.Image)
+        Me.Saver.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Saver.ForeColor = System.Drawing.Color.White
+        Me.Saver.Location = New System.Drawing.Point(335, 205)
+        Me.Saver.Name = "Saver"
+        Me.Saver.Size = New System.Drawing.Size(74, 30)
+        Me.Saver.TabIndex = 31
+        Me.Saver.Text = "保存"
+        Me.Saver.UseVisualStyleBackColor = False
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(175, 208)
+        Me.TextBox1.MaxLength = 15
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
+        Me.TextBox1.Size = New System.Drawing.Size(144, 27)
+        Me.TextBox1.TabIndex = 30
+        Me.TextBox1.Text = "我的模式1"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label12.Location = New System.Drawing.Point(94, 211)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(78, 20)
+        Me.Label12.TabIndex = 29
+        Me.Label12.Text = "保存为......"
+        '
         'LinkLabel2
         '
         Me.LinkLabel2.AutoSize = True
@@ -807,52 +852,6 @@ Partial Class Form1
         '
         Me.Timer4.Interval = 25
         '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label12.Location = New System.Drawing.Point(94, 211)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(78, 20)
-        Me.Label12.TabIndex = 29
-        Me.Label12.Text = "保存为......"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(175, 208)
-        Me.TextBox1.MaxLength = 15
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
-        Me.TextBox1.Size = New System.Drawing.Size(144, 27)
-        Me.TextBox1.TabIndex = 30
-        Me.TextBox1.Text = "我的模式1"
-        '
-        'Saver
-        '
-        Me.Saver.BackColor = System.Drawing.Color.Transparent
-        Me.Saver.BackgroundImage = CType(resources.GetObject("Saver.BackgroundImage"), System.Drawing.Image)
-        Me.Saver.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Saver.ForeColor = System.Drawing.Color.White
-        Me.Saver.Location = New System.Drawing.Point(335, 205)
-        Me.Saver.Name = "Saver"
-        Me.Saver.Size = New System.Drawing.Size(74, 30)
-        Me.Saver.TabIndex = 31
-        Me.Saver.Text = "保存"
-        Me.Saver.UseVisualStyleBackColor = False
-        '
-        'Button4
-        '
-        Me.Button4.BackColor = System.Drawing.Color.Transparent
-        Me.Button4.BackgroundImage = CType(resources.GetObject("Button4.BackgroundImage"), System.Drawing.Image)
-        Me.Button4.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button4.ForeColor = System.Drawing.Color.White
-        Me.Button4.Location = New System.Drawing.Point(89, 253)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(131, 30)
-        Me.Button4.TabIndex = 32
-        Me.Button4.Text = "编辑已有模式......"
-        Me.Button4.UseVisualStyleBackColor = False
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -897,7 +896,6 @@ Partial Class Form1
         Me.GroupBox2.PerformLayout()
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
-        CType(Me.pool, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

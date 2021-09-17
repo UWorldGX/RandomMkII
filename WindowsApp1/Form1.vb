@@ -1,8 +1,9 @@
 ﻿Public Class Form1
     Public circle, tms, ranges, memories, mode2, exe, makesure, checked, checked2 As Integer, temp2 As String, doextreme As Boolean
     Public memo, dodata, def As Boolean
+    Public mode As Integer
     Public Area As Integer
-    Public Const readme As String = "这里可以显示预览效果."
+    Public Const readme as string ="这里可以显示预览效果."
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
         If memo = True Then Exit Sub
         If def = True Then
@@ -102,6 +103,7 @@
         Else
             MsgBox("调试中", vbOKOnly)
         End If
+
         Timer2.Enabled = True
     End Sub
     '切换模式
@@ -328,6 +330,24 @@
     '更换背景
 
 
+
+    '极限模式
+
+
+
+
+
+
+
+
+
+
+
+
+
+    '更换背景
+
+
     Private Sub RadioButton6_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton6.CheckedChanged
         If RadioButton6.Checked = False Then
             doextreme = True
@@ -379,63 +399,7 @@
         RadioButton6.ForeColor = Color.White
     End Sub
     '还原自定义设置
-    Private Sub Button5_Click_1(sender As Object, e As EventArgs) Handles Button5.Click
-        Const frontline As String = "The configuration of RM MKII"
-        Static seo As Integer
-        seo = ComboBox1.SelectedIndex
-        If SaveFileDialog1.ShowDialog = DialogResult.OK Then
-            SaveFileDialog1.Title = "保存配置..."
-            SaveFileDialog1.Filter = "抽号发生器配置文件|*.txt"
-            Dim et(15) As String, mymodename As String, temp2, ex(3) As Integer
-            Static temp As Integer
-            Dim temp3 As Boolean
-            ComboBox1.SelectedItem = "关于模式的说明..."
-            temp = ComboBox1.SelectedIndex
-            mymodename = InputBox("该配置叫什么?", "保存确认")
-            SaveFileDialog1.CreatePrompt = False
-            FileOpen(2, SaveFileDialog1.FileName, OpenMode.Output, OpenAccess.Default)
-            WriteLine(2, frontline)
-            WriteLine(2, "TypeName:")
-            WriteLine(2, mymodename)
-            WriteLine(2, "MaximaArea")
-            WriteLine(2, Area)
-            WriteLine(2, "totalmode")
-            WriteLine(2, temp)
-            WriteLine(2, "Speakers:")
-            WriteLine(2, Timer2.Interval)
-            For temp2 = 0 To temp - 1
-                ComboBox1.SelectedIndex = temp2
-                temp3 = dodata
-                WriteLine(2, "Mode" & temp2 + 1)
-                WriteLine(2, "ModeName:")
-                WriteLine(2, ComboBox1.SelectedItem)
-                ex(0) = Str(NumericUpDown1.Value)
-                If dodata = True Then
-                    ex(2) = exe
-                Else
-                    ex(2) = ranges
-                End If
-                WriteLine(2, "Extract Times:")
-                WriteLine(2, ex(0))
-                WriteLine(2, "Extract Ranges:")
-                WriteLine(2, ex(2))
-                WriteLine(2, "ModeType:")
-                WriteLine(2, temp3)
-                WriteLine(2, "DoExtremeMode")
-                WriteLine(2, doextreme)
-                WriteLine(2, "Modeindex")
-                WriteLine(2, temp + 1)
-            Next
-            WriteLine(2, "CreateTime:" & Date.Now)
-            FileClose(2)
-        Else
-            Exit Sub
-        End If
-        MsgBox("保存成功", vbInformation + vbOKOnly, "祝贺")
-        ComboBox1.SelectedIndex = seo
-        memo = True
-        Timer3.Enabled = True
-    End Sub
+
 
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
         Me.BackgroundImage = My.Resources.空间邮件
@@ -454,53 +418,53 @@
         RadioButton6.ForeColor = Color.White
 
         Select Case dodata
-            Case Is = False
-                circle = 1
-                tms = 0
-                memories = 0
-                ranges = 16
-                exe = Area
-                mode2 = 0
-                Label6.Text = Str(ranges)
-                Label7.Text = Str(tms)
-                NumericUpDown1.Value = 1
-                pool.Maximum = 100
-                pool.Value = ranges
-                Button1.Enabled = True
-                doextreme = False
-                pool.Value = ranges
-                Label1.ForeColor = Color.Black
-                ToolStripLabel4.Enabled = False
-                ComboBox1.Text = "默认模式"
-                ListBox1.ForeColor = Color.Black
-                Label6.Text = Str(ranges)
-                Label7.Text = Str(NumericUpDown1.Value)
-                ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
-            Case Is = True
+                    Case Is = False
+                        circle = 1
+                        tms = 0
+                        memories = 0
+                        ranges = 16
+                        exe = Area
+                        mode2 = 0
+                        Label6.Text = Str(ranges)
+                        Label7.Text = Str(tms)
+                        NumericUpDown1.Value = 1
+                        pool.Maximum = 100
+                        pool.Value = ranges
+                        Button1.Enabled = True
+                        doextreme = False
+                        pool.Value = ranges
+                        Label1.ForeColor = Color.Black
+                        ToolStripLabel4.Enabled = False
+                        ComboBox1.Text = "默认模式"
+                        ListBox1.ForeColor = Color.Black
+                        Label6.Text = Str(ranges)
+                        Label7.Text = Str(NumericUpDown1.Value)
+                        ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
+                    Case Is = True
 SX2:
                 circle = 1
                 tms = 0
-                memories = 0
-                ranges = 16
-                mode2 = 0
-                exe = Area
-                doextreme = False
-                NumericUpDown1.Value = 1
-                memories = 0
-                Button1.Enabled = True
-                pool.Maximum = Area
-                pool.Value = exe
-                Label1.ForeColor = Color.Black
-                ToolStripLabel4.Enabled = True
-                Label1.Text = "初始化完毕.等待抽号."
-                ComboBox1.Text = "数据驱动模式Normal"
+                        memories = 0
+                        ranges = 16
+                        mode2 = 0
+                        exe = Area
+                        doextreme = False
+                        NumericUpDown1.Value = 1
+                        memories = 0
+                        Button1.Enabled = True
+                        pool.Maximum = Area
+                        pool.Value = exe
+                        Label1.ForeColor = Color.Black
+                        ToolStripLabel4.Enabled = True
+                        Label1.Text = "初始化完毕.等待抽号."
+                        ComboBox1.Text = "数据驱动模式Normal"
                 Label6.Text = Str(exe)
                 Label7.Text = Str(NumericUpDown1.Value)
-                RadioButton4.Checked = False
-                RadioButton5.Checked = True
-                ListBox1.ForeColor = Color.Purple
-                ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
-        End Select
+                        RadioButton4.Checked = False
+                        RadioButton5.Checked = True
+                        ListBox1.ForeColor = Color.Purple
+                        ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
+                End Select
 
     End Sub
     '全重置
@@ -552,8 +516,75 @@ SX2:
                 ListBox1.ForeColor = Color.Purple
                 ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         End Select
-
     End Sub
+
+
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Const frontline As String = "=====The Configuration Of RM MKII====="
+        Static seo As Integer = ComboBox1.SelectedIndex
+        If SaveFileDialog1.ShowDialog = DialogResult.OK Then
+            SaveFileDialog1.Title = "保存配置..."
+            SaveFileDialog1.Filter = "抽号发生器配置文件|*.txt"
+            Dim et(15) As String, mymodename As String, temp2, ex(3) As Integer
+            Static temp As Integer
+            Dim temp3 As Boolean
+            ComboBox1.SelectedItem = "关于模式的说明..."
+            temp = ComboBox1.SelectedIndex
+            mymodename = InputBox("该配置叫什么?", "保存确认")
+            SaveFileDialog1.CreatePrompt = False
+            FileOpen(2, SaveFileDialog1.FileName, OpenMode.Output, OpenAccess.Default)
+            WriteLine(2, frontline)
+            WriteLine(2, "TypeName:")
+            WriteLine(2, mymodename)
+            WriteLine(2, "MaximaArea")
+            WriteLine(2, Area)
+            WriteLine(2, "totalmode")
+            WriteLine(2, temp)
+            WriteLine(2, "Speakers:")
+            WriteLine(2, Timer2.Interval)
+            For temp2 = 0 To temp - 1
+                ComboBox1.SelectedIndex = temp2
+                temp3 = dodata
+                WriteLine(2, "Mode" & temp2 + 1)
+                WriteLine(2, "ModeName:")
+                WriteLine(2, ComboBox1.SelectedItem)
+                ex(0) = Str(NumericUpDown1.Value)
+                If dodata = True Then
+                    ex(2) = exe
+                Else
+                    ex(2) = ranges
+                End If
+                WriteLine(2, "Extract Times:")
+                WriteLine(2, ex(0))
+                WriteLine(2, "Extract Ranges:")
+                WriteLine(2, ex(2))
+                WriteLine(2, "ModeType:")
+                WriteLine(2, temp3)
+                WriteLine(2, "DoExtremeMode")
+                WriteLine(2, doextreme)
+                WriteLine(2, "Modeindex")
+                WriteLine(2, temp + 1)
+            Next
+            WriteLine(2, "CreateTime:" & Date.Now)
+            WriteLine(2, Date.Now)
+            For temp = 1 To memories
+                WriteLine(2, ListBox1.Items.Item(temp))
+            Next
+            WriteLine(2, "抽取次数:" & NumericUpDown1.Value)
+            WriteLine(2, "使用的模式:" & ComboBox1.SelectedItem)
+            FileClose(2)
+        Else
+            Exit Sub
+        End If
+        MsgBox("保存成功", vbInformation + vbOKOnly, "祝贺")
+        ComboBox1.SelectedIndex = seo
+        memo = True
+        Timer3.Enabled = True
+    End Sub
+
+
+
     '局部重置
     Private Sub Saver_Click(sender As Object, e As EventArgs) Handles Saver.Click
 
@@ -760,52 +791,31 @@ EROR2:
                         ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
                     Case Is = True
 SX2:
-                        mode = 5
                         circle = 1
                         tms = 0
                         memories = 0
                         ranges = 16
                         mode2 = 0
                         exe = Area
+                        doextreme = False
                         NumericUpDown1.Value = 1
                         memories = 0
                         Button1.Enabled = True
+                        pool.Value = exe
                         Label1.ForeColor = Color.Black
                         ToolStripLabel4.Enabled = True
                         Label1.Text = "初始化完毕.等待抽号."
+                        ComboBox1.Text = "数据驱动模式Normal"
                         ListBox1.Items.Clear()
-                        ListBox1.Items.Add("模式Normal就绪.")
+                        ListBox1.Items.Add("数据驱动模式就绪.")
                         Label6.Text = Str(exe)
                         Label7.Text = Str(NumericUpDown1.Value)
                         RadioButton4.Checked = False
                         RadioButton5.Checked = True
                         ListBox1.ForeColor = Color.Purple
-                        ToolStripStatusLabel3.Text = "当前模式" & ComboBox1.Text
-                    Case Is = 6
-                        circle = 1
-                        tms = 0
-                        memories = 0
-                        mode2 = 0
-                        mode = 6
-                        NumericUpDown1.Value = 1
-                        ranges = 16
-                        exe = 36
-                        memories = 0
-                        Button1.Enabled = True
-                        Label1.ForeColor = Color.Black
-                        ToolStripLabel4.Enabled = True
-                        Label1.Text = "初始化完毕.等待抽号."
-                        ListBox1.Items.Clear()
-                        ListBox1.Items.Add("模式Premium就绪.")
-                        ListBox1.ForeColor = Color.Violet
-                        RadioButton4.Checked = False
-                        RadioButton5.Checked = True
-                        Label6.Text = Str(exe)
-                        Label7.Text = Str(NumericUpDown1.Value)
-                        ToolStripStatusLabel3.Text = "当前模式" & ComboBox1.Text
-                    Case Is >= 7
-                        GoTo SX2
+                        ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
                 End Select
+        End Select
     End Sub
     '初始化
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -815,7 +825,7 @@ SX2:
         ProgressBar1.Value = 10
         If makesure = 0 Then
 CX8:
-            If doextreme = True Then
+            If doextreme=true Then
                 MsgBox("都准备好了吗?" & Chr(13) & Chr(10) & "抽取模式:" & ComboBox1.Text & Chr(13) & Chr(10) & "抽取次数:" & Str(NumericUpDown1.Value) & Chr(13) & Chr(10) & "警告!抽取后将无法重复,确定吗?", vbOKCancel + vbCritical, "确认对话框")
             Else
                 MsgBox("都准备好了吗?" & Chr(13) & Chr(10) & "抽取模式:" & ComboBox1.Text & Chr(13) & Chr(10) & "抽取次数:" & Str(NumericUpDown1.Value), vbOKCancel + vbQuestion, "确认对话框")
@@ -845,7 +855,9 @@ CX2:
                 Button1.Enabled = False
                 ProgressBar1.Value = 99
             End If
-        ElseIf mode >= 5 Then
+            Button7.Visible = True
+            Timer2.Enabled = True
+        ElseIf dodata = True Then
             '数据驱动模式
             ProgressBar1.Value = 30
             Dim repeat(6) As Integer, check, check2 As String, trigger As Integer
@@ -890,8 +902,6 @@ CX6:
                     End If
                     On Error GoTo CX10
                     temp2 += "/" & ListBox2.Items.Item(datas)
-                    On Error GoTo CX10
-                    temp2 += "/" & ListBox2.Items.Item(datas)
                     temp = temp & "/" & ListBox2.Items.Item(datas)
                 Next
                 On Error GoTo CX10
@@ -921,6 +931,11 @@ CX6:
         Area = 71
         exe = Area
         makesure = 0
+        checked = 1
+        checked2 = 1
+        memo = False
+        dodata = False
+        def = True
         ComboBox1.Text = "默认模式"
         ToolStripStatusLabel2.Text = Date.Now
         ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
