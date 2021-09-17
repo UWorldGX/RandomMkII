@@ -108,6 +108,7 @@ Partial Class Form1
         Me.Panel3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.Panel4.SuspendLayout()
+        CType(Me.pool, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button1
@@ -437,7 +438,7 @@ Partial Class Form1
         Me.ListBox1.Location = New System.Drawing.Point(43, 84)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.ScrollAlwaysVisible = True
-        Me.ListBox1.Size = New System.Drawing.Size(207, 189)
+        Me.ListBox1.Size = New System.Drawing.Size(207, 172)
         Me.ListBox1.TabIndex = 15
         '
         'Panel2
@@ -896,6 +897,7 @@ Partial Class Form1
         Me.GroupBox2.PerformLayout()
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
+        CType(Me.pool, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
