@@ -68,7 +68,7 @@ Partial Class Form1
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.RadioButton6 = New System.Windows.Forms.RadioButton()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.RadioButton5 = New System.Windows.Forms.RadioButton()
         Me.RadioButton4 = New System.Windows.Forms.RadioButton()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -95,6 +95,7 @@ Partial Class Form1
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer4 = New System.Windows.Forms.Timer(Me.components)
+        Me.LoadView = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -437,7 +438,7 @@ Partial Class Form1
         Me.ListBox1.Location = New System.Drawing.Point(43, 84)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.ScrollAlwaysVisible = True
-        Me.ListBox1.Size = New System.Drawing.Size(207, 172)
+        Me.ListBox1.Size = New System.Drawing.Size(207, 189)
         Me.ListBox1.TabIndex = 15
         '
         'Panel2
@@ -553,7 +554,7 @@ Partial Class Form1
         '
         'GroupBox3
         '
-        Me.GroupBox3.Controls.Add(Me.RadioButton6)
+        Me.GroupBox3.Controls.Add(Me.CheckBox2)
         Me.GroupBox3.Controls.Add(Me.RadioButton5)
         Me.GroupBox3.Controls.Add(Me.RadioButton4)
         Me.GroupBox3.ForeColor = System.Drawing.Color.White
@@ -564,17 +565,17 @@ Partial Class Form1
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "数据相关"
         '
-        'RadioButton6
+        'CheckBox2
         '
-        Me.RadioButton6.AutoSize = True
-        Me.RadioButton6.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.RadioButton6.Location = New System.Drawing.Point(43, 23)
-        Me.RadioButton6.Name = "RadioButton6"
-        Me.RadioButton6.Size = New System.Drawing.Size(87, 23)
-        Me.RadioButton6.TabIndex = 10
-        Me.RadioButton6.TabStop = True
-        Me.RadioButton6.Text = "极限模式"
-        Me.RadioButton6.UseVisualStyleBackColor = True
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Font = New System.Drawing.Font("微软雅黑", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.CheckBox2.ForeColor = System.Drawing.Color.White
+        Me.CheckBox2.Location = New System.Drawing.Point(43, 26)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(75, 21)
+        Me.CheckBox2.TabIndex = 26
+        Me.CheckBox2.Text = "极限模式"
+        Me.CheckBox2.UseVisualStyleBackColor = True
         '
         'RadioButton5
         '
@@ -793,6 +794,7 @@ Partial Class Form1
         'Panel4
         '
         Me.Panel4.BackColor = System.Drawing.Color.Transparent
+        Me.Panel4.Controls.Add(Me.LoadView)
         Me.Panel4.Controls.Add(Me.Label2)
         Me.Panel4.Controls.Add(Me.ListBox2)
         Me.Panel4.Location = New System.Drawing.Point(51, 29)
@@ -852,6 +854,19 @@ Partial Class Form1
         '
         Me.Timer4.Interval = 25
         '
+        'LoadView
+        '
+        Me.LoadView.BackColor = System.Drawing.Color.Transparent
+        Me.LoadView.BackgroundImage = CType(resources.GetObject("LoadView.BackgroundImage"), System.Drawing.Image)
+        Me.LoadView.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.LoadView.ForeColor = System.Drawing.Color.White
+        Me.LoadView.Location = New System.Drawing.Point(62, 287)
+        Me.LoadView.Name = "LoadView"
+        Me.LoadView.Size = New System.Drawing.Size(74, 30)
+        Me.LoadView.TabIndex = 32
+        Me.LoadView.Text = "载入"
+        Me.LoadView.UseVisualStyleBackColor = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -862,10 +877,10 @@ Partial Class Form1
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.Controls.Add(Me.Panel4)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel3)
-        Me.Controls.Add(Me.Panel4)
         Me.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -952,7 +967,6 @@ Partial Class Form1
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents ToolStripStatusLabel3 As ToolStripStatusLabel
-    Friend WithEvents RadioButton6 As RadioButton
     Friend WithEvents Label9 As Label
     Friend WithEvents Button7 As Button
     Friend WithEvents Timer2 As Timer
@@ -972,4 +986,6 @@ Partial Class Form1
     Friend WithEvents Saver As Button
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label12 As Label
+    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents LoadView As Button
 End Class

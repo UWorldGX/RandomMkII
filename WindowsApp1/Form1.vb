@@ -103,7 +103,6 @@
         Else
             MsgBox("调试中", vbOKOnly)
         End If
-
         Timer2.Enabled = True
     End Sub
     '切换模式
@@ -117,6 +116,8 @@
             Exit Sub
         End If
     End Sub
+
+
 
     Private Sub Button2_Click_1(sender As Object, e As EventArgs)
         ColorDialog1.Color = Label1.ForeColor
@@ -264,7 +265,6 @@
                 CheckBox1.ForeColor = Color.White
                 RadioButton4.ForeColor = Color.White
                 RadioButton5.ForeColor = Color.White
-                RadioButton6.ForeColor = Color.White
             Case Is = "彩嵌邮件(DP)"
                 Me.BackgroundImage = RandomMaker.My.Resources.彩嵌邮件
                 ToolStripLabel1.ForeColor = Color.Black
@@ -279,7 +279,6 @@
                 CheckBox1.ForeColor = Color.Black
                 RadioButton4.ForeColor = Color.Black
                 RadioButton5.ForeColor = Color.Black
-                RadioButton6.ForeColor = Color.Black
             Case Is = "青草邮件(DP)"
                 Me.BackgroundImage = RandomMaker.My.Resources.青草邮件
                 ToolStripLabel1.ForeColor = Color.Black
@@ -294,7 +293,6 @@
                 CheckBox1.ForeColor = Color.Black
                 RadioButton4.ForeColor = Color.Black
                 RadioButton5.ForeColor = Color.Black
-                RadioButton6.ForeColor = Color.Black
             Case Is = "初次邮件(BW)"
                 Me.BackgroundImage = RandomMaker.My.Resources.初次邮件
                 ToolStripLabel1.ForeColor = Color.Black
@@ -309,7 +307,6 @@
                 CheckBox1.ForeColor = Color.Black
                 RadioButton4.ForeColor = Color.Black
                 RadioButton5.ForeColor = Color.Black
-                RadioButton6.ForeColor = Color.Black
             Case Is = "桥梁邮件W(BW)"
                 Me.BackgroundImage = RandomMaker.My.Resources.桥梁邮件Ｗ
                 ToolStripLabel1.ForeColor = Color.Black
@@ -324,37 +321,10 @@
                 CheckBox1.ForeColor = Color.Black
                 RadioButton4.ForeColor = Color.Black
                 RadioButton5.ForeColor = Color.Black
-                RadioButton6.ForeColor = Color.Black
         End Select
     End Sub
     '更换背景
 
-
-
-    '极限模式
-
-
-
-
-
-
-
-
-
-
-
-
-
-    '更换背景
-
-
-    Private Sub RadioButton6_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton6.CheckedChanged
-        If RadioButton6.Checked = False Then
-            doextreme = True
-        Else
-            doextreme = False
-        End If
-    End Sub
     '极限模式
     Private Sub ComboBox3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox3.SelectedIndexChanged
         Select Case ComboBox3.SelectedItem
@@ -396,7 +366,6 @@
         CheckBox1.ForeColor = Color.White
         RadioButton4.ForeColor = Color.White
         RadioButton5.ForeColor = Color.White
-        RadioButton6.ForeColor = Color.White
     End Sub
     '还原自定义设置
 
@@ -415,7 +384,6 @@
         CheckBox1.ForeColor = Color.White
         RadioButton4.ForeColor = Color.White
         RadioButton5.ForeColor = Color.White
-        RadioButton6.ForeColor = Color.White
 
         Select Case dodata
                     Case Is = False
@@ -581,6 +549,36 @@ SX2:
         ComboBox1.SelectedIndex = seo
         memo = True
         Timer3.Enabled = True
+    End Sub
+
+    Private Sub CheckBox2_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox2.CheckedChanged
+        If CheckBox2.Checked = False Then
+            doextreme = True
+        Else
+            doextreme = False
+        End If
+    End Sub
+
+    Private Sub LoadView_Click(sender As Object, e As EventArgs) Handles LoadView.Click
+        Dim eo(2) As String, mc, ic As Integer
+        OpenFileDialog1.Title = "载入配置..."
+        OpenFileDialog1.Filter = "抽号发生器配置文件|*.txt"
+        OpenFileDialog1.ShowReadOnly = True
+        If OpenFileDialog1.ShowDialog = DialogResult.OK Then
+            FileOpen(2, OpenFileDialog1.FileName, OpenMode.Input, OpenAccess.Read)
+            EOF(2)
+            eo(0) = LineInput(2)
+            mc = Val(LineInput(2))
+            ListBox2.Items.Clear()
+            For ic = 0 To mc - 1 Step 1
+                ListBox2.Items.Add(LineInput(2))
+            Next
+            FileClose(2)
+        Else
+            Exit Sub
+        End If
+        Area = mc
+        MsgBox("载入成功", vbOKOnly, "提示")
     End Sub
 
 
@@ -757,7 +755,6 @@ EROR2:
         CheckBox1.ForeColor = Color.White
         RadioButton4.ForeColor = Color.White
         RadioButton5.ForeColor = Color.White
-        RadioButton6.ForeColor = Color.White
         Select Case doextreme
             Case Is = True
                 ToolStripLabel4.Enabled = False
