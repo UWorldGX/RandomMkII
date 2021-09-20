@@ -1,9 +1,14 @@
 ﻿Public Class Form1
-    Public circle, tms, ranges, memories, mode2, exe, makesure, checked, checked2 As Integer, temp2 As String, doextreme As Boolean
-    Public memo, dodata, def As Boolean
-    Public mode As Integer
+    Public circle, tms, ranges, memories, mode2, exe, makesure, checked, checked2 As Integer, temp2 As String
+    '抽取核心变量，不可以更改
+    Public memo, dodata, def, doextreme As Boolean
+    '记忆模式，判定变量，不可以修改
     Public Area As Integer
-    Public Const readme as string ="这里可以显示预览效果."
+    '最大范围，单列
+    Public Const readme As String = "这里可以显示预览效果."
+    '常量列表
+    Dim et(19), tp(10), TypeN, mdname(10), doex(10) As String, mxarea, tomode As Integer, extime(10), exrange(10), inde(10) As String
+    '内部存储
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
         If memo = True Then Exit Sub
         If def = True Then
@@ -120,9 +125,6 @@
             Exit Sub
         End If
     End Sub
-
-
-
     Private Sub Button2_Click_1(sender As Object, e As EventArgs)
         ColorDialog1.Color = Label1.ForeColor
         If ColorDialog1.ShowDialog = DialogResult.OK Then
@@ -163,7 +165,6 @@
         Panel4.Visible = False
     End Sub
     '切换页面
-
     Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
         If dodata = False Then
             ComboBox1.Text = "自定义模式"
@@ -328,7 +329,6 @@
     End Sub
     '更换背景
 
-    '极限模式
     Private Sub ComboBox3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox3.SelectedIndexChanged
         Select Case ComboBox3.SelectedItem
             Case Is = "快"
@@ -371,8 +371,6 @@
         RadioButton5.ForeColor = Color.White
     End Sub
     '还原自定义设置
-
-
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
         Me.BackgroundImage = My.Resources.空间邮件
         ToolStripLabel1.ForeColor = Color.White
@@ -491,8 +489,7 @@ SX2:
                 ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         End Select
     End Sub
-
-
+    '部分重置
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         Const frontline As String = "=====The Configuration Of RM MKII====="
@@ -556,7 +553,7 @@ SX2:
         memo = True
         Timer3.Enabled = True
     End Sub
-
+    '保存配置
     Private Sub CheckBox2_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox2.CheckedChanged
         If CheckBox2.Checked = False Then
             doextreme = True
@@ -564,34 +561,40 @@ SX2:
             doextreme = False
         End If
     End Sub
-
+    '极限模式
     Private Sub LoadView_Click(sender As Object, e As EventArgs) Handles LoadView.Click
-        Dim eo(2) As String, mc, ic As Integer
-        OpenFileDialog1.Title = "载入列表..."
-        OpenFileDialog1.FileName = "Listview1"
-        OpenFileDialog1.Filter = "抽号发生器配置文件|*.txt"
-        OpenFileDialog1.ShowReadOnly = True
-        If OpenFileDialog1.ShowDialog = DialogResult.OK Then
-            FileOpen(2, OpenFileDialog1.FileName, OpenMode.Input, OpenAccess.Read)
-            EOF(2)
-            eo(0) = LineInput(2)
-            mc = Val(LineInput(2))
-            ReDim eo(mc)
-            ListBox2.Items.Clear()
-            For ic = 0 To mc - 3 Step 1
+        If dodata = True Then
+            Dim eo(2) As String, mc, ic As Integer
+            OpenFileDialog1.Title = "载入列表..."
+            OpenFileDialog1.FileName = "Listview1"
+            OpenFileDialog1.Filter = "抽号发生器配置文件|*.txt"
+            OpenFileDialog1.ShowReadOnly = True
+            If OpenFileDialog1.ShowDialog = DialogResult.OK Then
+                FileOpen(2, OpenFileDialog1.FileName, OpenMode.Input, OpenAccess.Read)
                 EOF(2)
-                eo(ic) = LineInput(2)
-                ListBox2.Items.Add(eo(ic))
-                EOF(2)
-            Next
-            FileClose(2)
+                eo(0) = LineInput(2)
+                mc = Val(LineInput(2))
+                ReDim eo(mc)
+                ListBox2.Items.Clear()
+                For ic = 0 To mc - 3 Step 1
+                    EOF(2)
+                    eo(ic) = LineInput(2)
+                    ListBox2.Items.Add(eo(ic))
+                    EOF(2)
+                Next
+                FileClose(2)
+            Else
+                Exit Sub
+            End If
+            Area = mc
+            exe = Area
+            pool.Value = exe
+            MsgBox("载入成功", vbOKOnly, "提示")
         Else
             Exit Sub
         End If
-        Area = mc
-        MsgBox("载入成功", vbOKOnly, "提示")
     End Sub
-
+    '载入列表
     Private Sub SaveView_Click(sender As Object, e As EventArgs) Handles SaveView.Click
         If dodata = True Then
             If SaveFileDialog1.ShowDialog = DialogResult.OK Then
@@ -614,10 +617,7 @@ SX2:
             Exit Sub
         End If
     End Sub
-
-
-
-    '局部重置
+    '保存列表
     Private Sub Saver_Click(sender As Object, e As EventArgs) Handles Saver.Click
 
         If ComboBox1.Items.Count > 10 Then
@@ -633,8 +633,10 @@ SX2:
         OpenFileDialog1.Title = "载入配置..."
         OpenFileDialog1.Filter = "抽号发生器配置文件|*.txt"
         OpenFileDialog1.ShowReadOnly = True
-        Dim et(19), tp(10), TypeN, mdname(10), doex(10) As String, mxarea, tomode, cir As Integer, extime(10), exrange(10), inde(10) As String
         If OpenFileDialog1.ShowDialog = DialogResult.OK Then
+            def = False
+            Dim cir As Integer
+            ComboBox1.Items.Clear()
             FileOpen(2, OpenFileDialog1.FileName, OpenMode.Input, OpenAccess.Read)
             EOF(2)
             et(0) = LineInput(2)
@@ -676,7 +678,7 @@ SX2:
             Else
                 exe = Val(exrange(0))
                 pool.Maximum = Area
-                pool.value = exe
+                pool.Value = exe
             End If
             NumericUpDown1.Value = tms
             Label6.Text = exrange(0)
@@ -687,15 +689,14 @@ SX2:
                 doextreme = True
             End If
             ListBox1.Items.Clear()
-            ListBox1.Items.Add("自定义模式就绪")
+            ListBox1.Items.Add(mdname(0) & "就绪")
             ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
             MsgBox("载入成功!" & Chr(13) & Chr(10) & "配置名称:" & TypeN, vbInformation + vbOKOnly, "祝贺")
         Else
             Exit Sub
         End If
     End Sub
-    '加载
-
+    '加载配置
     Private Sub Pool_ValueChanged(sender As Object, e As EventArgs) Handles pool.ValueChanged
         If dodata = False Then
 EROR:
@@ -709,7 +710,7 @@ EROR:
             ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         Else
 EROR2:
-            pool.Maximum = 71
+            pool.Maximum = Area
             exe = pool.Value
             Label6.Text = Str(exe)
             Label7.Text = Str(NumericUpDown1.Value)

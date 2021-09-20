@@ -88,6 +88,7 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.SaveView = New System.Windows.Forms.Button()
         Me.LoadView = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.ListBox2 = New System.Windows.Forms.ListBox()
@@ -96,7 +97,6 @@ Partial Class Form1
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer4 = New System.Windows.Forms.Timer(Me.components)
-        Me.SaveView = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -804,6 +804,19 @@ Partial Class Form1
         Me.Panel4.Size = New System.Drawing.Size(776, 345)
         Me.Panel4.TabIndex = 24
         '
+        'SaveView
+        '
+        Me.SaveView.BackColor = System.Drawing.Color.Transparent
+        Me.SaveView.BackgroundImage = CType(resources.GetObject("SaveView.BackgroundImage"), System.Drawing.Image)
+        Me.SaveView.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.SaveView.ForeColor = System.Drawing.Color.White
+        Me.SaveView.Location = New System.Drawing.Point(110, 287)
+        Me.SaveView.Name = "SaveView"
+        Me.SaveView.Size = New System.Drawing.Size(59, 30)
+        Me.SaveView.TabIndex = 33
+        Me.SaveView.Text = "保存"
+        Me.SaveView.UseVisualStyleBackColor = False
+        '
         'LoadView
         '
         Me.LoadView.BackColor = System.Drawing.Color.Transparent
@@ -869,19 +882,6 @@ Partial Class Form1
         '
         Me.Timer4.Interval = 25
         '
-        'SaveView
-        '
-        Me.SaveView.BackColor = System.Drawing.Color.Transparent
-        Me.SaveView.BackgroundImage = CType(resources.GetObject("SaveView.BackgroundImage"), System.Drawing.Image)
-        Me.SaveView.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.SaveView.ForeColor = System.Drawing.Color.White
-        Me.SaveView.Location = New System.Drawing.Point(110, 287)
-        Me.SaveView.Name = "SaveView"
-        Me.SaveView.Size = New System.Drawing.Size(59, 30)
-        Me.SaveView.TabIndex = 33
-        Me.SaveView.Text = "保存"
-        Me.SaveView.UseVisualStyleBackColor = False
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -892,10 +892,10 @@ Partial Class Form1
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel4)
-        Me.Controls.Add(Me.Panel2)
         Me.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
