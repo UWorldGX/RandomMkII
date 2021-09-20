@@ -79,6 +79,8 @@ Partial Class Form1
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.ComboBox4 = New System.Windows.Forms.ComboBox()
         Me.ReDiveP = New System.Windows.Forms.LinkLabel()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -133,7 +135,7 @@ Partial Class Form1
         Me.Label1.Cursor = System.Windows.Forms.Cursors.No
         Me.Label1.Font = New System.Drawing.Font("方正像素12", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Image = CType(resources.GetObject("Label1.Image"), System.Drawing.Image)
+        Me.Label1.Image = Global.RandomMaker.My.Resources.Resources.DialogDP
         Me.Label1.Location = New System.Drawing.Point(38, 3)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(398, 72)
@@ -252,12 +254,13 @@ Partial Class Form1
         Me.ToolStrip1.BackColor = System.Drawing.Color.Transparent
         Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.Left
         Me.ToolStrip1.Font = New System.Drawing.Font("Microsoft YaHei UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripSeparator1, Me.ToolStripLabel2, Me.ToolStripSeparator2, Me.ToolStripLabel3, Me.ToolStripSeparator3, Me.ToolStripLabel4})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 25)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.ToolStrip1.Size = New System.Drawing.Size(86, 354)
+        Me.ToolStrip1.Size = New System.Drawing.Size(87, 354)
         Me.ToolStrip1.TabIndex = 20
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -266,69 +269,73 @@ Partial Class Form1
         Me.ToolStripLabel1.Font = New System.Drawing.Font("Microsoft YaHei UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.ToolStripLabel1.ForeColor = System.Drawing.Color.White
         Me.ToolStripLabel1.Image = CType(resources.GetObject("ToolStripLabel1.Image"), System.Drawing.Image)
-        Me.ToolStripLabel1.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
+        Me.ToolStripLabel1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ToolStripLabel1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
         Me.ToolStripLabel1.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never
         Me.ToolStripLabel1.Padding = New System.Windows.Forms.Padding(0, 0, 0, 25)
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(83, 52)
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(84, 55)
         Me.ToolStripLabel1.Text = "主页"
-        Me.ToolStripLabel1.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(83, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(84, 6)
         '
         'ToolStripLabel2
         '
         Me.ToolStripLabel2.ForeColor = System.Drawing.Color.White
         Me.ToolStripLabel2.Image = CType(resources.GetObject("ToolStripLabel2.Image"), System.Drawing.Image)
+        Me.ToolStripLabel2.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.ToolStripLabel2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ToolStripLabel2.Margin = New System.Windows.Forms.Padding(0, 25, 0, 0)
         Me.ToolStripLabel2.Name = "ToolStripLabel2"
-        Me.ToolStripLabel2.Size = New System.Drawing.Size(83, 27)
+        Me.ToolStripLabel2.Size = New System.Drawing.Size(84, 30)
         Me.ToolStripLabel2.Text = "参数设置"
+        Me.ToolStripLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(83, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(84, 6)
         '
         'ToolStripLabel3
         '
         Me.ToolStripLabel3.Font = New System.Drawing.Font("Microsoft YaHei UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.ToolStripLabel3.ForeColor = System.Drawing.Color.White
         Me.ToolStripLabel3.Image = CType(resources.GetObject("ToolStripLabel3.Image"), System.Drawing.Image)
-        Me.ToolStripLabel3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ToolStripLabel3.ImageAlign = System.Drawing.ContentAlignment.TopRight
         Me.ToolStripLabel3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ToolStripLabel3.Margin = New System.Windows.Forms.Padding(0, 25, 0, 2)
         Me.ToolStripLabel3.Name = "ToolStripLabel3"
-        Me.ToolStripLabel3.Size = New System.Drawing.Size(83, 29)
+        Me.ToolStripLabel3.Size = New System.Drawing.Size(84, 30)
         Me.ToolStripLabel3.Text = "个性化"
+        Me.ToolStripLabel3.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(83, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(84, 6)
         '
         'ToolStripLabel4
         '
         Me.ToolStripLabel4.Font = New System.Drawing.Font("Microsoft YaHei UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.ToolStripLabel4.ForeColor = System.Drawing.Color.White
         Me.ToolStripLabel4.Image = CType(resources.GetObject("ToolStripLabel4.Image"), System.Drawing.Image)
+        Me.ToolStripLabel4.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.ToolStripLabel4.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ToolStripLabel4.Margin = New System.Windows.Forms.Padding(0, 25, 0, 2)
         Me.ToolStripLabel4.Name = "ToolStripLabel4"
-        Me.ToolStripLabel4.Size = New System.Drawing.Size(83, 26)
+        Me.ToolStripLabel4.Size = New System.Drawing.Size(84, 30)
         Me.ToolStripLabel4.Text = "数据驱动"
+        Me.ToolStripLabel4.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Transparent
+        Me.Panel1.Controls.Add(Me.ProgressBar1)
         Me.Panel1.Controls.Add(Me.Button7)
         Me.Panel1.Controls.Add(Me.CheckBox1)
-        Me.Panel1.Controls.Add(Me.ProgressBar1)
         Me.Panel1.Controls.Add(Me.Label7)
         Me.Panel1.Controls.Add(Me.Label6)
         Me.Panel1.Controls.Add(Me.Label3)
@@ -362,7 +369,7 @@ Partial Class Form1
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.Font = New System.Drawing.Font("微软雅黑", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.CheckBox1.ForeColor = System.Drawing.Color.White
-        Me.CheckBox1.Location = New System.Drawing.Point(42, 289)
+        Me.CheckBox1.Location = New System.Drawing.Point(42, 286)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(123, 21)
         Me.CheckBox1.TabIndex = 25
@@ -693,6 +700,8 @@ Partial Class Form1
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.Label13)
+        Me.GroupBox2.Controls.Add(Me.ComboBox4)
         Me.GroupBox2.Controls.Add(Me.ReDiveP)
         Me.GroupBox2.Controls.Add(Me.Button8)
         Me.GroupBox2.Controls.Add(Me.Label10)
@@ -702,17 +711,36 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.Button3)
         Me.GroupBox2.Controls.Add(Me.Button2)
         Me.GroupBox2.ForeColor = System.Drawing.Color.White
-        Me.GroupBox2.Location = New System.Drawing.Point(58, 109)
+        Me.GroupBox2.Location = New System.Drawing.Point(58, 91)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(371, 181)
+        Me.GroupBox2.Size = New System.Drawing.Size(371, 225)
         Me.GroupBox2.TabIndex = 9
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "个性化"
         '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(26, 108)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(88, 20)
+        Me.Label13.TabIndex = 18
+        Me.Label13.Text = "更换对话框:"
+        '
+        'ComboBox4
+        '
+        Me.ComboBox4.FormattingEnabled = True
+        Me.ComboBox4.Items.AddRange(New Object() {"Pt(默认)", "HGSS", "DP", "E"})
+        Me.ComboBox4.Location = New System.Drawing.Point(129, 103)
+        Me.ComboBox4.Name = "ComboBox4"
+        Me.ComboBox4.Size = New System.Drawing.Size(172, 28)
+        Me.ComboBox4.TabIndex = 17
+        Me.ComboBox4.Text = "默认"
+        '
         'ReDiveP
         '
         Me.ReDiveP.AutoSize = True
-        Me.ReDiveP.Location = New System.Drawing.Point(42, 146)
+        Me.ReDiveP.Location = New System.Drawing.Point(49, 200)
         Me.ReDiveP.Name = "ReDiveP"
         Me.ReDiveP.Size = New System.Drawing.Size(129, 20)
         Me.ReDiveP.TabIndex = 16
@@ -723,7 +751,7 @@ Partial Class Form1
         '
         Me.Button8.BackgroundImage = CType(resources.GetObject("Button8.BackgroundImage"), System.Drawing.Image)
         Me.Button8.ForeColor = System.Drawing.SystemColors.Window
-        Me.Button8.Location = New System.Drawing.Point(219, 103)
+        Me.Button8.Location = New System.Drawing.Point(217, 145)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(84, 27)
         Me.Button8.TabIndex = 15
@@ -733,7 +761,7 @@ Partial Class Form1
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(41, 106)
+        Me.Label10.Location = New System.Drawing.Point(71, 148)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(43, 20)
         Me.Label10.TabIndex = 14
@@ -743,7 +771,7 @@ Partial Class Form1
         '
         Me.ComboBox3.FormattingEnabled = True
         Me.ComboBox3.Items.AddRange(New Object() {"快", "中", "慢"})
-        Me.ComboBox3.Location = New System.Drawing.Point(129, 103)
+        Me.ComboBox3.Location = New System.Drawing.Point(129, 145)
         Me.ComboBox3.Name = "ComboBox3"
         Me.ComboBox3.Size = New System.Drawing.Size(63, 28)
         Me.ComboBox3.TabIndex = 13
@@ -752,7 +780,7 @@ Partial Class Form1
         'ComboBox2
         '
         Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Items.AddRange(New Object() {"空间邮件(DP)", "彩嵌邮件(DP)", "青草邮件(DP)", "初次邮件(BW)", "桥梁邮件W(BW)"})
+        Me.ComboBox2.Items.AddRange(New Object() {"天空邮件", "空间邮件", "彩嵌邮件", "青草邮件", "水蓝邮件", "暴雪邮件", "钢铁邮件", "砖块邮件", "初次邮件", "回复邮件", "喜爱邮件", "感谢邮件", "桥梁邮件W", "桥梁邮件C", "桥梁邮件V", "桥梁邮件H", "桥梁邮件S"})
         Me.ComboBox2.Location = New System.Drawing.Point(129, 64)
         Me.ComboBox2.Name = "ComboBox2"
         Me.ComboBox2.Size = New System.Drawing.Size(172, 28)
@@ -892,8 +920,8 @@ Partial Class Form1
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
-        Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel4)
         Me.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
@@ -1004,4 +1032,6 @@ Partial Class Form1
     Friend WithEvents CheckBox2 As CheckBox
     Friend WithEvents LoadView As Button
     Friend WithEvents SaveView As Button
+    Friend WithEvents Label13 As Label
+    Friend WithEvents ComboBox4 As ComboBox
 End Class

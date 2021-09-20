@@ -73,6 +73,36 @@ Namespace My.Resources
         '''<summary>
         '''  查找 System.Drawing.Bitmap 类型的本地化资源。
         '''</summary>
+        Friend ReadOnly Property DialogDP() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("DialogDP", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property EDialog() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("EDialog", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property hgssdialog() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("hgssdialog", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
         Friend ReadOnly Property LATITWINS() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("LATITWINS", resourceCulture)
@@ -96,6 +126,16 @@ Namespace My.Resources
         Friend ReadOnly Property MELOETTA() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("MELOETTA", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property PtDialog() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("PtDialog", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -133,9 +173,99 @@ Namespace My.Resources
         '''<summary>
         '''  查找 System.Drawing.Bitmap 类型的本地化资源。
         '''</summary>
+        Friend ReadOnly Property 喜爱邮件() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("喜爱邮件", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property 回复邮件() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("回复邮件", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property 天空邮件() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("天空邮件", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
         Friend ReadOnly Property 彩嵌邮件() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("彩嵌邮件", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property 感谢邮件() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("感谢邮件", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property 暴雪邮件() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("暴雪邮件", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property 桥梁邮件Ｃ() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("桥梁邮件Ｃ", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property 桥梁邮件Ｈ() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("桥梁邮件Ｈ", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property 桥梁邮件Ｓ() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("桥梁邮件Ｓ", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property 桥梁邮件Ｖ() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("桥梁邮件Ｖ", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -153,9 +283,39 @@ Namespace My.Resources
         '''<summary>
         '''  查找 System.Drawing.Bitmap 类型的本地化资源。
         '''</summary>
+        Friend ReadOnly Property 水蓝邮件() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("水蓝邮件", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property 砖块邮件() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("砖块邮件", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
         Friend ReadOnly Property 空间邮件() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("空间邮件", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property 钢铁邮件() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("钢铁邮件", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
