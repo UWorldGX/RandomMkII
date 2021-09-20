@@ -35,7 +35,6 @@ Partial Class Form1
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel3 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -121,7 +120,7 @@ Partial Class Form1
         Me.Button1.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
         Me.Button1.Image = Global.RandomMaker.My.Resources.Resources.MELOETTA
-        Me.Button1.Location = New System.Drawing.Point(301, 231)
+        Me.Button1.Location = New System.Drawing.Point(301, 225)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(106, 42)
         Me.Button1.TabIndex = 0
@@ -202,20 +201,12 @@ Partial Class Form1
         'StatusStrip1
         '
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripStatusLabel2, Me.ToolStripStatusLabel3})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 379)
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel2, Me.ToolStripStatusLabel3})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 386)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(513, 22)
         Me.StatusStrip1.TabIndex = 15
         Me.StatusStrip1.Text = "StatusStrip1"
-        '
-        'ToolStripStatusLabel1
-        '
-        Me.ToolStripStatusLabel1.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(166, 17)
-        Me.ToolStripStatusLabel1.Spring = True
-        Me.ToolStripStatusLabel1.Text = "©2021 驻马店市一高胡延涛"
         '
         'ToolStripStatusLabel2
         '
@@ -260,7 +251,7 @@ Partial Class Form1
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 25)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.ToolStrip1.Size = New System.Drawing.Size(87, 354)
+        Me.ToolStrip1.Size = New System.Drawing.Size(87, 361)
         Me.ToolStrip1.TabIndex = 20
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -347,7 +338,7 @@ Partial Class Form1
         Me.Panel1.Font = New System.Drawing.Font("微软雅黑", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Panel1.Location = New System.Drawing.Point(55, 27)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(762, 347)
+        Me.Panel1.Size = New System.Drawing.Size(762, 359)
         Me.Panel1.TabIndex = 21
         '
         'Button7
@@ -379,9 +370,9 @@ Partial Class Form1
         'ProgressBar1
         '
         Me.ProgressBar1.BackColor = System.Drawing.Color.White
-        Me.ProgressBar1.Location = New System.Drawing.Point(34, 322)
+        Me.ProgressBar1.Location = New System.Drawing.Point(43, 334)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(409, 22)
+        Me.ProgressBar1.Size = New System.Drawing.Size(404, 22)
         Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous
         Me.ProgressBar1.TabIndex = 23
         '
@@ -464,7 +455,7 @@ Partial Class Form1
         Me.Panel2.Controls.Add(Me.GroupBox1)
         Me.Panel2.Location = New System.Drawing.Point(0, 28)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(498, 343)
+        Me.Panel2.Size = New System.Drawing.Size(498, 355)
         Me.Panel2.TabIndex = 22
         Me.Panel2.Visible = False
         '
@@ -680,7 +671,7 @@ Partial Class Form1
         Me.Panel3.Controls.Add(Me.GroupBox2)
         Me.Panel3.Location = New System.Drawing.Point(55, 30)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(761, 344)
+        Me.Panel3.Size = New System.Drawing.Size(761, 353)
         Me.Panel3.TabIndex = 23
         '
         'Label9
@@ -829,7 +820,7 @@ Partial Class Form1
         Me.Panel4.Controls.Add(Me.ListBox2)
         Me.Panel4.Location = New System.Drawing.Point(51, 29)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(776, 345)
+        Me.Panel4.Size = New System.Drawing.Size(776, 357)
         Me.Panel4.TabIndex = 24
         '
         'SaveView
@@ -916,7 +907,7 @@ Partial Class Form1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.BackgroundImage = Global.RandomMaker.My.Resources.Resources.空间邮件
-        Me.ClientSize = New System.Drawing.Size(513, 401)
+        Me.ClientSize = New System.Drawing.Size(513, 408)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
@@ -970,7 +961,6 @@ Partial Class Form1
     Friend WithEvents FontDialog1 As FontDialog
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents StatusStrip1 As StatusStrip
-    Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem

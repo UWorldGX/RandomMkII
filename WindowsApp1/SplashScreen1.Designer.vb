@@ -40,7 +40,7 @@ Partial Class SplashScreen1
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("方正像素12", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label1.ForeColor = System.Drawing.SystemColors.Window
-        Me.Label1.Location = New System.Drawing.Point(267, 58)
+        Me.Label1.Location = New System.Drawing.Point(253, 58)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(163, 19)
         Me.Label1.TabIndex = 0
@@ -74,9 +74,9 @@ Partial Class SplashScreen1
         Me.Label2.ForeColor = System.Drawing.SystemColors.Window
         Me.Label2.Location = New System.Drawing.Point(8, 41)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(245, 17)
+        Me.Label2.Size = New System.Drawing.Size(177, 17)
         Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Using Visual Studio and .NET technology"
+        Me.Label2.Text = "Using Visual Studio and .NET"
         '
         'Timer4
         '
@@ -90,16 +90,16 @@ Partial Class SplashScreen1
         Me.Label3.ForeColor = System.Drawing.SystemColors.Window
         Me.Label3.Location = New System.Drawing.Point(8, 61)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(103, 17)
+        Me.Label3.Size = New System.Drawing.Size(122, 17)
         Me.Label3.TabIndex = 3
-        Me.Label3.Text = "Version 5.0 beta"
+        Me.Label3.Text = "Version 5.0 Release"
         '
         'SplashScreen1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(428, 89)
+        Me.ClientSize = New System.Drawing.Size(428, 86)
         Me.ControlBox = False
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
