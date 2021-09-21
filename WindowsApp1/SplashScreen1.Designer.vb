@@ -23,9 +23,7 @@ Partial Class SplashScreen1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SplashScreen1))
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
@@ -40,19 +38,11 @@ Partial Class SplashScreen1
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("方正像素12", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label1.ForeColor = System.Drawing.SystemColors.Window
-        Me.Label1.Location = New System.Drawing.Point(253, 58)
+        Me.Label1.Location = New System.Drawing.Point(198, 79)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(163, 19)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Now Loading..."
-        '
-        'ProgressBar1
-        '
-        Me.ProgressBar1.Location = New System.Drawing.Point(11, 12)
-        Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(405, 20)
-        Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous
-        Me.ProgressBar1.TabIndex = 1
         '
         'Timer1
         '
@@ -72,7 +62,7 @@ Partial Class SplashScreen1
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("微软雅黑", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label2.ForeColor = System.Drawing.SystemColors.Window
-        Me.Label2.Location = New System.Drawing.Point(8, 41)
+        Me.Label2.Location = New System.Drawing.Point(8, 65)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(177, 17)
         Me.Label2.TabIndex = 2
@@ -88,7 +78,7 @@ Partial Class SplashScreen1
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("微软雅黑", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label3.ForeColor = System.Drawing.SystemColors.Window
-        Me.Label3.Location = New System.Drawing.Point(8, 61)
+        Me.Label3.Location = New System.Drawing.Point(8, 82)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(122, 17)
         Me.Label3.TabIndex = 3
@@ -98,12 +88,11 @@ Partial Class SplashScreen1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(428, 86)
+        Me.BackgroundImage = Global.RandomMaker.My.Resources.Resources.PG0
+        Me.ClientSize = New System.Drawing.Size(373, 108)
         Me.ControlBox = False
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.Label1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.MaximizeBox = False
@@ -118,7 +107,6 @@ Partial Class SplashScreen1
     End Sub
 
     Friend WithEvents Label1 As Label
-    Friend WithEvents ProgressBar1 As ProgressBar
     Friend WithEvents Timer1 As Timer
     Friend WithEvents Timer2 As Timer
     Friend WithEvents Timer3 As Timer

@@ -112,6 +112,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialog1.Designer.vb">
+      <DependentUpon>Dialog1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +141,12 @@
       <DependentUpon>Form4.vb</DependentUpon>
     </Compile>
     <Compile Include="Form4.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form5.Designer.vb">
+      <DependentUpon>Form5.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form5.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Module1.vb" />
@@ -174,6 +186,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialog1.resx">
+      <DependentUpon>Dialog1.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
@@ -185,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form4.resx">
       <DependentUpon>Form4.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form5.resx">
+      <DependentUpon>Form5.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\AboutBox1.resx">
       <DependentUpon>AboutBox1.vb</DependentUpon>
@@ -275,6 +293,13 @@
     <None Include="Resources\EDialog.jpg" />
     <None Include="Resources\hgssdialog.jpg" />
     <None Include="Resources\PtDialog.jpg" />
+    <None Include="Resources\bton1.png" />
+    <None Include="Resources\PG0.png" />
+    <None Include="Resources\PG1.png" />
+    <None Include="Resources\PG2.png" />
+    <None Include="Resources\PG3.png" />
+    <None Include="Resources\LDING.png" />
+    <None Include="Resources\ORASDialog.png" />
     <Content Include="S9.ico" />
     <None Include="RandomMaker_TemporaryKey.pfx" />
     <None Include="Resources\MELOETTA.png" />
