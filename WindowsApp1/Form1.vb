@@ -1159,9 +1159,6 @@ EROR2:
         If SaveFileDialog1.ShowDialog = DialogResult.OK Then
             Dim temp As Integer
             SaveFileDialog1.Title = "保存记录..."
-            SaveFileDialog1.DefaultExt = "*.txt"
-            SaveFileDialog1.Filter = "抽号发生器配置文件|*.txt"
-            SaveFileDialog1.FileName = “ListView1"
             SaveFileDialog1.CreatePrompt = True
             FileOpen(2, SaveFileDialog1.FileName, OpenMode.Output, OpenAccess.Default)
             WriteLine(2, "抽取日期" & Date.Today)
@@ -1177,6 +1174,7 @@ EROR2:
             Exit Sub
         End If
         SaveFileDialog1.DefaultExt = "*.ini"
+        MsgBox("保存成功", vbOKOnly + vbInformation, "祝贺")
     End Sub
     '保存抽取记录
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
