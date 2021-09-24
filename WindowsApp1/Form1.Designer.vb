@@ -187,7 +187,7 @@ Partial Class Form1
         '
         Me.ComboBox1.Font = New System.Drawing.Font("微软雅黑", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"英语/语文模式(正常)", "英语/语文模式(极限)", "数据驱动模式Normal", "数据驱动模式Premium", "关于模式的说明..."})
+        Me.ComboBox1.Items.AddRange(New Object() {"英语/语文模式(正常)", "英语/语文模式(极限)", "数据驱动模式Normal", "数据驱动模式Premium"})
         Me.ComboBox1.Location = New System.Drawing.Point(270, 183)
         Me.ComboBox1.MaxDropDownItems = 10
         Me.ComboBox1.Name = "ComboBox1"
@@ -576,7 +576,7 @@ Partial Class Form1
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(80, 32)
         Me.Button6.TabIndex = 26
-        Me.Button6.Text = "载入配置"
+        Me.Button6.Text = "导入配置"
         Me.Button6.UseVisualStyleBackColor = False
         '
         'Button5
@@ -592,7 +592,7 @@ Partial Class Form1
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(80, 32)
         Me.Button5.TabIndex = 25
-        Me.Button5.Text = "保存配置"
+        Me.Button5.Text = "导出配置"
         Me.Button5.UseVisualStyleBackColor = False
         '
         'GroupBox3
@@ -729,12 +729,12 @@ Partial Class Form1
         Me.Label9.Cursor = System.Windows.Forms.Cursors.No
         Me.Label9.Font = New System.Drawing.Font("方正像素12", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.Black
-        Me.Label9.Image = CType(resources.GetObject("Label9.Image"), System.Drawing.Image)
+        Me.Label9.Image = Global.RandomMaker.My.Resources.Resources.PtDialog
         Me.Label9.Location = New System.Drawing.Point(41, 17)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(399, 71)
         Me.Label9.TabIndex = 10
-        Me.Label9.Text = "这里显示文本的预览效果."
+        Me.Label9.Text = "这里显示对话框的预览效果."
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'GroupBox2
@@ -944,6 +944,7 @@ Partial Class Form1
         Me.SaveFileDialog1.CreatePrompt = True
         Me.SaveFileDialog1.DefaultExt = "ini"
         Me.SaveFileDialog1.FileName = "RMConfig"
+        Me.SaveFileDialog1.InitialDirectory = """D:\"""
         Me.SaveFileDialog1.RestoreDirectory = True
         '
         'OpenFileDialog1
@@ -974,10 +975,10 @@ Partial Class Form1
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
-        Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel4)
+        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.Panel2)
         Me.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)

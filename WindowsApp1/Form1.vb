@@ -1,13 +1,18 @@
 ﻿Public Class Form1
     Public circle, tms, ranges, memories, exe, makesure, checked, checked2 As Integer, temp2 As String
+
     '抽取核心变量，不可以更改
-    Public memo, dodata, def, doextreme As Boolean
+    Public memo, dodata, def, ulcheck, doextreme As Boolean, lock As Boolean = True
+
     '记忆模式，判定变量，不可以修改
-    Public Area As Integer
+    Public Area, mimo As Integer
+
     '最大范围，单列
     Public Const readme As String = "这里可以显示对话框的预览效果."
+
     '常量列表
-    Dim tp(10), TypeN, mdname(10), doex(10) As String, mxarea, tomode As Integer, extime(10), exrange(10), inde(10) As Integer
+    Dim tp(10), TypeN, mdname(10), doex(10) As String, mxarea, tomode As Integer, extime(10), exrange(10) As Integer
+
     '内部存储
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
         If memo = True Then Exit Sub
@@ -18,7 +23,6 @@
             pool.Enabled = False
             RadioButton4.Enabled = False
             RadioButton5.Enabled = False
-            ListBox1.Items.Clear()
             NumericUpDown1.Value = extime(xr)
             tms = extime(xr)
             If tp(xr) = "#FALSE#" Then
@@ -29,8 +33,11 @@
                 RadioButton5.Checked = False
                 dodata = False
                 Label6.Text = Str(ranges)
-                temp2 = "随机数模式已就绪.等待抽号."
-                ListBox1.Items.Add(mdname(xr) & "就绪.")
+                If ulcheck = True Then
+                    ListBox1.Items.Clear()
+                    temp2 = "随机数模式已就绪.等待抽号."
+                    ListBox1.Items.Add(mdname(xr) & "就绪.")
+                End If
                 ToolStripLabel4.Enabled = False
             Else
                 exe = exrange(xr)
@@ -40,11 +47,16 @@
                 RadioButton4.Checked = False
                 RadioButton5.Checked = True
                 Label6.Text = Str(exe)
-                temp2 = "数据驱动模式已就绪.等待抽号."
-                ListBox1.Items.Add(mdname(xr) & "就绪.")
+                If ulcheck = True Then
+                    ListBox1.Items.Clear()
+                    temp2 = "数据驱动模式已就绪.等待抽号."
+                    ListBox1.Items.Add(mdname(xr) & "就绪.")
+                End If
                 ToolStripLabel4.Enabled = True
             End If
-            memories = 0
+            If ulcheck = True Then
+                memories = 0
+            End If
             Label7.Text = Str(NumericUpDown1.Value)
             CheckBox2.Enabled = False
             If doex(xr) = "#TRUE#" Then
@@ -59,30 +71,7 @@
                 Label14.Visible = False
             End If
             ToolStripStatusLabel3.Text = "当前模式" & mdname(xr)
-            Select Case xr + 1
-                Case Is = 0
-                    ListBox1.ResetForeColor()
-                Case Is = 1
-                    ListBox1.ForeColor = Color.Blue
-                Case Is = 2
-                    ListBox1.ForeColor = Color.Red
-                Case Is = 3
-                    ListBox1.ForeColor = Color.Purple
-                Case Is = 4
-                    ListBox1.ForeColor = Color.DarkGoldenrod
-                Case Is = 5
-                    ListBox1.ForeColor = Color.Coral
-                Case Is = 6
-                    ListBox1.ForeColor = Color.DarkOrange
-                Case Is = 8
-                    ListBox1.ForeColor = Color.Gray
-                Case Is = 9
-                    ListBox1.ForeColor = Color.Olive
-                Case Is = 10
-                    ListBox1.ForeColor = Color.DarkCyan
-                Case Is = 7
-                    ListBox1.ForeColor = Color.Brown
-            End Select
+            Call ColorSwitch(xc:=xr)
         End If
         CheckBox2.Enabled = True
         pool.Enabled = True
@@ -91,65 +80,57 @@
         RadioButton5.Enabled = True
         Timer2.Enabled = True
     End Sub
+
     '切换模式
-    Private Sub Button3_Click(sender As Object, e As EventArgs)
-        FontDialog1.Font = Label1.Font
-        FontDialog1.ShowColor = True
-        If FontDialog1.ShowDialog = DialogResult.OK Then
-            Label1.Font = FontDialog1.Font
-            Label1.ForeColor = FontDialog1.Color
-        Else
-            Exit Sub
-        End If
-    End Sub
-    Private Sub Button2_Click_1(sender As Object, e As EventArgs)
-        ColorDialog1.Color = Label1.ForeColor
-        If ColorDialog1.ShowDialog = DialogResult.OK Then
-            Label1.ForeColor = ColorDialog1.Color
-        Else
-            Exit Sub
-        End If
-    End Sub
-    '更换字体/颜色2
     Private Sub 更新记录ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 更新记录ToolStripMenuItem.Click
         Form3.Show()
     End Sub
+
     Private Sub 关于ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 关于ToolStripMenuItem.Click
         Form2.Show()
     End Sub
+
     Private Sub ToolStripLabel1_Click(sender As Object, e As EventArgs) Handles ToolStripLabel1.Click
         Panel1.Visible = True
         Panel2.Visible = False
         Panel3.Visible = False
         Panel4.Visible = False
+        ToolStripLabel5.Enabled = True
     End Sub
+
     Private Sub ToolStripLabel3_Click(sender As Object, e As EventArgs) Handles ToolStripLabel3.Click
         Panel1.Visible = False
         Panel2.Visible = False
         Panel3.Visible = True
         Panel4.Visible = False
+        ToolStripLabel5.Enabled = False
     End Sub
+
     Private Sub ToolStripLabel4_Click(sender As Object, e As EventArgs) Handles ToolStripLabel4.Click
         Panel1.Visible = False
         Panel2.Visible = False
         Panel3.Visible = False
         Panel4.Visible = True
+        ToolStripLabel5.Enabled = False
     End Sub
+
     Private Sub ToolStripLabel2_Click(sender As Object, e As EventArgs) Handles ToolStripLabel2.Click
         Panel1.Visible = False
         Panel2.Visible = True
         Panel3.Visible = False
         Panel4.Visible = False
+        ToolStripLabel5.Enabled = False
     End Sub
+
     '切换页面
     Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
+        If lock = True Then Exit Sub
         If dodata = False Then
             ComboBox1.Text = "自定义模式"
             RadioButton4.Checked = True
             RadioButton5.Checked = False
             Label6.Text = Str(ranges)
             Label7.Text = Str(NumericUpDown1.Value)
-            ComboBox1.ForeColor = Color.Black
             ListBox1.ForeColor = Color.Black
             ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         Else
@@ -158,36 +139,40 @@
             RadioButton5.Checked = True
             Label6.Text = Str(exe)
             Label7.Text = Str(NumericUpDown1.Value)
-            ComboBox1.ForeColor = Color.Chocolate
             ListBox1.ForeColor = Color.Chocolate
             ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         End If
+        TextBox1.Text = ComboBox1.Text & dodata - 3
     End Sub
+
     '抽取次数调节
     Private Sub RadioButton4_Click(sender As Object, e As EventArgs) Handles RadioButton4.Click
         If dodata = True Then
             dodata = False
-            pool.Maximum = 100
-            pool.Value = 16
-            ranges = pool.Value
-            ComboBox1.Text = "自定义模式"
+            If lock = True Then Exit Sub
             RadioButton5.Checked = True
             RadioButton4.Checked = False
             ToolStripLabel4.Enabled = False
             ListBox2.Enabled = False
+            pool.Maximum = 100
             Label6.Text = Str(ranges)
             Label7.Text = Str(NumericUpDown1.Value)
-            ComboBox1.ForeColor = Color.Black
+            pool.Value = 16
+            ranges = pool.Value
+            ComboBox1.Text = "自定义模式"
             ListBox1.ForeColor = Color.Black
             ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
+            TextBox1.Text = ComboBox1.Text & dodata - 3
         Else
             Exit Sub
         End If
     End Sub
+
     '随机数开关
     Private Sub RadioButton5_Click(sender As Object, e As EventArgs) Handles RadioButton5.Click
         If dodata = False Then
             dodata = True
+            If lock = True Then Exit Sub
             pool.Maximum = Area
             pool.Value = Area
             exe = pool.Value
@@ -198,13 +183,14 @@
             ListBox2.Enabled = True
             Label6.Text = Str(exe)
             Label7.Text = Str(NumericUpDown1.Value)
-            ComboBox1.ForeColor = Color.Chocolate
             ListBox1.ForeColor = Color.Chocolate
             ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
+            TextBox1.Text = ComboBox1.Text & dodata - 3
         Else
             Exit Sub
         End If
     End Sub
+
     '数据驱动开关
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         ColorDialog1.Color = Label1.ForeColor
@@ -215,6 +201,7 @@
             Exit Sub
         End If
     End Sub
+
     '更换颜色
     Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles Button3.Click
         FontDialog1.Font = Label1.Font
@@ -228,388 +215,149 @@
             Exit Sub
         End If
     End Sub
+
     '更换字体
 
     Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox2.SelectedIndexChanged
+        ulcheck = False
         Select Case ComboBox2.Text
             Case Is = "空间邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.空间邮件
-                ToolStripLabel1.ForeColor = Color.White
-                ToolStripLabel2.ForeColor = Color.White
-                ToolStripLabel3.ForeColor = Color.White
-                ToolStripLabel4.ForeColor = Color.White
-                GroupBox1.ForeColor = Color.White
-                GroupBox2.ForeColor = Color.White
-                GroupBox3.ForeColor = Color.White
-                Label2.ForeColor = Color.White
-                Label3.ForeColor = Color.White
-                Label4.ForeColor = Color.White
-                Label5.ForeColor = Color.White
-                Label8.ForeColor = Color.White
-                Label13.ForeColor = Color.White
-                Label10.ForeColor = Color.White
-                Label11.ForeColor = Color.White
-                Label12.ForeColor = Color.White
-                CheckBox1.ForeColor = Color.White
-                CheckBox2.ForeColor = Color.White
-                RadioButton4.ForeColor = Color.White
-                RadioButton5.ForeColor = Color.White
+                Call Wht()
             Case Is = "彩嵌邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.彩嵌邮件
-                ToolStripLabel1.ForeColor = Color.Black
-                ToolStripLabel2.ForeColor = Color.Black
-                ToolStripLabel3.ForeColor = Color.Black
-                ToolStripLabel4.ForeColor = Color.Black
-                GroupBox1.ForeColor = Color.Black
-                GroupBox2.ForeColor = Color.Black
-                GroupBox3.ForeColor = Color.Black
-                Label2.ForeColor = Color.Black
-                Label3.ForeColor = Color.Black
-                Label4.ForeColor = Color.Black
-                Label5.ForeColor = Color.Black
-                Label8.ForeColor = Color.Black
-                Label13.ForeColor = Color.Black
-                Label10.ForeColor = Color.Black
-                Label11.ForeColor = Color.Black
-                Label12.ForeColor = Color.Black
-                CheckBox1.ForeColor = Color.Black
-                CheckBox2.ForeColor = Color.Black
-                RadioButton4.ForeColor = Color.Black
-                RadioButton5.ForeColor = Color.Black
+                Call Bla()
             Case Is = "青草邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.青草邮件
-                ToolStripLabel1.ForeColor = Color.Black
-                ToolStripLabel2.ForeColor = Color.Black
-                ToolStripLabel3.ForeColor = Color.Black
-                ToolStripLabel4.ForeColor = Color.Black
-                GroupBox1.ForeColor = Color.Black
-                GroupBox2.ForeColor = Color.Black
-                GroupBox3.ForeColor = Color.Black
-                Label2.ForeColor = Color.Black
-                Label3.ForeColor = Color.Black
-                Label4.ForeColor = Color.Black
-                Label5.ForeColor = Color.Black
-                Label8.ForeColor = Color.Black
-                Label13.ForeColor = Color.Black
-                Label10.ForeColor = Color.Black
-                Label11.ForeColor = Color.Black
-                Label12.ForeColor = Color.Black
-                CheckBox1.ForeColor = Color.Black
-                CheckBox2.ForeColor = Color.Black
-                RadioButton4.ForeColor = Color.Black
-                RadioButton5.ForeColor = Color.Black
+                Call Bla()
             Case Is = "初次邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.初次邮件
-                ToolStripLabel1.ForeColor = Color.Black
-                ToolStripLabel2.ForeColor = Color.Black
-                ToolStripLabel3.ForeColor = Color.Black
-                ToolStripLabel4.ForeColor = Color.Black
-                GroupBox1.ForeColor = Color.Black
-                GroupBox2.ForeColor = Color.Black
-                GroupBox3.ForeColor = Color.Black
-                Label2.ForeColor = Color.Black
-                Label3.ForeColor = Color.Black
-                Label4.ForeColor = Color.Black
-                Label5.ForeColor = Color.Black
-                Label8.ForeColor = Color.Black
-                Label13.ForeColor = Color.Black
-                Label10.ForeColor = Color.Black
-                Label11.ForeColor = Color.Black
-                Label12.ForeColor = Color.Black
-                CheckBox1.ForeColor = Color.Black
-                CheckBox2.ForeColor = Color.Black
-                RadioButton4.ForeColor = Color.Black
-                RadioButton5.ForeColor = Color.Black
+                Call Bla()
             Case Is = "钢铁邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.钢铁邮件
-                ToolStripLabel1.ForeColor = Color.White
-                ToolStripLabel2.ForeColor = Color.White
-                ToolStripLabel3.ForeColor = Color.White
-                ToolStripLabel4.ForeColor = Color.White
-                GroupBox1.ForeColor = Color.White
-                GroupBox2.ForeColor = Color.White
-                GroupBox3.ForeColor = Color.White
-                Label2.ForeColor = Color.White
-                Label3.ForeColor = Color.White
-                Label4.ForeColor = Color.White
-                Label5.ForeColor = Color.White
-                Label8.ForeColor = Color.White
-                Label13.ForeColor = Color.White
-                Label10.ForeColor = Color.White
-                Label11.ForeColor = Color.White
-                Label12.ForeColor = Color.White
-                CheckBox1.ForeColor = Color.White
-                CheckBox2.ForeColor = Color.White
-                RadioButton4.ForeColor = Color.White
-                RadioButton5.ForeColor = Color.White
+                Call Wht()
             Case Is = "回复邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.回复邮件
-                ToolStripLabel1.ForeColor = Color.Black
-                ToolStripLabel2.ForeColor = Color.Black
-                ToolStripLabel3.ForeColor = Color.Black
-                ToolStripLabel4.ForeColor = Color.Black
-                GroupBox1.ForeColor = Color.Black
-                GroupBox2.ForeColor = Color.Black
-                GroupBox3.ForeColor = Color.Black
-                Label2.ForeColor = Color.Black
-                Label3.ForeColor = Color.Black
-                Label4.ForeColor = Color.Black
-                Label5.ForeColor = Color.Black
-                Label8.ForeColor = Color.Black
-                Label13.ForeColor = Color.Black
-                Label10.ForeColor = Color.Black
-                Label11.ForeColor = Color.Black
-                Label12.ForeColor = Color.Black
-                CheckBox1.ForeColor = Color.Black
-                CheckBox2.ForeColor = Color.Black
-                RadioButton4.ForeColor = Color.Black
-                RadioButton5.ForeColor = Color.Black
+                Call Bla()
             Case Is = "桥梁邮件W"
                 Me.BackgroundImage = RandomMaker.My.Resources.桥梁邮件Ｗ
-                ToolStripLabel1.ForeColor = Color.Black
-                ToolStripLabel2.ForeColor = Color.Black
-                ToolStripLabel3.ForeColor = Color.Black
-                ToolStripLabel4.ForeColor = Color.Black
-                GroupBox1.ForeColor = Color.Black
-                GroupBox2.ForeColor = Color.Black
-                GroupBox3.ForeColor = Color.Black
-                Label2.ForeColor = Color.Black
-                Label3.ForeColor = Color.Black
-                Label4.ForeColor = Color.Black
-                Label5.ForeColor = Color.Black
-                Label8.ForeColor = Color.Black
-                Label13.ForeColor = Color.Black
-                Label10.ForeColor = Color.Black
-                Label11.ForeColor = Color.Black
-                Label12.ForeColor = Color.Black
-                CheckBox1.ForeColor = Color.Black
-                CheckBox2.ForeColor = Color.Black
-                RadioButton4.ForeColor = Color.Black
-                RadioButton5.ForeColor = Color.Black
+                Call Bla()
             Case Is = "桥梁邮件C"
                 Me.BackgroundImage = RandomMaker.My.Resources.桥梁邮件Ｃ
-                ToolStripLabel1.ForeColor = Color.Black
-                ToolStripLabel2.ForeColor = Color.Black
-                ToolStripLabel3.ForeColor = Color.Black
-                ToolStripLabel4.ForeColor = Color.Black
-                GroupBox1.ForeColor = Color.Black
-                GroupBox2.ForeColor = Color.Black
-                GroupBox3.ForeColor = Color.Black
-                Label2.ForeColor = Color.Black
-                Label3.ForeColor = Color.Black
-                Label4.ForeColor = Color.Black
-                Label5.ForeColor = Color.Black
-                Label8.ForeColor = Color.Black
-                Label13.ForeColor = Color.Black
-                Label10.ForeColor = Color.Black
-                Label11.ForeColor = Color.Black
-                Label12.ForeColor = Color.Black
-                CheckBox1.ForeColor = Color.Black
-                CheckBox2.ForeColor = Color.Black
-                RadioButton4.ForeColor = Color.Black
-                RadioButton5.ForeColor = Color.Black
+                Call Bla()
             Case Is = "桥梁邮件V"
                 Me.BackgroundImage = RandomMaker.My.Resources.桥梁邮件Ｖ
-                ToolStripLabel1.ForeColor = Color.Black
-                ToolStripLabel2.ForeColor = Color.Black
-                ToolStripLabel3.ForeColor = Color.Black
-                ToolStripLabel4.ForeColor = Color.Black
-                GroupBox1.ForeColor = Color.Black
-                GroupBox2.ForeColor = Color.Black
-                GroupBox3.ForeColor = Color.Black
-                Label2.ForeColor = Color.Black
-                Label3.ForeColor = Color.Black
-                Label4.ForeColor = Color.Black
-                Label5.ForeColor = Color.Black
-                Label8.ForeColor = Color.Black
-                Label13.ForeColor = Color.Black
-                Label10.ForeColor = Color.Black
-                Label11.ForeColor = Color.Black
-                Label12.ForeColor = Color.Black
-                CheckBox1.ForeColor = Color.Black
-                CheckBox2.ForeColor = Color.Black
-                RadioButton4.ForeColor = Color.Black
-                RadioButton5.ForeColor = Color.Black
+                Call Bla()
             Case Is = "桥梁邮件H"
                 Me.BackgroundImage = RandomMaker.My.Resources.桥梁邮件Ｈ
-                ToolStripLabel1.ForeColor = Color.White
-                ToolStripLabel2.ForeColor = Color.White
-                ToolStripLabel3.ForeColor = Color.White
-                ToolStripLabel4.ForeColor = Color.White
-                GroupBox1.ForeColor = Color.White
-                GroupBox2.ForeColor = Color.White
-                GroupBox3.ForeColor = Color.White
-                Label2.ForeColor = Color.White
-                Label3.ForeColor = Color.White
-                Label4.ForeColor = Color.White
-                Label5.ForeColor = Color.White
-                Label8.ForeColor = Color.White
-                Label13.ForeColor = Color.White
-                Label10.ForeColor = Color.White
-                Label11.ForeColor = Color.White
-                Label12.ForeColor = Color.White
-                CheckBox1.ForeColor = Color.White
-                CheckBox2.ForeColor = Color.White
-                RadioButton4.ForeColor = Color.White
-                RadioButton5.ForeColor = Color.White
+                Call Wht()
             Case Is = "桥梁邮件S"
                 Me.BackgroundImage = RandomMaker.My.Resources.桥梁邮件Ｓ
-                ToolStripLabel1.ForeColor = Color.Black
-                ToolStripLabel2.ForeColor = Color.Black
-                ToolStripLabel3.ForeColor = Color.Black
-                ToolStripLabel4.ForeColor = Color.Black
-                GroupBox1.ForeColor = Color.Black
-                GroupBox2.ForeColor = Color.Black
-                GroupBox3.ForeColor = Color.Black
-                Label2.ForeColor = Color.Black
-                Label3.ForeColor = Color.Black
-                Label4.ForeColor = Color.Black
-                Label5.ForeColor = Color.Black
-                Label8.ForeColor = Color.Black
-                Label13.ForeColor = Color.Black
-                Label10.ForeColor = Color.Black
-                Label11.ForeColor = Color.Black
-                Label12.ForeColor = Color.Black
-                CheckBox1.ForeColor = Color.Black
-                CheckBox2.ForeColor = Color.Black
-                RadioButton4.ForeColor = Color.Black
-                RadioButton5.ForeColor = Color.Black
+                Call Bla()
             Case Is = "水蓝邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.水蓝邮件
-                ToolStripLabel1.ForeColor = Color.White
-                ToolStripLabel2.ForeColor = Color.White
-                ToolStripLabel3.ForeColor = Color.White
-                ToolStripLabel4.ForeColor = Color.White
-                GroupBox1.ForeColor = Color.White
-                GroupBox2.ForeColor = Color.White
-                GroupBox3.ForeColor = Color.White
-                Label2.ForeColor = Color.White
-                Label3.ForeColor = Color.White
-                Label4.ForeColor = Color.White
-                Label5.ForeColor = Color.White
-                Label8.ForeColor = Color.White
-                Label13.ForeColor = Color.White
-                Label10.ForeColor = Color.White
-                Label11.ForeColor = Color.White
-                Label12.ForeColor = Color.White
-                CheckBox1.ForeColor = Color.White
-                CheckBox2.ForeColor = Color.White
-                RadioButton4.ForeColor = Color.White
-                RadioButton5.ForeColor = Color.White
+                Call Wht()
             Case Is = "砖块邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.砖块邮件
-                ToolStripLabel1.ForeColor = Color.White
-                ToolStripLabel2.ForeColor = Color.White
-                ToolStripLabel3.ForeColor = Color.White
-                ToolStripLabel4.ForeColor = Color.White
-                GroupBox1.ForeColor = Color.White
-                GroupBox2.ForeColor = Color.White
-                GroupBox3.ForeColor = Color.White
-                Label2.ForeColor = Color.White
-                Label3.ForeColor = Color.White
-                Label4.ForeColor = Color.White
-                Label5.ForeColor = Color.White
-                Label8.ForeColor = Color.White
-                Label13.ForeColor = Color.White
-                Label10.ForeColor = Color.White
-                Label11.ForeColor = Color.White
-                Label12.ForeColor = Color.White
-                CheckBox1.ForeColor = Color.White
-                CheckBox2.ForeColor = Color.White
-                RadioButton4.ForeColor = Color.White
-                RadioButton5.ForeColor = Color.White
+                Call Wht()
             Case Is = "暴雪邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.暴雪邮件
-                ToolStripLabel1.ForeColor = Color.Black
-                ToolStripLabel2.ForeColor = Color.Black
-                ToolStripLabel3.ForeColor = Color.Black
-                ToolStripLabel4.ForeColor = Color.Black
-                GroupBox1.ForeColor = Color.Black
-                GroupBox2.ForeColor = Color.Black
-                GroupBox3.ForeColor = Color.Black
-                Label2.ForeColor = Color.Black
-                Label3.ForeColor = Color.Black
-                Label4.ForeColor = Color.Black
-                Label5.ForeColor = Color.Black
-                Label8.ForeColor = Color.Black
-                Label13.ForeColor = Color.Black
-                Label10.ForeColor = Color.Black
-                Label11.ForeColor = Color.Black
-                Label12.ForeColor = Color.Black
-                CheckBox1.ForeColor = Color.Black
-                CheckBox2.ForeColor = Color.Black
-                RadioButton4.ForeColor = Color.Black
-                RadioButton5.ForeColor = Color.Black
+                Call Bla()
             Case Is = "天空邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.天空邮件
-                ToolStripLabel1.ForeColor = Color.Black
-                ToolStripLabel2.ForeColor = Color.Black
-                ToolStripLabel3.ForeColor = Color.Black
-                ToolStripLabel4.ForeColor = Color.Black
-                GroupBox1.ForeColor = Color.Black
-                GroupBox2.ForeColor = Color.Black
-                GroupBox3.ForeColor = Color.Black
-                Label2.ForeColor = Color.Black
-                Label3.ForeColor = Color.Black
-                Label4.ForeColor = Color.Black
-                Label5.ForeColor = Color.Black
-                Label8.ForeColor = Color.Black
-                Label13.ForeColor = Color.Black
-                Label10.ForeColor = Color.Black
-                Label11.ForeColor = Color.Black
-                Label12.ForeColor = Color.Black
-                CheckBox1.ForeColor = Color.Black
-                CheckBox2.ForeColor = Color.Black
-                RadioButton4.ForeColor = Color.Black
-                RadioButton5.ForeColor = Color.Black
+                Call Bla()
             Case Is = "喜爱邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.喜爱邮件
-                ToolStripLabel1.ForeColor = Color.Black
-                ToolStripLabel2.ForeColor = Color.Black
-                ToolStripLabel3.ForeColor = Color.Black
-                ToolStripLabel4.ForeColor = Color.Black
-                GroupBox1.ForeColor = Color.Black
-                GroupBox2.ForeColor = Color.Black
-                GroupBox3.ForeColor = Color.Black
-                Label2.ForeColor = Color.Black
-                Label3.ForeColor = Color.Black
-                Label4.ForeColor = Color.Black
-                Label5.ForeColor = Color.Black
-                Label8.ForeColor = Color.Black
-                Label13.ForeColor = Color.Black
-                Label10.ForeColor = Color.Black
-                Label11.ForeColor = Color.Black
-                Label12.ForeColor = Color.Black
-                CheckBox1.ForeColor = Color.Black
-                CheckBox2.ForeColor = Color.Black
-                RadioButton4.ForeColor = Color.Black
-                RadioButton5.ForeColor = Color.Black
+                Call Bla()
             Case Is = "感谢邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.感谢邮件
-                ToolStripLabel1.ForeColor = Color.Black
-                ToolStripLabel2.ForeColor = Color.Black
-                ToolStripLabel3.ForeColor = Color.Black
-                ToolStripLabel4.ForeColor = Color.Black
-                GroupBox1.ForeColor = Color.Black
-                GroupBox2.ForeColor = Color.Black
-                GroupBox3.ForeColor = Color.Black
-                Label2.ForeColor = Color.Black
-                Label3.ForeColor = Color.Black
-                Label4.ForeColor = Color.Black
-                Label5.ForeColor = Color.Black
-                Label8.ForeColor = Color.Black
-                Label13.ForeColor = Color.Black
-                Label10.ForeColor = Color.Black
-                Label11.ForeColor = Color.Black
-                Label12.ForeColor = Color.Black
-                CheckBox1.ForeColor = Color.Black
-                CheckBox2.ForeColor = Color.Black
-                RadioButton4.ForeColor = Color.Black
-                RadioButton5.ForeColor = Color.Black
+                Call Bla()
+        End Select
+        ulcheck = True
+    End Sub
+
+    Private Sub Wht()
+        ToolStripLabel1.ForeColor = Color.White
+        ToolStripLabel2.ForeColor = Color.White
+        ToolStripLabel3.ForeColor = Color.White
+        ToolStripLabel4.ForeColor = Color.White
+        ToolStripLabel5.ForeColor = Color.Black
+        GroupBox1.ForeColor = Color.White
+        GroupBox2.ForeColor = Color.White
+        GroupBox3.ForeColor = Color.White
+        Label2.ForeColor = Color.White
+        Label3.ForeColor = Color.White
+        Label4.ForeColor = Color.White
+        Label5.ForeColor = Color.White
+        Label8.ForeColor = Color.White
+        Label13.ForeColor = Color.White
+        Label10.ForeColor = Color.White
+        Label11.ForeColor = Color.White
+        Label12.ForeColor = Color.White
+        CheckBox1.ForeColor = Color.White
+        CheckBox2.ForeColor = Color.White
+        RadioButton4.ForeColor = Color.White
+        RadioButton5.ForeColor = Color.White
+        If lock = True Then Exit Sub
+        Call Xs()
+    End Sub
+
+    Private Sub Bla()
+        ToolStripLabel1.ForeColor = Color.Black
+        ToolStripLabel2.ForeColor = Color.Black
+        ToolStripLabel3.ForeColor = Color.Black
+        ToolStripLabel4.ForeColor = Color.Black
+        ToolStripLabel5.ForeColor = Color.Black
+        GroupBox1.ForeColor = Color.Black
+        GroupBox2.ForeColor = Color.Black
+        GroupBox3.ForeColor = Color.Black
+        Label2.ForeColor = Color.Black
+        Label3.ForeColor = Color.Black
+        Label4.ForeColor = Color.Black
+        Label5.ForeColor = Color.Black
+        Label8.ForeColor = Color.Black
+        Label13.ForeColor = Color.Black
+        Label10.ForeColor = Color.Black
+        Label11.ForeColor = Color.Black
+        Label12.ForeColor = Color.Black
+        CheckBox1.ForeColor = Color.Black
+        CheckBox2.ForeColor = Color.Black
+        RadioButton4.ForeColor = Color.Black
+        RadioButton5.ForeColor = Color.Black
+        If lock = True Then Exit Sub
+        Call Xs()
+    End Sub
+
+    '黑白切换
+    Private Sub ColorSwitch(ByVal xc As Integer)
+        Select Case xc + 1
+            Case Is = 0
+                ListBox1.ResetForeColor()
+            Case Is = 1
+                ListBox1.ForeColor = Color.Blue
+            Case Is = 2
+                ListBox1.ForeColor = Color.Red
+            Case Is = 3
+                ListBox1.ForeColor = Color.Purple
+            Case Is = 4
+                ListBox1.ForeColor = Color.DarkGoldenrod
+            Case Is = 5
+                ListBox1.ForeColor = Color.Coral
+            Case Is = 6
+                ListBox1.ForeColor = Color.DarkOrange
+            Case Is = 8
+                ListBox1.ForeColor = Color.Gray
+            Case Is = 9
+                ListBox1.ForeColor = Color.Olive
+            Case Is = 10
+                ListBox1.ForeColor = Color.DarkCyan
+            Case Is = 7
+                ListBox1.ForeColor = Color.Brown
         End Select
     End Sub
 
     Private Sub ComboBox4_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox4.SelectedIndexChanged
+        If lock = True Then Exit Sub
         Select Case ComboBox4.SelectedItem
             Case Is = "E"
                 Label1.Image = My.Resources.EDialog
@@ -627,7 +375,12 @@
                 Label1.Image = My.Resources.ORASDialog
                 Label9.Image = My.Resources.ORASDialog
         End Select
+        If lock = True Then Exit Sub
+        ulcheck = False
+        Call Xs()
+        ulcheck = True
     End Sub
+
     '更换背景
 
     Private Sub ComboBox3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox3.SelectedIndexChanged
@@ -642,7 +395,12 @@
                 Timer2.Interval = 100
                 Timer4.Interval = 100
         End Select
+        If lock = True Then Exit Sub
+        ulcheck = False
+        Call Xs()
+        ulcheck = True
     End Sub
+
     '语速
     Private Sub Timer4_Tick(sender As Object, e As EventArgs) Handles Timer4.Tick
         Dim iris As Integer
@@ -656,6 +414,59 @@
         End If
     End Sub
 
+    Private Sub Xs()
+        Const frontline As String = "=====The Configuration Of RM MKIV====="
+        Static seo As Integer = ComboBox1.SelectedIndex
+        Dim et(15) As String, temp2, ex(3) As Integer
+        Static temp As Integer
+        Dim temp3 As Boolean
+        lock = True
+        temp = ComboBox1.Items.Count
+        FileOpen(2, "D:\RMConfig.ini", OpenMode.Output, OpenAccess.Default)
+        WriteLine(2, frontline)
+        WriteLine(2, "TypeName:")
+        PrintLine(2, "AutoSave")
+        WriteLine(2, "MaximaArea")
+        WriteLine(2, Area)
+        WriteLine(2, "totalmode")
+        WriteLine(2, tomode)
+        WriteLine(2, "Speakers:")
+        WriteLine(2, Timer2.Interval)
+        WriteLine(2, "BackgroundImage:")
+        PrintLine(2, ComboBox2.SelectedItem)
+        WriteLine(2, "DialogImage:")
+        PrintLine(2, ComboBox4.SelectedItem)
+        For temp2 = 0 To temp - 1
+            ComboBox1.SelectedIndex = temp2
+            temp3 = dodata
+            WriteLine(2, "=====Mode" & temp2 + 1 & “=====”)
+            WriteLine(2, "ModeName:")
+            PrintLine(2, ComboBox1.SelectedItem)
+            ex(0) = Str(extime(temp2)）
+            If dodata = True Then
+                ex(2) = exe
+            Else
+                ex(2) = ranges
+            End If
+            WriteLine(2, "Extract Times:")
+            WriteLine(2, ex(0))
+            WriteLine(2, "Extract Ranges:")
+            WriteLine(2, ex(2))
+            WriteLine(2, "ModeType:")
+            WriteLine(2, temp3)
+            WriteLine(2, "DoExtremeMode")
+            WriteLine(2, doextreme)
+        Next
+        WriteLine(2, "CreateTime:" & Date.Now)
+        WriteLine(2, "使用的模式:")
+        WriteLine(2, ComboBox1.SelectedIndex)
+        FileClose(2)
+        lock = False
+        ComboBox1.SelectedIndex = seo
+        Timer3.Enabled = True
+    End Sub
+
+    '保存通用过程
     Private Sub ToolStripLabel5_Click(sender As Object, e As EventArgs) Handles ToolStripLabel5.Click
         Dim xr As Integer
         xr = ComboBox1.SelectedIndex
@@ -676,7 +487,6 @@
                 Label1.ForeColor = Color.Black
                 ToolStripLabel4.Enabled = False
                 ComboBox1.Text = mdname(xr)
-                ListBox1.ForeColor = Color.Black
                 RadioButton4.Checked = True
                 RadioButton5.Checked = False
                 Label6.Text = Str(ranges)
@@ -684,7 +494,6 @@
                 temp2 = "随机数模式已初始化完毕."
                 ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
             Case Is = True
-SX2:
                 circle = 1
                 tms = extime(xr)
                 memories = 0
@@ -695,7 +504,6 @@ SX2:
                 pool.Maximum = Area
                 pool.Value = exe
                 Label1.ForeColor = Color.Black
-                ListBox1.ForeColor = Color.Chocolate
                 ToolStripLabel4.Enabled = True
                 Label6.Text = Str(exe)
                 Label7.Text = Str(tms)
@@ -715,6 +523,7 @@ SX2:
         End If
         Timer2.Enabled = True
     End Sub
+
     '初始化
     'Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
     '    Dim cx As Integer
@@ -726,34 +535,17 @@ SX2:
     '动画效果预览
     Private Sub ReDiveP_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles ReDiveP.LinkClicked
         Me.BackgroundImage = RandomMaker.My.Resources.天空邮件
-        ToolStripLabel1.ForeColor = Color.Black
-        ToolStripLabel2.ForeColor = Color.Black
-        ToolStripLabel3.ForeColor = Color.Black
-        ToolStripLabel4.ForeColor = Color.Black
-        GroupBox1.ForeColor = Color.Black
-        GroupBox2.ForeColor = Color.Black
-        GroupBox3.ForeColor = Color.Black
-        Label2.ForeColor = Color.Black
-        Label3.ForeColor = Color.Black
-        Label4.ForeColor = Color.Black
-        Label5.ForeColor = Color.Black
-        Label8.ForeColor = Color.Black
-        Label13.ForeColor = Color.Black
-        Label10.ForeColor = Color.Black
-        Label11.ForeColor = Color.Black
-        Label12.ForeColor = Color.Black
-        CheckBox1.ForeColor = Color.Black
-        CheckBox2.ForeColor = Color.Black
-        RadioButton4.ForeColor = Color.Black
-        RadioButton5.ForeColor = Color.Black
+        Call Bla()
         Label1.Image = My.Resources.PtDialog
         Label9.Image = My.Resources.PtDialog
     End Sub
+
     '还原自定义设置
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-        If MsgBox("即将恢复至默认状态,确定吗"， vbOKCancel + vbQuestion, "注意") = MsgBoxResult.Ok Then
+        If MsgBox("即将恢复至默认状态,自定义配置将丢失,确定吗"， vbOKCancel + vbQuestion, "注意") = MsgBoxResult.Ok Then
             Label1.ForeColor = Color.Black
             def = False
+            lock = False
             circle = 1
             tms = 1
             extime(0) = 1
@@ -777,12 +569,15 @@ SX2:
             doex(2) = "#FALSE#"
             doex(3) = "#FALSE#"
             makesure = 0
+            CheckBox1.Checked = False
+            CheckBox2.Checked = False
             checked = 1
             checked2 = 1
             memo = False
             dodata = False
             tomode = 4
             ComboBox1.SelectedIndex = 0
+            Button1.Enabled = True
             ToolStripStatusLabel2.Text = Date.Now
             ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
             temp2 = "重置成功."
@@ -794,27 +589,9 @@ SX2:
             ToolStripLabel4.Enabled = False
             Label6.Text = Str(ranges)
             Label7.Text = Str(tms)
+            lock = True
             Me.BackgroundImage = RandomMaker.My.Resources.天空邮件
-            ToolStripLabel1.ForeColor = Color.Black
-            ToolStripLabel2.ForeColor = Color.Black
-            ToolStripLabel3.ForeColor = Color.Black
-            ToolStripLabel4.ForeColor = Color.Black
-            GroupBox1.ForeColor = Color.Black
-            GroupBox2.ForeColor = Color.Black
-            GroupBox3.ForeColor = Color.Black
-            Label2.ForeColor = Color.Black
-            Label3.ForeColor = Color.Black
-            Label4.ForeColor = Color.Black
-            Label5.ForeColor = Color.Black
-            Label8.ForeColor = Color.Black
-            Label13.ForeColor = Color.Black
-            Label10.ForeColor = Color.Black
-            Label11.ForeColor = Color.Black
-            Label12.ForeColor = Color.Black
-            CheckBox1.ForeColor = Color.Black
-            CheckBox2.ForeColor = Color.Black
-            RadioButton4.ForeColor = Color.Black
-            RadioButton5.ForeColor = Color.Black
+            Call Bla()
             Label1.Image = My.Resources.PtDialog
             Label9.Image = My.Resources.PtDialog
             mdname(0) = "英语/语文模式(正常)"
@@ -823,13 +600,17 @@ SX2:
             mdname(3) = "数据驱动模式Premium"
             ListBox1.Items.Clear()
             ListBox1.Items.Add("准备就绪.")
-            def = True
             Label14.Visible = False
             Timer2.Enabled = True
+            ulcheck = False
+            Call Xs()
+            lock = False
+            ulcheck = True
         Else
             Exit Sub
         End If
     End Sub
+
     '全重置
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         Dim xr As Integer
@@ -879,27 +660,29 @@ SX2:
             doextreme = True
             Label14.Visible = True
             Button1.Enabled = True
+            CheckBox2.Checked = True
         Else
             doextreme = False
-            Label14.Visible = True
-            Button1.Enabled = False
+            Label14.Visible = False
+            Button1.Enabled = True
+            CheckBox2.Checked = False
         End If
     End Sub
+
     '部分重置
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        memo = True
-        Const frontline As String = "=====The Configuration Of RM MKIII====="
-        Dim seo As Integer = ComboBox1.SelectedIndex
+        lock = True
+        Const frontline As String = "=====The Configuration Of RM MKIV====="
+        Static seo As Integer = ComboBox1.SelectedIndex
         If SaveFileDialog1.ShowDialog = DialogResult.OK Then
-            SaveFileDialog1.Title = "保存配置..."
+            SaveFileDialog1.Title = "导出配置..."
             SaveFileDialog1.Filter = "抽号发生器配置文件|*.ini"
             Dim et(15) As String, mymodename As String, temp2, ex(3) As Integer
             Static temp As Integer
             Dim temp3 As Boolean
-            ComboBox1.SelectedItem = "关于模式的说明..."
             temp = ComboBox1.Items.Count
-            mymodename = InputBox("该配置叫什么?", "保存确认")
+            mymodename = InputBox("为该配置命名?", "保存确认")
             SaveFileDialog1.CreatePrompt = False
             FileOpen(2, SaveFileDialog1.FileName, OpenMode.Output, OpenAccess.Default)
             WriteLine(2, frontline)
@@ -915,7 +698,6 @@ SX2:
             PrintLine(2, ComboBox2.SelectedItem)
             WriteLine(2, "DialogImage:")
             PrintLine(2, ComboBox4.SelectedItem)
-            memo = False
             For temp2 = 0 To temp - 1
                 ComboBox1.SelectedIndex = temp2
                 temp3 = dodata
@@ -938,19 +720,21 @@ SX2:
                 WriteLine(2, doextreme)
             Next
             WriteLine(2, "CreateTime:" & Date.Now)
-            For temp = 1 To memories
-                WriteLine(2, ListBox1.Items.Item(temp))
-            Next
-            WriteLine(2, "使用的模式:" & ComboBox1.SelectedItem)
+            WriteLine(2, "使用的模式:")
+            WriteLine(2, ComboBox1.SelectedIndex)
             FileClose(2)
+            ComboBox1.SelectedIndex = seo
+            ulcheck = False
         Else
             Exit Sub
         End If
         MsgBox("保存成功", vbInformation + vbOKOnly, "祝贺")
         ComboBox1.SelectedIndex = seo
+        lock = False
         memo = True
         Timer3.Enabled = True
     End Sub
+
     '保存配置
     Private Sub CheckBox2_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox2.CheckedChanged
         CheckBox2.Enabled = False
@@ -965,6 +749,7 @@ SX2:
         End If
         CheckBox2.Enabled = True
     End Sub
+
     '极限模式
     Private Sub LoadView_Click(sender As Object, e As EventArgs) Handles LoadView.Click
         If dodata = True Then
@@ -998,6 +783,7 @@ SX2:
             Exit Sub
         End If
     End Sub
+
     '载入列表
     Private Sub SaveView_Click(sender As Object, e As EventArgs) Handles SaveView.Click
         If dodata = True Then
@@ -1021,15 +807,15 @@ SX2:
             Exit Sub
         End If
     End Sub
+
     '保存列表
     Private Sub Saver_Click(sender As Object, e As EventArgs) Handles Saver.Click
         If ComboBox1.Items.Count > 10 Then
             MsgBox("最多存在11个模式", vbOKOnly, "提示")
             Exit Sub
         End If
-        ComboBox1.Items.Remove("关于模式的说明...")
+        If lock = True Then Exit Sub
         ComboBox1.Items.Add(TextBox1.Text)
-        'def = False
         tomode += 1
         If dodata = True Then
             exrange(tomode - 1) = exe
@@ -1046,14 +832,18 @@ SX2:
         End If
         mdname(tomode - 1) = TextBox1.Text
         MsgBox("保存成功,请返回模式列表查看", vbOKOnly + vbInformation, "祝贺")
+        ulcheck = False
+        Call Xs()
+        ulcheck = True
     End Sub
+
     '保存自定义模式
     Private Sub Button6_Click_1(sender As Object, e As EventArgs) Handles Button6.Click
-        OpenFileDialog1.Title = "载入配置..."
+        OpenFileDialog1.Title = "导入配置..."
         OpenFileDialog1.Filter = "抽号发生器配置文件|*.ini"
         OpenFileDialog1.ShowReadOnly = True
         If OpenFileDialog1.ShowDialog = DialogResult.OK Then
-            def = False
+            lock = True
             Dim cir As Integer, et(19) As String
             ComboBox1.Items.Clear()
             FileOpen(2, OpenFileDialog1.FileName, OpenMode.Input, OpenAccess.Read)
@@ -1088,10 +878,11 @@ SX2:
                 ComboBox1.Items.Add(mdname(cir))
                 EOF(2)
             Next
+            et(9) = LineInput(2)
+            et(9) = LineInput(2)
+            mimo = Val(LineInput(2))
             FileClose(2)
-BL:
             Area = mxarea
-            ComboBox1.SelectedIndex = 0
             tms = Val(extime(0))
             If tp(0) = "#FALSE#" Then
                 ranges = Val(exrange(0))
@@ -1117,43 +908,43 @@ BL:
         Else
             Exit Sub
         End If
-        def = True
+        ComboBox1.SelectedIndex = mimo
+        lock = False
     End Sub
+
     '加载配置
     Private Sub Pool_ValueChanged(sender As Object, e As EventArgs) Handles pool.ValueChanged
+        If lock = True Then Exit Sub
         If dodata = False Then
-EROR:
             pool.Maximum = 100
             ranges = pool.Value
             Label6.Text = Str(ranges)
             Label7.Text = Str(NumericUpDown1.Value)
             ComboBox1.Text = "自定义模式"
-            ComboBox1.ForeColor = Color.Black
-            ListBox1.ForeColor = Color.Black
             ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
             TextBox1.Text = ComboBox1.Text & tomode - 3
         Else
-EROR2:
             pool.Maximum = Area
             exe = pool.Value
             Label6.Text = Str(exe)
             Label7.Text = Str(NumericUpDown1.Value)
             ComboBox1.Text = "数据驱动模式Personaize"
-            ComboBox1.ForeColor = Color.Chocolate
-            ListBox1.ForeColor = Color.Chocolate
             ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
             TextBox1.Text = ComboBox1.Text & tomode - 3
         End If
     End Sub
+
     '微调范围
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
         Timer4.Enabled = True
     End Sub
+
     '预览效果
     Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
         memo = False
         Timer3.Enabled = False
     End Sub
+
     '？？
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         If SaveFileDialog1.ShowDialog = DialogResult.OK Then
@@ -1161,7 +952,6 @@ EROR2:
             SaveFileDialog1.Title = "保存记录..."
             SaveFileDialog1.CreatePrompt = True
             FileOpen(2, SaveFileDialog1.FileName, OpenMode.Output, OpenAccess.Default)
-            WriteLine(2, "抽取日期" & Date.Today)
             WriteLine(2, "抽取时间" & Date.Now)
             For temp = 1 To memories
                 WriteLine(2, ListBox1.Items.Item(temp))
@@ -1176,6 +966,7 @@ EROR2:
         SaveFileDialog1.DefaultExt = "*.ini"
         MsgBox("保存成功", vbOKOnly + vbInformation, "祝贺")
     End Sub
+
     '保存抽取记录
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
         Dim iris As Integer
@@ -1193,6 +984,7 @@ EROR2:
             Timer2.Enabled = False
         End If
     End Sub
+
     '动画效果主
     Private Sub CheckBox1_Click(sender As Object, e As EventArgs) Handles CheckBox1.Click
         If CheckBox1.Checked = True Then
@@ -1201,10 +993,12 @@ EROR2:
             makesure = 0
         End If
     End Sub
+
     '确认对话框
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         ToolStripStatusLabel2.Text = Date.Now
     End Sub
+
     '实时时间
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -1309,78 +1103,89 @@ CX6:
         Button7.Visible = True
         Timer2.Enabled = True
     End Sub
+
     '核心程序
     Public Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Label1.ForeColor = Color.Black
-        def = False
-        circle = 1
-        tms = 1
-        extime(0) = 1
-        extime(1) = 1
-        extime(2) = 1
-        extime(3) = 1
-        memories = 0
-        ranges = 16
-        exrange(0) = 16
-        exrange(1) = 16
-        Area = 70
-        exe = Area
-        exrange(2) = Area
-        exrange(3) = 36
-        tp(0) = "#FALSE#"
-        tp(1) = "#FALSE#"
-        tp(2) = "#TRUE#"
-        tp(3) = "#TRUE#"
-        doex(0) = "#FALSE#"
-        doex(1) = "#TRUE#"
-        doex(2) = "#FALSE#"
-        doex(3) = "#FALSE#"
-        makesure = 0
-        checked = 1
-        checked2 = 1
-        memo = False
-        dodata = False
-        tomode = 4
-        ComboBox1.SelectedIndex = 0
+        lock = True
         ToolStripStatusLabel2.Text = Date.Now
-        ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         Timer1.Enabled = True
+        Dim cir As Integer, et(19), TypeN As String
+        def = False
+        ComboBox1.Items.Clear()
+        FileOpen(2, "D:\RMConfig.ini", OpenMode.Input, OpenAccess.Read)
+        EOF(2)
+        et(0) = LineInput(2)
+        et(1) = LineInput(2)
+        TypeN = LineInput(2)
+        et(2) = LineInput(2)
+        mxarea = LineInput(2)
+        et(3) = LineInput(2)
+        tomode = LineInput(2)
+        et(13) = LineInput(2)
+        Timer2.Interval = LineInput(2)
+        Timer4.Interval = Timer2.Interval
+        et(14) = LineInput(2)
+        ComboBox2.SelectedItem = LineInput(2)
+        et(15) = LineInput(2)
+        ComboBox4.SelectedItem = LineInput(2)
+        For cir = 0 To tomode - 1
+            EOF(2)
+            et(4) = LineInput(2)
+            et(5) = LineInput(2)
+            mdname(cir) = LineInput(2)
+            et(6) = LineInput(2)
+            extime(cir) = LineInput(2)
+            et(7) = LineInput(2)
+            exrange(cir) = LineInput(2)
+            et(8) = LineInput(2)
+            tp(cir) = LineInput(2)
+            et(9) = LineInput(2)
+            doex(cir) = LineInput(2)
+            ComboBox1.Items.Add(mdname(cir))
+            EOF(2)
+        Next
+        et(9) = LineInput(2)
+        et(9) = LineInput(2)
+        mimo = LineInput(2)
+        FileClose(2)
+        Area = mxarea
+        ulcheck = False
+        ComboBox1.SelectedIndex = mimo
+        'def = True
+        'ComboBox1.SelectedIndex = 0
+        tms = Val(extime(mimo))
+        If tp(mimo) = "#FALSE#" Then
+            ranges = Val(exrange(mimo))
+            pool.Maximum = 100
+            pool.Value = ranges
+            RadioButton4.Checked = True
+            RadioButton4.Checked = False
+        Else
+            exe = Val(exrange(mimo))
+            pool.Maximum = Area
+            pool.Value = exe
+            RadioButton4.Checked = False
+            RadioButton5.Checked = True
+        End If
+        NumericUpDown1.Value = tms
+        Label6.Text = exrange(mimo)
+        Label7.Text = Str(NumericUpDown1.Value)
+        If doex(mimo) = "#FALSE#" Then
+            doextreme = False
+        Else
+            doextreme = True
+        End If
+        ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
+        def = True
+        lock = False
+        ulcheck = True
+        Timer2.Enabled = True
         Panel1.Visible = True
         Panel2.Visible = False
         Panel3.Visible = False
         Panel4.Visible = False
-        ToolStripLabel4.Enabled = False
-        Label6.Text = Str(ranges)
-        Label7.Text = Str(tms)
-        Me.BackgroundImage = RandomMaker.My.Resources.天空邮件
-        ToolStripLabel1.ForeColor = Color.Black
-        ToolStripLabel2.ForeColor = Color.Black
-        ToolStripLabel3.ForeColor = Color.Black
-        ToolStripLabel4.ForeColor = Color.Black
-        GroupBox1.ForeColor = Color.Black
-        GroupBox2.ForeColor = Color.Black
-        GroupBox3.ForeColor = Color.Black
-        Label2.ForeColor = Color.Black
-        Label3.ForeColor = Color.Black
-        Label4.ForeColor = Color.Black
-        Label5.ForeColor = Color.Black
-        Label8.ForeColor = Color.Black
-        Label13.ForeColor = Color.Black
-        Label10.ForeColor = Color.Black
-        Label11.ForeColor = Color.Black
-        Label12.ForeColor = Color.Black
-        CheckBox1.ForeColor = Color.Black
-        CheckBox2.ForeColor = Color.Black
-        RadioButton4.ForeColor = Color.Black
-        RadioButton5.ForeColor = Color.Black
-        Label1.Image = My.Resources.PtDialog
-        Label9.Image = My.Resources.PtDialog
-        mdname(0) = "英语/语文模式(正常)"
-        mdname(1) = "英语/语文模式(极限)"
-        mdname(2) = "数据驱动模式Normal"
-        mdname(3) = "数据驱动模式Premium"
-        def = True
         Me.Show()
     End Sub
+
     '初始化数据
 End Class
