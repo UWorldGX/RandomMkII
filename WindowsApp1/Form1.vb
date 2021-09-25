@@ -5,7 +5,7 @@
     Public memo, dodata, def, ulcheck, doextreme As Boolean, lock As Boolean = True
 
     '记忆模式，判定变量，不可以修改
-    Public Area, mimo As Integer
+    Public Area, mimo, seo As Integer
 
     '最大范围，单列
     Public Const readme As String = "这里可以显示对话框的预览效果."
@@ -18,6 +18,7 @@
         If memo = True Then Exit Sub
         If def = True Then
             Dim xr As Int16
+            lock = True
             xr = ComboBox1.SelectedIndex
             NumericUpDown1.Enabled = False
             pool.Enabled = False
@@ -25,6 +26,7 @@
             RadioButton5.Enabled = False
             NumericUpDown1.Value = extime(xr)
             tms = extime(xr)
+            NumericUpDown1.Value = tms
             If tp(xr) = "#FALSE#" Then
                 ranges = exrange(xr)
                 pool.Maximum = 100
@@ -70,7 +72,7 @@
                 Button1.Enabled = True
                 Label14.Visible = False
             End If
-            ToolStripStatusLabel3.Text = "当前模式" & mdname(xr)
+            ToolStripStatusLabel3.Text = "当前模式:" & mdname(xr)
             Call ColorSwitch(xc:=xr)
         End If
         CheckBox2.Enabled = True
@@ -78,7 +80,9 @@
         NumericUpDown1.Enabled = True
         RadioButton4.Enabled = True
         RadioButton5.Enabled = True
+        ToolStripLabel5.Enabled = True
         Timer2.Enabled = True
+        lock = False
     End Sub
 
     '切换模式
@@ -142,6 +146,7 @@
             ListBox1.ForeColor = Color.Chocolate
             ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         End If
+        tms = NumericUpDown1.Value
         TextBox1.Text = ComboBox1.Text & dodata - 3
     End Sub
 
@@ -281,7 +286,7 @@
         ToolStripLabel2.ForeColor = Color.White
         ToolStripLabel3.ForeColor = Color.White
         ToolStripLabel4.ForeColor = Color.White
-        ToolStripLabel5.ForeColor = Color.Black
+        ToolStripLabel5.ForeColor = Color.White
         GroupBox1.ForeColor = Color.White
         GroupBox2.ForeColor = Color.White
         GroupBox3.ForeColor = Color.White
@@ -416,10 +421,10 @@
 
     Private Sub Xs()
         Const frontline As String = "=====The Configuration Of RM MKIV====="
-        Static seo As Integer = ComboBox1.SelectedIndex
         Dim et(15) As String, temp2, ex(3) As Integer
-        Static temp As Integer
+        Dim temp As Integer
         Dim temp3 As Boolean
+        seo = ComboBox1.SelectedIndex
         lock = True
         temp = ComboBox1.Items.Count
         FileOpen(2, "D:\RMConfig.ini", OpenMode.Output, OpenAccess.Default)
@@ -459,10 +464,11 @@
         Next
         WriteLine(2, "CreateTime:" & Date.Now)
         WriteLine(2, "使用的模式:")
+        ComboBox1.SelectedIndex = seo
         WriteLine(2, ComboBox1.SelectedIndex)
         FileClose(2)
+        ComboBox1.Text = mdname(seo)
         lock = False
-        ComboBox1.SelectedIndex = seo
         Timer3.Enabled = True
     End Sub
 
@@ -516,10 +522,12 @@
             doextreme = True
             Label14.Visible = True
             Button1.Enabled = True
+            CheckBox2.Checked = True
         Else
             doextreme = False
             Label14.Visible = False
             Button1.Enabled = True
+            CheckBox2.Checked = False
         End If
         Timer2.Enabled = True
     End Sub
@@ -535,7 +543,9 @@
     '动画效果预览
     Private Sub ReDiveP_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles ReDiveP.LinkClicked
         Me.BackgroundImage = RandomMaker.My.Resources.天空邮件
+        ulcheck = False
         Call Bla()
+        ulcheck = True
         Label1.Image = My.Resources.PtDialog
         Label9.Image = My.Resources.PtDialog
     End Sub
@@ -544,7 +554,8 @@
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
         If MsgBox("即将恢复至默认状态,自定义配置将丢失,确定吗"， vbOKCancel + vbQuestion, "注意") = MsgBoxResult.Ok Then
             Label1.ForeColor = Color.Black
-            def = False
+            Dim cir As Byte
+            def = True
             lock = False
             circle = 1
             tms = 1
@@ -576,10 +587,7 @@
             memo = False
             dodata = False
             tomode = 4
-            ComboBox1.SelectedIndex = 0
             Button1.Enabled = True
-            ToolStripStatusLabel2.Text = Date.Now
-            ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
             temp2 = "重置成功."
             Timer1.Enabled = True
             Panel1.Visible = True
@@ -591,21 +599,36 @@
             Label7.Text = Str(tms)
             lock = True
             Me.BackgroundImage = RandomMaker.My.Resources.天空邮件
-            Call Bla()
             Label1.Image = My.Resources.PtDialog
             Label9.Image = My.Resources.PtDialog
             mdname(0) = "英语/语文模式(正常)"
             mdname(1) = "英语/语文模式(极限)"
             mdname(2) = "数据驱动模式Normal"
             mdname(3) = "数据驱动模式Premium"
+            For cir = 4 To 10
+                mdname(cir) = Nothing
+                tp(cir) = Nothing
+                doex(cir) = Nothing
+                extime(cir) = 0
+                exrange(cir) = 0
+            Next
+            ComboBox1.Items.Clear()
+            ComboBox1.Items.Add("英语/语文模式(正常)")
+            ComboBox1.Items.Add("英语/语文模式(极限)")
+            ComboBox1.Items.Add("数据驱动模式Normal")
+            ComboBox1.Items.Add("数据驱动模式Premium")
+            ComboBox1.SelectedIndex = 0
             ListBox1.Items.Clear()
             ListBox1.Items.Add("准备就绪.")
             Label14.Visible = False
             Timer2.Enabled = True
             ulcheck = False
-            Call Xs()
+            Call Bla()
             lock = False
             ulcheck = True
+            ComboBox1.SelectedIndex = 0
+            ToolStripStatusLabel2.Text = Date.Now
+            ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         Else
             Exit Sub
         End If
@@ -724,15 +747,15 @@ SX2:
             WriteLine(2, ComboBox1.SelectedIndex)
             FileClose(2)
             ComboBox1.SelectedIndex = seo
+            ComboBox1.Text = mdname(seo)
             ulcheck = False
         Else
             Exit Sub
         End If
         MsgBox("保存成功", vbInformation + vbOKOnly, "祝贺")
-        ComboBox1.SelectedIndex = seo
         lock = False
-        memo = True
-        Timer3.Enabled = True
+        'memo = True
+        'Timer3.Enabled = True
     End Sub
 
     '保存配置
@@ -810,6 +833,7 @@ SX2:
 
     '保存列表
     Private Sub Saver_Click(sender As Object, e As EventArgs) Handles Saver.Click
+
         If ComboBox1.Items.Count > 10 Then
             MsgBox("最多存在11个模式", vbOKOnly, "提示")
             Exit Sub
@@ -968,6 +992,11 @@ SX2:
     End Sub
 
     '保存抽取记录
+
+    Private Sub Bugs()
+EROR:
+        MsgBox("出现错误", vbOKOnly + vbCritical)
+    End Sub
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
         Dim iris As Integer
         If temp2 = Nothing Then Exit Sub
@@ -1003,7 +1032,7 @@ SX2:
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim datas As Integer, temp As String
-        tms = NumericUpDown1.Value - 1
+        tms = extime(ComboBox1.SelectedIndex) - 1
         memories = 1 + memories
         ProgressBar1.Value = 10
         If makesure = 0 Then
@@ -1158,14 +1187,18 @@ CX6:
             ranges = Val(exrange(mimo))
             pool.Maximum = 100
             pool.Value = ranges
+            dodata = False
             RadioButton4.Checked = True
-            RadioButton4.Checked = False
+            RadioButton5.Checked = False
+            ToolStripLabel4.Enabled = False
         Else
             exe = Val(exrange(mimo))
             pool.Maximum = Area
             pool.Value = exe
+            dodata = True
             RadioButton4.Checked = False
             RadioButton5.Checked = True
+            ToolStripLabel4.Enabled = True
         End If
         NumericUpDown1.Value = tms
         Label6.Text = exrange(mimo)
@@ -1176,14 +1209,15 @@ CX6:
             doextreme = True
         End If
         ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
+        Call ColorSwitch(xc:=mimo)
         def = True
         lock = False
-        ulcheck = True
         Timer2.Enabled = True
         Panel1.Visible = True
         Panel2.Visible = False
         Panel3.Visible = False
         Panel4.Visible = False
+        ulcheck = True
         Me.Show()
     End Sub
 
