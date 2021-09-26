@@ -24,7 +24,6 @@
             pool.Enabled = False
             RadioButton4.Enabled = False
             RadioButton5.Enabled = False
-            NumericUpDown1.Value = extime(xr)
             tms = extime(xr)
             NumericUpDown1.Value = tms
             If tp(xr) = "#FALSE#" Then
@@ -37,7 +36,7 @@
                 Label6.Text = Str(ranges)
                 If ulcheck = True Then
                     ListBox1.Items.Clear()
-                    temp2 = "随机数模式已就绪.等待抽号."
+                    temp2 = "随机数模式已就绪.等待抽取."
                     ListBox1.Items.Add(mdname(xr) & "就绪.")
                 End If
                 ToolStripLabel4.Enabled = False
@@ -51,7 +50,7 @@
                 Label6.Text = Str(exe)
                 If ulcheck = True Then
                     ListBox1.Items.Clear()
-                    temp2 = "数据驱动模式已就绪.等待抽号."
+                    temp2 = "数据驱动模式已就绪.等待抽取."
                     ListBox1.Items.Add(mdname(xr) & "就绪.")
                 End If
                 ToolStripLabel4.Enabled = True
@@ -129,6 +128,7 @@
     '切换页面
     Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
         If lock = True Then Exit Sub
+        tms = NumericUpDown1.Value
         If dodata = False Then
             ComboBox1.Text = "自定义模式"
             RadioButton4.Checked = True
@@ -146,7 +146,6 @@
             ListBox1.ForeColor = Color.Chocolate
             ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         End If
-        tms = NumericUpDown1.Value
         TextBox1.Text = ComboBox1.Text & dodata - 3
     End Sub
 
@@ -161,7 +160,7 @@
             ListBox2.Enabled = False
             pool.Maximum = 100
             Label6.Text = Str(ranges)
-            Label7.Text = Str(NumericUpDown1.Value)
+            Label7.Text = Str(tms)
             pool.Value = 16
             ranges = pool.Value
             ComboBox1.Text = "自定义模式"
@@ -187,7 +186,7 @@
             ToolStripLabel4.Enabled = True
             ListBox2.Enabled = True
             Label6.Text = Str(exe)
-            Label7.Text = Str(NumericUpDown1.Value)
+            Label7.Text = Str(tms)
             ListBox1.ForeColor = Color.Chocolate
             ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
             TextBox1.Text = ComboBox1.Text & dodata - 3
@@ -347,7 +346,7 @@
             Case Is = 4
                 ListBox1.ForeColor = Color.DarkGoldenrod
             Case Is = 5
-                ListBox1.ForeColor = Color.Coral
+                ListBox1.ForeColor = Color.Indigo
             Case Is = 6
                 ListBox1.ForeColor = Color.DarkOrange
             Case Is = 8
@@ -362,7 +361,6 @@
     End Sub
 
     Private Sub ComboBox4_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox4.SelectedIndexChanged
-        If lock = True Then Exit Sub
         Select Case ComboBox4.SelectedItem
             Case Is = "E"
                 Label1.Image = My.Resources.EDialog
@@ -482,14 +480,14 @@
             Case Is = False
                 circle = 1
                 tms = extime(xr)
+                NumericUpDown1.Value = tms
+                Label7.Text = Str(tms)
                 memories = 0
                 ranges = exrange(xr)
-                exe = Area
-                Label6.Text = Str(ranges)
-                Label7.Text = Str(tms)
-                NumericUpDown1.Value = tms
                 pool.Maximum = 100
                 pool.Value = ranges
+                exe = Area
+                Label6.Text = Str(ranges)
                 Label1.ForeColor = Color.Black
                 ToolStripLabel4.Enabled = False
                 ComboBox1.Text = mdname(xr)
@@ -556,6 +554,10 @@
             Label1.ForeColor = Color.Black
             Dim cir As Byte
             def = True
+            lock = True
+            ComboBox2.SelectedItem = "天空邮件"
+            RadioButton4.Checked = True
+            RadioButton5.Checked = False
             lock = False
             circle = 1
             tms = 1
@@ -627,6 +629,7 @@
             lock = False
             ulcheck = True
             ComboBox1.SelectedIndex = 0
+            ComboBox1.Text = ComboBox1.Items(0)
             ToolStripStatusLabel2.Text = Date.Now
             ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         Else
@@ -697,7 +700,6 @@ SX2:
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         lock = True
         Const frontline As String = "=====The Configuration Of RM MKIV====="
-        Static seo As Integer = ComboBox1.SelectedIndex
         If SaveFileDialog1.ShowDialog = DialogResult.OK Then
             SaveFileDialog1.Title = "导出配置..."
             SaveFileDialog1.Filter = "抽号发生器配置文件|*.ini"
@@ -907,26 +909,26 @@ SX2:
             mimo = Val(LineInput(2))
             FileClose(2)
             Area = mxarea
-            tms = Val(extime(0))
-            If tp(0) = "#FALSE#" Then
-                ranges = Val(exrange(0))
+            tms = Val(extime(mimo))
+            If tp(mimo) = "#FALSE#" Then
+                ranges = Val(exrange(mimo))
                 pool.Maximum = 100
                 pool.Value = ranges
             Else
-                exe = Val(exrange(0))
+                exe = Val(exrange(mimo))
                 pool.Maximum = Area
                 pool.Value = exe
             End If
             NumericUpDown1.Value = tms
-            Label6.Text = exrange(0)
+            Label6.Text = exrange(mimo)
             Label7.Text = Str(NumericUpDown1.Value)
-            If doex(0) = "#FALSE#" Then
+            If doex(mimo) = "#FALSE#" Then
                 doextreme = False
             Else
                 doextreme = True
             End If
             ListBox1.Items.Clear()
-            ListBox1.Items.Add(mdname(0) & "就绪")
+            ListBox1.Items.Add(mdname(mimo) & "就绪")
             ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
             Form5.Show()
         Else
@@ -1068,6 +1070,8 @@ CX2:
                 ProgressBar1.Value = 99
             End If
             Button7.Visible = True
+            ProgressBar1.Value = 100
+            tms = extime(ComboBox1.SelectedIndex)
             Timer2.Enabled = True
         ElseIf dodata = True Then
             '数据驱动模式
@@ -1130,6 +1134,7 @@ CX6:
         End If
         ProgressBar1.Value = 100
         Button7.Visible = True
+        tms = extime(ComboBox1.SelectedIndex)
         Timer2.Enabled = True
     End Sub
 
@@ -1180,6 +1185,7 @@ CX6:
         Area = mxarea
         ulcheck = False
         ComboBox1.SelectedIndex = mimo
+        lock = True
         'def = True
         'ComboBox1.SelectedIndex = 0
         tms = Val(extime(mimo))
