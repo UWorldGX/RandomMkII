@@ -1,3 +1,3 @@
 # RandomMkII
-This application is used for make a random integer.
+This application is used for make a random number,which is practicaly useful in particular situation.
 Further development:
