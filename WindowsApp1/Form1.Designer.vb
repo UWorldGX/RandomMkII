@@ -69,6 +69,7 @@ Partial Class Form1
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Debugselect = New System.Windows.Forms.Button()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.RadioButton5 = New System.Windows.Forms.RadioButton()
         Me.RadioButton4 = New System.Windows.Forms.RadioButton()
@@ -254,16 +255,22 @@ Partial Class Form1
         '
         'ToolStripLabel1
         '
+        Me.ToolStripLabel1.BackColor = System.Drawing.Color.Transparent
         Me.ToolStripLabel1.Font = New System.Drawing.Font("Microsoft YaHei UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.ToolStripLabel1.ForeColor = System.Drawing.Color.Black
         Me.ToolStripLabel1.Image = CType(resources.GetObject("ToolStripLabel1.Image"), System.Drawing.Image)
         Me.ToolStripLabel1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ToolStripLabel1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripLabel1.IsLink = True
+        Me.ToolStripLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline
+        Me.ToolStripLabel1.LinkColor = System.Drawing.Color.Black
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
         Me.ToolStripLabel1.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never
         Me.ToolStripLabel1.Padding = New System.Windows.Forms.Padding(0, 0, 0, 25)
         Me.ToolStripLabel1.Size = New System.Drawing.Size(84, 55)
         Me.ToolStripLabel1.Text = "主页"
+        Me.ToolStripLabel1.ToolTipText = "Switch Page"
+        Me.ToolStripLabel1.VisitedLinkColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         '
         'ToolStripSeparator1
         '
@@ -276,12 +283,17 @@ Partial Class Form1
         Me.ToolStripLabel2.Image = CType(resources.GetObject("ToolStripLabel2.Image"), System.Drawing.Image)
         Me.ToolStripLabel2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ToolStripLabel2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripLabel2.IsLink = True
+        Me.ToolStripLabel2.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline
+        Me.ToolStripLabel2.LinkColor = System.Drawing.Color.Black
         Me.ToolStripLabel2.Margin = New System.Windows.Forms.Padding(0)
         Me.ToolStripLabel2.Name = "ToolStripLabel2"
         Me.ToolStripLabel2.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never
         Me.ToolStripLabel2.Padding = New System.Windows.Forms.Padding(0, 0, 0, 25)
         Me.ToolStripLabel2.Size = New System.Drawing.Size(84, 55)
         Me.ToolStripLabel2.Text = "参数设置"
+        Me.ToolStripLabel2.ToolTipText = "Switch Page"
+        Me.ToolStripLabel2.VisitedLinkColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         '
         'ToolStripSeparator2
         '
@@ -295,11 +307,16 @@ Partial Class Form1
         Me.ToolStripLabel3.Image = CType(resources.GetObject("ToolStripLabel3.Image"), System.Drawing.Image)
         Me.ToolStripLabel3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ToolStripLabel3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripLabel3.IsLink = True
+        Me.ToolStripLabel3.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline
+        Me.ToolStripLabel3.LinkColor = System.Drawing.Color.Black
         Me.ToolStripLabel3.Margin = New System.Windows.Forms.Padding(0, 0, 0, 2)
         Me.ToolStripLabel3.Name = "ToolStripLabel3"
         Me.ToolStripLabel3.Padding = New System.Windows.Forms.Padding(0, 0, 0, 25)
         Me.ToolStripLabel3.Size = New System.Drawing.Size(84, 55)
         Me.ToolStripLabel3.Text = "个性化"
+        Me.ToolStripLabel3.ToolTipText = "Switch Page"
+        Me.ToolStripLabel3.VisitedLinkColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         '
         'ToolStripSeparator3
         '
@@ -313,11 +330,16 @@ Partial Class Form1
         Me.ToolStripLabel4.Image = CType(resources.GetObject("ToolStripLabel4.Image"), System.Drawing.Image)
         Me.ToolStripLabel4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ToolStripLabel4.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripLabel4.IsLink = True
+        Me.ToolStripLabel4.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline
+        Me.ToolStripLabel4.LinkColor = System.Drawing.Color.Black
         Me.ToolStripLabel4.Margin = New System.Windows.Forms.Padding(0, 0, 0, 2)
         Me.ToolStripLabel4.Name = "ToolStripLabel4"
         Me.ToolStripLabel4.Padding = New System.Windows.Forms.Padding(0, 0, 0, 25)
         Me.ToolStripLabel4.Size = New System.Drawing.Size(84, 55)
         Me.ToolStripLabel4.Text = "数据驱动"
+        Me.ToolStripLabel4.ToolTipText = "Switch Page"
+        Me.ToolStripLabel4.VisitedLinkColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         '
         'ToolStripSeparator4
         '
@@ -329,11 +351,16 @@ Partial Class Form1
         Me.ToolStripLabel5.Image = CType(resources.GetObject("ToolStripLabel5.Image"), System.Drawing.Image)
         Me.ToolStripLabel5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ToolStripLabel5.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripLabel5.IsLink = True
+        Me.ToolStripLabel5.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline
+        Me.ToolStripLabel5.LinkColor = System.Drawing.Color.Black
         Me.ToolStripLabel5.Margin = New System.Windows.Forms.Padding(0, 0, 0, 2)
         Me.ToolStripLabel5.Name = "ToolStripLabel5"
         Me.ToolStripLabel5.Padding = New System.Windows.Forms.Padding(0, 0, 0, 25)
         Me.ToolStripLabel5.Size = New System.Drawing.Size(84, 55)
         Me.ToolStripLabel5.Text = "重置"
+        Me.ToolStripLabel5.ToolTipText = "Switch Page"
+        Me.ToolStripLabel5.VisitedLinkColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         '
         'Panel1
         '
@@ -597,6 +624,7 @@ Partial Class Form1
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.Debugselect)
         Me.GroupBox3.Controls.Add(Me.CheckBox2)
         Me.GroupBox3.Controls.Add(Me.RadioButton5)
         Me.GroupBox3.Controls.Add(Me.RadioButton4)
@@ -607,6 +635,22 @@ Partial Class Form1
         Me.GroupBox3.TabIndex = 7
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "数据相关"
+        '
+        'Debugselect
+        '
+        Me.Debugselect.BackColor = System.Drawing.Color.Transparent
+        Me.Debugselect.BackgroundImage = CType(resources.GetObject("Debugselect.BackgroundImage"), System.Drawing.Image)
+        Me.Debugselect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Debugselect.FlatAppearance.BorderSize = 0
+        Me.Debugselect.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Debugselect.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Debugselect.ForeColor = System.Drawing.Color.White
+        Me.Debugselect.Location = New System.Drawing.Point(241, 46)
+        Me.Debugselect.Name = "Debugselect"
+        Me.Debugselect.Size = New System.Drawing.Size(80, 32)
+        Me.Debugselect.TabIndex = 32
+        Me.Debugselect.Text = "Debug"
+        Me.Debugselect.UseVisualStyleBackColor = False
         '
         'CheckBox2
         '
@@ -975,10 +1019,10 @@ Partial Class Form1
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
-        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel4)
+        Me.Controls.Add(Me.Panel1)
         Me.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -1090,4 +1134,5 @@ Partial Class Form1
     Friend WithEvents Label14 As Label
     Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
     Friend WithEvents ToolStripLabel5 As ToolStripLabel
+    Friend WithEvents Debugselect As Button
 End Class

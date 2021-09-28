@@ -22,7 +22,6 @@ Partial Class Form2
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form2))
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -30,8 +29,8 @@ Partial Class Form2
         '
         'Button1
         '
-        Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
-        Me.Button1.Location = New System.Drawing.Point(251, 101)
+        Me.Button1.Image = Global.RandomMaker.My.Resources.Resources.bton1
+        Me.Button1.Location = New System.Drawing.Point(212, 102)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(68, 33)
         Me.Button1.TabIndex = 0
@@ -45,16 +44,16 @@ Partial Class Form2
         Me.Label1.Font = New System.Drawing.Font("微软雅黑", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label1.Location = New System.Drawing.Point(23, 32)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(192, 21)
+        Me.Label1.Size = New System.Drawing.Size(205, 21)
         Me.Label1.TabIndex = 2
-        Me.Label1.Text = "抽号发生器 .NET Ver. 5.0" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.Label1.Text = "抽号发生器 .NET Ver. 5.1.0" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label2.Location = New System.Drawing.Point(58, 81)
+        Me.Label2.Location = New System.Drawing.Point(27, 82)
         Me.Label2.MaximumSize = New System.Drawing.Size(160, 200)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(157, 53)
@@ -65,8 +64,9 @@ Partial Class Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 17.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(339, 147)
+        Me.BackgroundImage = Global.RandomMaker.My.Resources.Resources.砖块邮件
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ClientSize = New System.Drawing.Size(292, 147)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Button1)

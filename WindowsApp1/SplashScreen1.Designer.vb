@@ -64,9 +64,9 @@ Partial Class SplashScreen1
         Me.Label2.ForeColor = System.Drawing.SystemColors.Window
         Me.Label2.Location = New System.Drawing.Point(8, 65)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(177, 17)
+        Me.Label2.Size = New System.Drawing.Size(162, 17)
         Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Using Visual Studio and .NET"
+        Me.Label2.Text = "Using .NET Framework 4.8"
         '
         'Timer4
         '
@@ -80,9 +80,9 @@ Partial Class SplashScreen1
         Me.Label3.ForeColor = System.Drawing.SystemColors.Window
         Me.Label3.Location = New System.Drawing.Point(8, 82)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(122, 17)
+        Me.Label3.Size = New System.Drawing.Size(132, 17)
         Me.Label3.TabIndex = 3
-        Me.Label3.Text = "Version 5.0 Release"
+        Me.Label3.Text = "Version 5.1.0 Release"
         '
         'SplashScreen1
         '

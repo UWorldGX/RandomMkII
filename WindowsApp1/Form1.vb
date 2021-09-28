@@ -2,7 +2,7 @@
     Public circle, tms, ranges, memories, exe, makesure, checked, checked2 As Integer, temp2 As String
 
     '抽取核心变量，不可以更改
-    Public memo, dodata, def, ulcheck, doextreme As Boolean, lock As Boolean = True
+    Public memo, dodata, def, ulcheck, doextreme, donew As Boolean, lock As Boolean = True
 
     '记忆模式，判定变量，不可以修改
     Public Area, mimo, seo As Integer
@@ -11,7 +11,7 @@
     Public Const readme As String = "这里可以显示对话框的预览效果."
 
     '常量列表
-    Dim tp(10), TypeN, mdname(10), doex(10) As String, mxarea, tomode As Integer, extime(10), exrange(10) As Integer
+    Public tp(10), TypeN, mdname(10), doex(10) As String, mxarea, tomode As Integer, extime(10), exrange(10) As Integer
 
     '内部存储
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
@@ -19,6 +19,7 @@
         If def = True Then
             Dim xr As Int16
             lock = True
+            donew = False
             xr = ComboBox1.SelectedIndex
             NumericUpDown1.Enabled = False
             pool.Enabled = False
@@ -98,7 +99,13 @@
         Panel2.Visible = False
         Panel3.Visible = False
         Panel4.Visible = False
+        ToolStripLabel2.LinkVisited = False
+        ToolStripLabel1.LinkVisited = True
+        ToolStripLabel3.LinkVisited = False
+        ToolStripLabel4.LinkVisited = False
+        ToolStripLabel5.LinkVisited = False
         ToolStripLabel5.Enabled = True
+
     End Sub
 
     Private Sub ToolStripLabel3_Click(sender As Object, e As EventArgs) Handles ToolStripLabel3.Click
@@ -106,6 +113,11 @@
         Panel2.Visible = False
         Panel3.Visible = True
         Panel4.Visible = False
+        ToolStripLabel2.LinkVisited = False
+        ToolStripLabel1.LinkVisited = False
+        ToolStripLabel3.LinkVisited = True
+        ToolStripLabel4.LinkVisited = False
+        ToolStripLabel5.LinkVisited = False
         ToolStripLabel5.Enabled = False
     End Sub
 
@@ -114,6 +126,11 @@
         Panel2.Visible = False
         Panel3.Visible = False
         Panel4.Visible = True
+        ToolStripLabel2.LinkVisited = False
+        ToolStripLabel1.LinkVisited = False
+        ToolStripLabel3.LinkVisited = False
+        ToolStripLabel4.LinkVisited = True
+        ToolStripLabel5.LinkVisited = False
         ToolStripLabel5.Enabled = False
     End Sub
 
@@ -122,6 +139,11 @@
         Panel2.Visible = True
         Panel3.Visible = False
         Panel4.Visible = False
+        ToolStripLabel2.LinkVisited = True
+        ToolStripLabel1.LinkVisited = False
+        ToolStripLabel3.LinkVisited = False
+        ToolStripLabel4.LinkVisited = False
+        ToolStripLabel5.LinkVisited = False
         ToolStripLabel5.Enabled = False
     End Sub
 
@@ -129,12 +151,13 @@
     Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
         If lock = True Then Exit Sub
         tms = NumericUpDown1.Value
+        donew = True
         If dodata = False Then
             ComboBox1.Text = "自定义模式"
             RadioButton4.Checked = True
             RadioButton5.Checked = False
             Label6.Text = Str(ranges)
-            Label7.Text = Str(NumericUpDown1.Value)
+            Label7.Text = Str(tms)
             ListBox1.ForeColor = Color.Black
             ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         Else
@@ -142,7 +165,7 @@
             RadioButton4.Checked = False
             RadioButton5.Checked = True
             Label6.Text = Str(exe)
-            Label7.Text = Str(NumericUpDown1.Value)
+            Label7.Text = Str(tms)
             ListBox1.ForeColor = Color.Chocolate
             ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         End If
@@ -154,6 +177,7 @@
         If dodata = True Then
             dodata = False
             If lock = True Then Exit Sub
+            donew = True
             RadioButton5.Checked = True
             RadioButton4.Checked = False
             ToolStripLabel4.Enabled = False
@@ -177,6 +201,7 @@
         If dodata = False Then
             dodata = True
             If lock = True Then Exit Sub
+            donew = True
             pool.Maximum = Area
             pool.Value = Area
             exe = pool.Value
@@ -281,11 +306,11 @@
     End Sub
 
     Private Sub Wht()
-        ToolStripLabel1.ForeColor = Color.White
-        ToolStripLabel2.ForeColor = Color.White
-        ToolStripLabel3.ForeColor = Color.White
-        ToolStripLabel4.ForeColor = Color.White
-        ToolStripLabel5.ForeColor = Color.White
+        ToolStripLabel1.LinkColor = Color.White
+        ToolStripLabel2.LinkColor = Color.White
+        ToolStripLabel3.LinkColor = Color.White
+        ToolStripLabel4.LinkColor = Color.White
+        ToolStripLabel5.LinkColor = Color.White
         GroupBox1.ForeColor = Color.White
         GroupBox2.ForeColor = Color.White
         GroupBox3.ForeColor = Color.White
@@ -307,11 +332,11 @@
     End Sub
 
     Private Sub Bla()
-        ToolStripLabel1.ForeColor = Color.Black
-        ToolStripLabel2.ForeColor = Color.Black
-        ToolStripLabel3.ForeColor = Color.Black
-        ToolStripLabel4.ForeColor = Color.Black
-        ToolStripLabel5.ForeColor = Color.Black
+        ToolStripLabel1.LinkColor = Color.Black
+        ToolStripLabel2.LinkColor = Color.Black
+        ToolStripLabel3.LinkColor = Color.Black
+        ToolStripLabel4.LinkColor = Color.Black
+        ToolStripLabel5.LinkColor = Color.Black
         GroupBox1.ForeColor = Color.Black
         GroupBox2.ForeColor = Color.Black
         GroupBox3.ForeColor = Color.Black
@@ -358,6 +383,11 @@
             Case Is = 7
                 ListBox1.ForeColor = Color.Brown
         End Select
+    End Sub
+
+    Private Sub Debugselect_Click(sender As Object, e As EventArgs) Handles Debugselect.Click
+        DebugForm.Activate()
+        DebugForm.Show()
     End Sub
 
     Private Sub ComboBox4_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox4.SelectedIndexChanged
@@ -474,6 +504,7 @@
     Private Sub ToolStripLabel5_Click(sender As Object, e As EventArgs) Handles ToolStripLabel5.Click
         Dim xr As Integer
         xr = ComboBox1.SelectedIndex
+        donew = False
         ListBox1.Items.Clear()
         ListBox1.Items.Add(ComboBox1.Text & "就绪.")
         Select Case dodata
@@ -555,6 +586,7 @@
             Dim cir As Byte
             def = True
             lock = True
+            donew = False
             ComboBox2.SelectedItem = "天空邮件"
             RadioButton4.Checked = True
             RadioButton5.Checked = False
@@ -590,12 +622,13 @@
             dodata = False
             tomode = 4
             Button1.Enabled = True
-            temp2 = "重置成功."
             Timer1.Enabled = True
             Panel1.Visible = True
             Panel2.Visible = False
             Panel3.Visible = False
             Panel4.Visible = False
+            ToolStripLabel1.LinkVisited = True
+            ToolStripLabel2.LinkVisited = False
             ToolStripLabel4.Enabled = False
             Label6.Text = Str(ranges)
             Label7.Text = Str(tms)
@@ -630,6 +663,8 @@
             ulcheck = True
             ComboBox1.SelectedIndex = 0
             ComboBox1.Text = ComboBox1.Items(0)
+            temp2 = "重置成功."
+            Timer2.Enabled = True
             ToolStripStatusLabel2.Text = Date.Now
             ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         Else
@@ -641,6 +676,7 @@
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         Dim xr As Integer
         xr = ComboBox1.SelectedIndex
+        donew = False
         Select Case dodata
             Case Is = False
                 circle = 1
@@ -723,6 +759,7 @@ SX2:
             PrintLine(2, ComboBox2.SelectedItem)
             WriteLine(2, "DialogImage:")
             PrintLine(2, ComboBox4.SelectedItem)
+            ulcheck = False
             For temp2 = 0 To temp - 1
                 ComboBox1.SelectedIndex = temp2
                 temp3 = dodata
@@ -750,7 +787,7 @@ SX2:
             FileClose(2)
             ComboBox1.SelectedIndex = seo
             ComboBox1.Text = mdname(seo)
-            ulcheck = False
+            ulcheck = True
         Else
             Exit Sub
         End If
@@ -857,6 +894,7 @@ SX2:
             doex(tomode - 1) = "#FALSE#"
         End If
         mdname(tomode - 1) = TextBox1.Text
+        donew = False
         MsgBox("保存成功,请返回模式列表查看", vbOKOnly + vbInformation, "祝贺")
         ulcheck = False
         Call Xs()
@@ -995,10 +1033,6 @@ SX2:
 
     '保存抽取记录
 
-    Private Sub Bugs()
-EROR:
-        MsgBox("出现错误", vbOKOnly + vbCritical)
-    End Sub
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
         Dim iris As Integer
         If temp2 = Nothing Then Exit Sub
@@ -1033,16 +1067,16 @@ EROR:
     '实时时间
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim datas As Integer, temp As String
-        tms = extime(ComboBox1.SelectedIndex) - 1
+        Dim datas, tmsreal As Integer, temp As String
+        tmsreal = tms - 1
         memories = 1 + memories
         ProgressBar1.Value = 10
         If makesure = 0 Then
 CX8:
             If doextreme = True Then
-                MsgBox("都准备好了吗?" & Chr(13) & Chr(10) & "抽取模式:" & ComboBox1.Text & Chr(13) & Chr(10) & "抽取次数:" & Str(NumericUpDown1.Value) & Chr(13) & Chr(10) & "警告!抽取后将无法重复,确定吗?", vbOKCancel + vbCritical, "确认对话框")
+                MsgBox("都准备好了吗?" & Chr(13) & Chr(10) & "抽取模式:" & ComboBox1.Text & Chr(13) & Chr(10) & "抽取次数:" & Str(tms) & Chr(13) & Chr(10) & "警告!抽取后将无法重复,确定吗?", vbOKCancel + vbCritical, "确认对话框")
             Else
-                MsgBox("都准备好了吗?" & Chr(13) & Chr(10) & "抽取模式:" & ComboBox1.Text & Chr(13) & Chr(10) & "抽取次数:" & Str(NumericUpDown1.Value), vbOKCancel + vbQuestion, "确认对话框")
+                MsgBox("都准备好了吗?" & Chr(13) & Chr(10) & "抽取模式:" & ComboBox1.Text & Chr(13) & Chr(10) & "抽取次数:" & Str(tms), vbOKCancel + vbQuestion, "确认对话框")
             End If
         End If
         '随机数模式
@@ -1054,7 +1088,7 @@ CX1:
             temp2 = "抽出数值:" & Str(datas)
             temp = "第" & Str(memories) & "次:" & Str(datas)
             ProgressBar1.Value = 50
-            For circle = 1 To tms Step 1
+            For circle = 1 To tmsreal
 CX2:
                 Randomize()
                 datas = Rnd() * ranges
@@ -1071,14 +1105,13 @@ CX2:
             End If
             Button7.Visible = True
             ProgressBar1.Value = 100
-            tms = extime(ComboBox1.SelectedIndex)
             Timer2.Enabled = True
         ElseIf dodata = True Then
             '数据驱动模式
             ProgressBar1.Value = 30
             Dim repeat(6) As Integer, check, check2 As String, trigger As Integer
             '一次监测
-            For trigger = 0 To exe + tms Step 1
+            For trigger = 0 To exe + tmsreal Step 1
                 check2 = ListBox2.Items.Item(trigger)
                 If ListBox2.SelectedItems.Contains（check2) = False Then
                     GoTo CX7
@@ -1089,7 +1122,7 @@ CX10:
             MsgBox("警告:找不到能被抽取的项!请检查数据驱动设定!" & Chr(13) & Chr(10) & "或检查是否能在不重复的前提下抽取完所有有效对象!", vbCritical + vbOKOnly, "错误")
             Exit Sub
 CX7:
-            If exe - trigger <= tms Then GoTo CX10
+            If exe - trigger <= tmsreal Then GoTo CX10
             ProgressBar1.Value = 50
             Randomize()
             datas = Rnd() * exe
@@ -1100,7 +1133,7 @@ CX7:
                 temp2 = "抽取对象为:" & temp
                 temp = "第" & Str(memories) & "次:" & temp
                 ProgressBar1.Value = 60
-                For circle = 1 To tms Step 1
+                For circle = 1 To tmsreal Step 1
 CX6:
                     Randomize()
                     datas = Rnd() * exe
@@ -1134,7 +1167,6 @@ CX6:
         End If
         ProgressBar1.Value = 100
         Button7.Visible = True
-        tms = extime(ComboBox1.SelectedIndex)
         Timer2.Enabled = True
     End Sub
 
@@ -1223,6 +1255,7 @@ CX6:
         Panel2.Visible = False
         Panel3.Visible = False
         Panel4.Visible = False
+        ToolStripLabel1.LinkVisited = True
         ulcheck = True
         Me.Show()
     End Sub
