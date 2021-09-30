@@ -2,7 +2,6 @@
 
     Private Sub SplashScreen1_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Timer1.Enabled = True
-        Form1.Select()
         Form1.Hide()
     End Sub
 
@@ -24,12 +23,12 @@
         Me.BackgroundImage = My.Resources.PG2
         Timer4.Enabled = True
         Timer3.Enabled = False
-        Form1.Show()
         Label1.Text = "Now Loading..."
     End Sub
 
     Private Sub Timer4_Tick(sender As Object, e As EventArgs) Handles Timer4.Tick
         Label1.Text = "Done."
+        Form1.Show()
         Me.Close()
     End Sub
 
