@@ -555,7 +555,7 @@ CX6:
     End Sub
 
     Private Sub Xs()
-        Const frontline As String = "=====The Configuration Of RandomMakerv5.x====="
+        Const frontline As String = "=====The Configuration Of RM MKIV====="
         Dim et(15) As String, temp2, ex(3) As Integer
         Dim temp As Integer
         Dim temp3 As Boolean
@@ -565,7 +565,7 @@ CX6:
         FileOpen(2, "D:\RMConfig.ini", OpenMode.Output, OpenAccess.Default)
         WriteLine(2, frontline)
         WriteLine(2, "TypeName:")
-        PrintLine(2, "AutoSave" & Date.Now)
+        PrintLine(2, "AutoSave")
         WriteLine(2, "MaximaArea")
         WriteLine(2, Area)
         WriteLine(2, "totalmode")
@@ -916,7 +916,7 @@ SX2:
             Dim eo(2) As String, mc, ic As Integer
             OpenFileDialog1.Title = "Load list..."
             OpenFileDialog1.FileName = "Listview1"
-            OpenFileDialog1.Filter = "抽号发生器配置文件|*.txt"
+            OpenFileDialog1.Filter = "抽号发生器配置文件|*.ini"
             OpenFileDialog1.ShowReadOnly = True
             If OpenFileDialog1.ShowDialog = DialogResult.OK Then
                 FileOpen(2, OpenFileDialog1.FileName, OpenMode.Input, OpenAccess.Read)
@@ -947,16 +947,15 @@ SX2:
     '载入列表
     Private Sub SaveView_Click(sender As Object, e As EventArgs) Handles SaveView.Click
         If dodata = True Then
-            SaveFileDialog2.FileName = "Listview1"
-            SaveFileDialog2.Title = "保存列表..."
-            SaveFileDialog2.Filter = "抽号发生器配置文件|*.txt"
-            If SaveFileDialog2.ShowDialog = DialogResult.OK Then
+            If SaveFileDialog1.ShowDialog = DialogResult.OK Then
                 Dim temp As Integer
-                SaveFileDialog2.CreatePrompt = True
-                FileOpen(2, SaveFileDialog2.FileName, OpenMode.Output, OpenAccess.Default)
+                SaveFileDialog1.Title = "保存列表..."
+                SaveFileDialog1.Filter = "抽号发生器配置文件|*.ini"
+                SaveFileDialog1.CreatePrompt = True
+                FileOpen(2, SaveFileDialog1.FileName, OpenMode.Output, OpenAccess.Default)
                 WriteLine(2, Date.Now)
                 WriteLine(2, Area)
-                For temp = 0 To Area - 1
+                For temp = 0 To Area - 2
                     PrintLine(2, ListBox2.Items.Item(temp))
                 Next
                 FileClose(2)
@@ -971,6 +970,7 @@ SX2:
 
     '保存列表
     Private Sub Saver_Click(sender As Object, e As EventArgs) Handles Saver.Click
+
         If ComboBox1.Items.Count > 10 Then
             MsgBox("There are at most 11 modes in total", vbOKOnly)
             Exit Sub
@@ -1109,22 +1109,23 @@ SX2:
 
     '？？
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        SaveFileDialog2.FileName = "抽取记录" & Date.Now
-        SaveFileDialog2.Title = "保存记录..."
-        SaveFileDialog2.CreatePrompt = True
-        If SaveFileDialog2.ShowDialog = DialogResult.OK Then
+        If SaveFileDialog1.ShowDialog = DialogResult.OK Then
             Dim temp As Integer
-            FileOpen(2, SaveFileDialog2.FileName, OpenMode.Output, OpenAccess.Default)
+            SaveFileDialog1.Title = "保存记录..."
+            SaveFileDialog1.CreatePrompt = True
+            FileOpen(2, SaveFileDialog1.FileName, OpenMode.Output, OpenAccess.Default)
             WriteLine(2, "抽取时间" & Date.Now)
             For temp = 1 To memories
                 WriteLine(2, ListBox1.Items.Item(temp))
             Next
+            WriteLine(2, "抽取次数:" & NumericUpDown1.Value)
             WriteLine(2, "一共抽取了" & ListBox1.Items.Count - 1 & "次!")
             WriteLine(2, "使用的模式:" & ComboBox1.SelectedItem)
             FileClose(2)
         Else
             Exit Sub
         End If
+        SaveFileDialog1.DefaultExt = "*.ini"
         MsgBox("保存成功", vbOKOnly + vbInformation, "祝贺")
     End Sub
 
