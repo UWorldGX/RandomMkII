@@ -1,4 +1,5 @@
-﻿Public Class Form1
+﻿Imports System.IO
+Public Class Form1
     Public circle, tms, ranges, memories, exe, makesure, checked, checked2 As Integer, temp2 As String
 
     '抽取核心变量，不可以更改
@@ -21,10 +22,6 @@
             lock = True
             donew = False
             xr = ComboBox1.SelectedIndex
-            NumericUpDown1.Enabled = False
-            pool.Enabled = False
-            RadioButton4.Enabled = False
-            RadioButton5.Enabled = False
             tms = extime(xr)
             NumericUpDown1.Value = tms
             If tp(xr) = "#FALSE#" Then
@@ -60,14 +57,13 @@
                 memories = 0
             End If
             Label7.Text = Str(NumericUpDown1.Value)
-            CheckBox2.Enabled = False
             If doex(xr) = "#TRUE#" Then
-                CheckBox2.Checked = True
+                RadToggleSwitch1.Value = True
                 doextreme = True
                 RadButton1.Enabled = True
                 Label14.Visible = True
             Else
-                CheckBox2.Checked = False
+                RadToggleSwitch1.Value = False
                 doextreme = False
                 RadButton1.Enabled = True
                 Label14.Visible = False
@@ -75,11 +71,6 @@
             ToolStripStatusLabel3.Text = "当前模式:" & mdname(xr)
             Call ColorSwitch(xc:=xr)
         End If
-        CheckBox2.Enabled = True
-        pool.Enabled = True
-        NumericUpDown1.Enabled = True
-        RadioButton4.Enabled = True
-        RadioButton5.Enabled = True
         ToolStripLabel5.Enabled = True
         Timer2.Enabled = True
         lock = False
@@ -324,7 +315,7 @@
         Label11.ForeColor = Color.White
         Label12.ForeColor = Color.White
         CheckBox1.ForeColor = Color.White
-        CheckBox2.ForeColor = Color.White
+        Label15.ForeColor = Color.White
         RadioButton4.ForeColor = Color.White
         RadioButton5.ForeColor = Color.White
         If lock = True Then Exit Sub
@@ -350,7 +341,7 @@
         Label11.ForeColor = Color.Black
         Label12.ForeColor = Color.Black
         CheckBox1.ForeColor = Color.Black
-        CheckBox2.ForeColor = Color.Black
+        Label15.ForeColor = Color.Black
         RadioButton4.ForeColor = Color.Black
         RadioButton5.ForeColor = Color.Black
         If lock = True Then Exit Sub
@@ -386,114 +377,22 @@
     End Sub
 
     Private Sub Debugselect_Click(sender As Object, e As EventArgs) Handles Debugselect.Click
-        DebugForm.Activate()
         DebugForm.Show()
     End Sub
 
-    Private Sub RadButton1_Click(sender As Object, e As EventArgs) Handles RadButton1.Click
-        Dim datas, tmsreal As Integer, temp As String
-        tmsreal = tms - 1
-        memories = 1 + memories
-        ProgressBar1.Value = 10
-        If makesure = 0 Then
-CX8:
-            If doextreme = True Then
-                MsgBox("都准备好了吗?" & Chr(13) & Chr(10) & "抽取模式:" & ComboBox1.Text & Chr(13) & Chr(10) & "抽取次数:" & Str(tms) & Chr(13) & Chr(10) & "警告!抽取后将无法重复,确定吗?", vbOKCancel + vbCritical, "确认对话框")
-            Else
-                MsgBox("都准备好了吗?" & Chr(13) & Chr(10) & "抽取模式:" & ComboBox1.Text & Chr(13) & Chr(10) & "抽取次数:" & Str(tms), vbOKCancel + vbQuestion, "确认对话框")
-            End If
+    Private Sub RadToggleSwitch1_ValueChanged(sender As Object, e As EventArgs) Handles RadToggleSwitch1.ValueChanged
+        If doextreme = False Then
+            doextreme = True
+            RadButton1.Enabled = True
+            Label14.Visible = True
+        Else
+            doextreme = False
+            RadButton1.Enabled = True
+            Label14.Visible = False
         End If
-        '随机数模式
-        If dodata = False Then
-CX1:
-            Randomize()
-            datas = Rnd() * ranges
-            If datas = 0 Then GoTo CX1
-            temp2 = "抽出数值:" & Str(datas)
-            temp = "第" & Str(memories) & "次:" & Str(datas)
-            ProgressBar1.Value = 50
-            For circle = 1 To tmsreal
-CX2:
-                Randomize()
-                datas = Rnd() * ranges
-                If datas = 0 Then GoTo CX2
-                temp2 = temp2 & "/" & Str(datas)
-                temp = temp & "/" & Str(datas)
-            Next
-            ProgressBar1.Value = 75
-            ListBox1.Items.Add(temp)
-            If doextreme = True Then
-                ListBox1.Items.Add("极限模式抽取已结束!")
-                RadButton1.Enabled = False
-                ProgressBar1.Value = 99
-            End If
-            Button7.Visible = True
-            ProgressBar1.Value = 100
-            Timer2.Enabled = True
-        ElseIf dodata = True Then
-            '数据驱动模式
-            ProgressBar1.Value = 30
-            Dim repeat(6) As Integer, check, check2 As String, trigger As Integer
-            '一次监测
-            For trigger = 0 To exe + tmsreal Step 1
-                check2 = ListBox2.Items.Item(trigger)
-                If ListBox2.SelectedItems.Contains（check2) = False Then
-                    GoTo CX7
-                End If
-                trigger += 1
-            Next
-CX10:
-            MsgBox("警告:找不到能被抽取的项!请检查数据驱动设定!" & Chr(13) & Chr(10) & "或检查是否能在不重复的前提下抽取完所有有效对象!", vbCritical + vbOKOnly, "错误")
-            Exit Sub
-CX7:
-            If exe - trigger <= tmsreal Then GoTo CX10
-            ProgressBar1.Value = 50
-            Randomize()
-            datas = Rnd() * exe
-            If datas >= Area - 2 Then GoTo CX10
-            repeat(0) = datas
-            temp = ListBox2.Items.Item(datas)
-            If ListBox2.SelectedItems.Contains（temp) = False Then
-                temp2 = "抽取对象为:" & temp
-                temp = "第" & Str(memories) & "次:" & temp
-                ProgressBar1.Value = 60
-                For circle = 1 To tmsreal Step 1
-CX6:
-                    Randomize()
-                    datas = Rnd() * exe
-                    If datas = 0 Then GoTo CX6
-                    check = ListBox2.Items.Item(datas)
-                    ProgressBar1.Value = 70
-                    If ListBox2.SelectedItems.Contains（check) = False Then
-                        repeat(circle) = datas
-                        Dim repeat2 As Integer
-                        For repeat2 = 0 To circle - 1 Step 1
-                            If repeat(repeat2) = datas Then GoTo CX6
-                        Next
-                    Else
-                        GoTo CX6
-                    End If
-                    On Error GoTo CX10
-                    temp2 += "/" & ListBox2.Items.Item(datas)
-                    temp = temp & "/" & ListBox2.Items.Item(datas)
-                Next
-                On Error GoTo CX10
-                ProgressBar1.Value = 90
-                ListBox1.Items.Add(temp)
-            Else
-                GoTo CX7
-            End If
-            If doextreme = True Then
-                ListBox1.Items.Add("极限模式抽取已结束!")
-                RadButton1.Enabled = False
-                ProgressBar1.Value = 80
-            End If
-        End If
-        ProgressBar1.Value = 100
-        Button7.Visible = True
-        Timer2.Enabled = True
-
     End Sub
+
+
 
     Private Sub ComboBox4_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox4.SelectedIndexChanged
         Select Case ComboBox4.SelectedItem
@@ -537,6 +436,7 @@ CX6:
         ulcheck = False
         Call Xs()
         ulcheck = True
+        Timer4.Enabled = True
     End Sub
 
     '语速
@@ -655,12 +555,12 @@ CX6:
             doextreme = True
             Label14.Visible = True
             RadButton1.Enabled = True
-            CheckBox2.Checked = True
+            RadToggleSwitch1.Value = True
         Else
             doextreme = False
             Label14.Visible = False
             RadButton1.Enabled = True
-            CheckBox2.Checked = False
+            RadToggleSwitch1.Value = False
         End If
         Timer2.Enabled = True
     End Sub
@@ -719,7 +619,7 @@ CX6:
             doex(3) = "#FALSE#"
             makesure = 0
             CheckBox1.Checked = False
-            CheckBox2.Checked = False
+            RadToggleSwitch1.Value = False
             checked = 1
             checked2 = 1
             memo = False
@@ -825,12 +725,12 @@ SX2:
             doextreme = True
             Label14.Visible = True
             RadButton1.Enabled = True
-            CheckBox2.Checked = True
+            RadToggleSwitch1.Value = True
         Else
             doextreme = False
             Label14.Visible = False
             RadButton1.Enabled = True
-            CheckBox2.Checked = False
+            RadToggleSwitch1.Value = False
         End If
     End Sub
 
@@ -839,16 +739,14 @@ SX2:
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         lock = True
         Const frontline As String = "=====The Configuration Of RM MKIV====="
-        If SaveFileDialog1.ShowDialog = DialogResult.OK Then
-            SaveFileDialog1.Title = "导出配置..."
-            SaveFileDialog1.Filter = "抽号发生器配置文件|*.ini"
+        If RadSaveFileDialog1.ShowDialog = DialogResult.OK Then
+            RadSaveFileDialog1.Filter = "抽号发生器配置文件|*.ini"
             Dim et(15) As String, mymodename As String, temp2, ex(3) As Integer
             Static temp As Integer
             Dim temp3 As Boolean
             temp = ComboBox1.Items.Count
             mymodename = InputBox("为该配置命名?", "保存确认")
-            SaveFileDialog1.CreatePrompt = False
-            FileOpen(2, SaveFileDialog1.FileName, OpenMode.Output, OpenAccess.Default)
+            FileOpen(2, RadSaveFileDialog1.FileName, OpenMode.Output, OpenAccess.Default)
             WriteLine(2, frontline)
             WriteLine(2, "TypeName:")
             PrintLine(2, mymodename)
@@ -900,29 +798,13 @@ SX2:
         'Timer3.Enabled = True
     End Sub
 
-    '保存配置
-    Private Sub CheckBox2_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox2.CheckedChanged
-        CheckBox2.Enabled = False
-        If doextreme = False Then
-            doextreme = True
-            RadButton1.Enabled = True
-            Label14.Visible = True
-        Else
-            doextreme = False
-            RadButton1.Enabled = True
-            Label14.Visible = False
-        End If
-        CheckBox2.Enabled = True
-    End Sub
 
-    '极限模式
     Private Sub LoadView_Click(sender As Object, e As EventArgs) Handles LoadView.Click
         If dodata = True Then
             Dim eo(2) As String, mc, ic As Integer
-            OpenFileDialog1.Title = "载入列表..."
-            OpenFileDialog1.FileName = "Listview1"
-            OpenFileDialog1.Filter = "抽号发生器配置文件|*.txt"
-            OpenFileDialog1.ShowReadOnly = True
+            RadOpenFileDialog1.FileName = "Listview1"
+            RadOpenFileDialog1.Filter = "抽号发生器配置文件|*.txt"
+            RadOpenFileDialog1.ShowReadOnly = True
             If OpenFileDialog1.ShowDialog = DialogResult.OK Then
                 FileOpen(2, OpenFileDialog1.FileName, OpenMode.Input, OpenAccess.Read)
                 EOF(2)
@@ -952,13 +834,12 @@ SX2:
     '载入列表
     Private Sub SaveView_Click(sender As Object, e As EventArgs) Handles SaveView.Click
         If dodata = True Then
-            SaveFileDialog2.FileName = "Listview1"
-            SaveFileDialog2.Title = "保存列表..."
-            SaveFileDialog2.Filter = "抽号发生器配置文件|*.txt"
-            If SaveFileDialog2.ShowDialog = DialogResult.OK Then
+            RadSaveFileDialog1.FileName = "Listview1"
+            RadSaveFileDialog1.Filter = "抽号发生器配置文件|*.txt"
+            If RadSaveFileDialog1.ShowDialog = DialogResult.OK Then
                 Dim temp As Integer
                 SaveFileDialog2.CreatePrompt = True
-                FileOpen(2, SaveFileDialog2.FileName, OpenMode.Output, OpenAccess.Default)
+                FileOpen(2, RadSaveFileDialog1.FileName, OpenMode.Output, OpenAccess.Default)
                 WriteLine(2, Date.Now)
                 WriteLine(2, Area)
                 For temp = 0 To Area - 1
@@ -1006,10 +887,9 @@ SX2:
 
     '保存自定义模式
     Private Sub Button6_Click_1(sender As Object, e As EventArgs) Handles Button6.Click
-        OpenFileDialog1.Title = "导入配置..."
-        OpenFileDialog1.Filter = "抽号发生器配置文件|*.ini"
-        OpenFileDialog1.ShowReadOnly = True
-        If OpenFileDialog1.ShowDialog = DialogResult.OK Then
+        RadOpenFileDialog1.Filter = "抽号发生器配置文件|*.ini"
+        RadOpenFileDialog1.ShowReadOnly = True
+        If RadOpenFileDialog1.ShowDialog = DialogResult.OK Then
             lock = True
             Dim cir As Integer, et(19) As String
             ComboBox1.Items.Clear()
@@ -1114,12 +994,10 @@ SX2:
 
     '？？
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        SaveFileDialog2.FileName = "抽取记录" & Date.Now
-        SaveFileDialog2.Title = "保存记录..."
-        SaveFileDialog2.CreatePrompt = True
-        If SaveFileDialog2.ShowDialog = DialogResult.OK Then
+        RadSaveFileDialog2.FileName = "抽取记录" & Date.Now
+        If RadSaveFileDialog2.ShowDialog = DialogResult.OK Then
             Dim temp As Integer
-            FileOpen(2, SaveFileDialog2.FileName, OpenMode.Output, OpenAccess.Default)
+            FileOpen(2, RadSaveFileDialog2.FileName, OpenMode.Output, OpenAccess.Default)
             WriteLine(2, "抽取时间" & Date.Now)
             For temp = 1 To memories
                 WriteLine(2, ListBox1.Items.Item(temp))
@@ -1167,8 +1045,114 @@ SX2:
     End Sub
 
     '实时时间
-
+    Public Sub RadButton1_Click(sender As Object, e As EventArgs) Handles RadButton1.Click
+        Call CoreProgram()
+    End Sub
     '核心程序
+    Public Sub CoreProgram()
+        Dim datas, tmsreal As Integer, temp As String
+        tmsreal = tms - 1
+        memories = 1 + memories
+        RadProgressBar1.Value1 = 10
+        If makesure = 0 Then
+CX8:
+            If doextreme = True Then
+                MsgBox("都准备好了吗?" & Chr(13) & Chr(10) & "抽取模式:" & ComboBox1.Text & Chr(13) & Chr(10) & "抽取次数:" & Str(tms) & Chr(13) & Chr(10) & "警告!抽取后将无法重复,确定吗?", vbOKCancel + vbCritical, "确认对话框")
+            Else
+                MsgBox("都准备好了吗?" & Chr(13) & Chr(10) & "抽取模式:" & ComboBox1.Text & Chr(13) & Chr(10) & "抽取次数:" & Str(tms), vbOKCancel + vbQuestion, "确认对话框")
+            End If
+        End If
+        '随机数模式
+        If dodata = False Then
+CX1:
+            Randomize()
+            datas = Rnd() * ranges
+            If datas = 0 Then GoTo CX1
+            temp2 = "抽出数值:" & Str(datas)
+            temp = "第" & Str(memories) & "次:" & Str(datas)
+            RadProgressBar1.Value1 = 50
+            For circle = 1 To tmsreal
+CX2:
+                Randomize()
+                datas = Rnd() * ranges
+                If datas = 0 Then GoTo CX2
+                temp2 = temp2 & "/" & Str(datas)
+                temp = temp & "/" & Str(datas)
+            Next
+            RadProgressBar1.Value1 = 75
+            ListBox1.Items.Add(temp)
+            If doextreme = True Then
+                ListBox1.Items.Add("极限模式抽取已结束!")
+                RadButton1.Enabled = False
+                RadProgressBar1.Value1 = 99
+            End If
+            Button7.Visible = True
+            RadProgressBar1.Value1 = 100
+            Timer2.Enabled = True
+        ElseIf dodata = True Then
+            '数据驱动模式1
+            RadProgressBar1.Value1 = 30
+            Dim repeat(6) As Integer, check, check2 As String, trigger As Integer
+            '一次监测
+            For trigger = 0 To exe + tmsreal Step 1
+                check2 = ListBox2.Items.Item(trigger)
+                If ListBox2.SelectedItems.Contains（check2) = False Then
+                    GoTo CX7
+                End If
+                trigger += 1
+            Next
+CX10:
+            MsgBox("警告:找不到能被抽取的项!请检查数据驱动设定!" & Chr(13) & Chr(10) & "或检查是否能在不重复的前提下抽取完所有有效对象!", vbCritical + vbOKOnly, "错误")
+            Exit Sub
+CX7:
+            If exe - trigger <= tmsreal Then GoTo CX10
+            RadProgressBar1.Value1 = 50
+            Randomize()
+            datas = Rnd() * exe
+            If datas >= Area - 2 Then GoTo CX10
+            repeat(0) = datas
+            temp = ListBox2.Items.Item(datas)
+            If ListBox2.SelectedItems.Contains（temp) = False Then
+                temp2 = "抽取对象为:" & temp
+                temp = "第" & Str(memories) & "次:" & temp
+                RadProgressBar1.Value1 = 60
+                For circle = 1 To tmsreal Step 1
+CX6:
+                    Randomize()
+                    datas = Rnd() * exe
+                    If datas = 0 Then GoTo CX6
+                    check = ListBox2.Items.Item(datas)
+                    RadProgressBar1.Value1 = 70
+                    If ListBox2.SelectedItems.Contains（check) = False Then
+                        repeat(circle) = datas
+                        Dim repeat2 As Integer
+                        For repeat2 = 0 To circle - 1 Step 1
+                            If repeat(repeat2) = datas Then GoTo CX6
+                        Next
+                    Else
+                        GoTo CX6
+                    End If
+                    On Error GoTo CX10
+                    temp2 += "/" & ListBox2.Items.Item(datas)
+                    temp = temp & "/" & ListBox2.Items.Item(datas)
+                Next
+                On Error GoTo CX10
+                RadProgressBar1.Value1 = 90
+                ListBox1.Items.Add(temp)
+            Else
+                GoTo CX7
+            End If
+            If doextreme = True Then
+                ListBox1.Items.Add("极限模式抽取已结束!")
+                RadButton1.Enabled = False
+                RadProgressBar1.Value1 = 80
+            End If
+        End If
+        RadProgressBar1.Value1 = 100
+        Button7.Visible = True
+        Timer2.Enabled = True
+
+    End Sub
     Public Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lock = True
         ToolStripStatusLabel2.Text = Date.Now
@@ -1241,8 +1225,12 @@ SX2:
         Label7.Text = Str(NumericUpDown1.Value)
         If doex(mimo) = "#FALSE#" Then
             doextreme = False
+            RadToggleSwitch1.Value = False
+            Label14.Visible = False
         Else
             doextreme = True
+            RadToggleSwitch1.Value = True
+            Label14.Visible = True
         End If
         ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         Call ColorSwitch(xc:=mimo)

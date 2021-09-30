@@ -34,7 +34,7 @@
                 WriteLine(2, "ModeType:" & temp3)
                 WriteLine(2, "RealDoExtremeMode" & Form1.doextreme)
                 WriteLine(2, "DoExtremeMode1" & Form1.doex(temp2))
-                WriteLine(2, "DoExtremeMode2" & Form1.CheckBox2.Checked)
+                WriteLine(2, "DoExtremeMode2" & Form1.RadToggleSwitch1.Value)
             Next
             WriteLine(2, "Donew=" & Form1.donew)
             WriteLine(2, "ulcheck=" & Form1.ulcheck)
@@ -49,5 +49,18 @@
             Exit Sub
         End If
         MsgBox("保存成功", vbInformation + vbOKOnly, "祝贺")
+    End Sub
+
+
+    Private Sub RadMenuItem1_Click(sender As Object, e As EventArgs) Handles RadMenuItem1.Click
+        RadWaitingBar1.StartWaiting()
+        Form1.makesure = 1
+        Dim cir As Int16
+        For cir = 1 To 10000
+            Call DebugCoreProgram()
+        Next
+        MsgBox("调试完成.", vbOKOnly)
+        Call AutoSaveRecord()
+        RadWaitingBar1.StopWaiting()
     End Sub
 End Class

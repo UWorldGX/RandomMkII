@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form1
-    Inherits System.Windows.Forms.Form
+    Inherits Telerik.WinControls.UI.RadForm
 
     'Form 重写 Dispose，以清理组件列表。
     <System.Diagnostics.DebuggerNonUserCode()>
@@ -49,9 +49,9 @@ Partial Class Form1
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripLabel5 = New System.Windows.Forms.ToolStripLabel()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.RadProgressBar1 = New Telerik.WinControls.UI.RadProgressBar()
         Me.RadButton1 = New Telerik.WinControls.UI.RadButton()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -69,8 +69,9 @@ Partial Class Form1
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.RadToggleSwitch1 = New Telerik.WinControls.UI.RadToggleSwitch()
         Me.Debugselect = New System.Windows.Forms.Button()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.RadioButton5 = New System.Windows.Forms.RadioButton()
         Me.RadioButton4 = New System.Windows.Forms.RadioButton()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -97,26 +98,34 @@ Partial Class Form1
         Me.Label2 = New System.Windows.Forms.Label()
         Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer4 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog2 = New System.Windows.Forms.SaveFileDialog()
-        Me.FluentDarkTheme1 = New Telerik.WinControls.Themes.FluentDarkTheme()
+        Me.FluentTheme1 = New Telerik.WinControls.Themes.FluentTheme()
+        Me.RadSaveFileDialog1 = New Telerik.WinControls.UI.RadSaveFileDialog()
+        Me.RadSaveFileDialog2 = New Telerik.WinControls.UI.RadSaveFileDialog()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.RadOpenFileDialog1 = New Telerik.WinControls.UI.RadOpenFileDialog()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        CType(Me.RadProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RadButton1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        CType(Me.RadToggleSwitch1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.pool, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.Panel4.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -354,9 +363,9 @@ Partial Class Form1
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Transparent
+        Me.Panel1.Controls.Add(Me.RadProgressBar1)
         Me.Panel1.Controls.Add(Me.RadButton1)
         Me.Panel1.Controls.Add(Me.Label14)
-        Me.Panel1.Controls.Add(Me.ProgressBar1)
         Me.Panel1.Controls.Add(Me.Button7)
         Me.Panel1.Controls.Add(Me.CheckBox1)
         Me.Panel1.Controls.Add(Me.Label7)
@@ -369,8 +378,17 @@ Partial Class Form1
         Me.Panel1.Font = New System.Drawing.Font("微软雅黑", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Panel1.Location = New System.Drawing.Point(55, 27)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(762, 359)
+        Me.Panel1.Size = New System.Drawing.Size(455, 359)
         Me.Panel1.TabIndex = 21
+        '
+        'RadProgressBar1
+        '
+        Me.RadProgressBar1.Location = New System.Drawing.Point(34, 324)
+        Me.RadProgressBar1.Name = "RadProgressBar1"
+        Me.RadProgressBar1.ShowProgressIndicators = True
+        Me.RadProgressBar1.Size = New System.Drawing.Size(408, 23)
+        Me.RadProgressBar1.TabIndex = 29
+        Me.RadProgressBar1.Text = "0 %"
         '
         'RadButton1
         '
@@ -398,15 +416,6 @@ Partial Class Form1
         Me.Label14.TabIndex = 27
         Me.Label14.Text = "极限模式警告"
         Me.Label14.Visible = False
-        '
-        'ProgressBar1
-        '
-        Me.ProgressBar1.BackColor = System.Drawing.Color.White
-        Me.ProgressBar1.Location = New System.Drawing.Point(41, 341)
-        Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(404, 19)
-        Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous
-        Me.ProgressBar1.TabIndex = 23
         '
         'Button7
         '
@@ -498,7 +507,7 @@ Partial Class Form1
         Me.ListBox1.Location = New System.Drawing.Point(43, 84)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.ScrollAlwaysVisible = True
-        Me.ListBox1.Size = New System.Drawing.Size(207, 172)
+        Me.ListBox1.Size = New System.Drawing.Size(207, 189)
         Me.ListBox1.TabIndex = 15
         '
         'Panel2
@@ -529,7 +538,7 @@ Partial Class Form1
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button4.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Button4.ForeColor = System.Drawing.Color.White
-        Me.Button4.Location = New System.Drawing.Point(94, 257)
+        Me.Button4.Location = New System.Drawing.Point(90, 280)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(118, 32)
         Me.Button4.TabIndex = 32
@@ -546,7 +555,7 @@ Partial Class Form1
         Me.Saver.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Saver.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Saver.ForeColor = System.Drawing.Color.White
-        Me.Saver.Location = New System.Drawing.Point(335, 205)
+        Me.Saver.Location = New System.Drawing.Point(334, 231)
         Me.Saver.Name = "Saver"
         Me.Saver.Size = New System.Drawing.Size(80, 32)
         Me.Saver.TabIndex = 31
@@ -555,7 +564,8 @@ Partial Class Form1
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(175, 208)
+        Me.TextBox1.Font = New System.Drawing.Font("微软雅黑", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(179, 234)
         Me.TextBox1.MaxLength = 15
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
@@ -567,7 +577,7 @@ Partial Class Form1
         '
         Me.Label12.AutoSize = True
         Me.Label12.ForeColor = System.Drawing.Color.Black
-        Me.Label12.Location = New System.Drawing.Point(94, 211)
+        Me.Label12.Location = New System.Drawing.Point(100, 237)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(78, 20)
         Me.Label12.TabIndex = 29
@@ -576,7 +586,7 @@ Partial Class Form1
         'LinkLabel2
         '
         Me.LinkLabel2.AutoSize = True
-        Me.LinkLabel2.Location = New System.Drawing.Point(259, 290)
+        Me.LinkLabel2.Location = New System.Drawing.Point(256, 313)
         Me.LinkLabel2.Name = "LinkLabel2"
         Me.LinkLabel2.Size = New System.Drawing.Size(129, 20)
         Me.LinkLabel2.TabIndex = 28
@@ -586,7 +596,7 @@ Partial Class Form1
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(109, 289)
+        Me.LinkLabel1.Location = New System.Drawing.Point(109, 313)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(129, 20)
         Me.LinkLabel1.TabIndex = 27
@@ -602,7 +612,7 @@ Partial Class Form1
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button6.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Button6.ForeColor = System.Drawing.Color.White
-        Me.Button6.Location = New System.Drawing.Point(300, 257)
+        Me.Button6.Location = New System.Drawing.Point(297, 280)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(80, 32)
         Me.Button6.TabIndex = 26
@@ -618,7 +628,7 @@ Partial Class Form1
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button5.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Button5.ForeColor = System.Drawing.Color.White
-        Me.Button5.Location = New System.Drawing.Point(385, 257)
+        Me.Button5.Location = New System.Drawing.Point(383, 280)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(80, 32)
         Me.Button5.TabIndex = 25
@@ -627,17 +637,36 @@ Partial Class Form1
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.Label15)
+        Me.GroupBox3.Controls.Add(Me.RadToggleSwitch1)
         Me.GroupBox3.Controls.Add(Me.Debugselect)
-        Me.GroupBox3.Controls.Add(Me.CheckBox2)
         Me.GroupBox3.Controls.Add(Me.RadioButton5)
         Me.GroupBox3.Controls.Add(Me.RadioButton4)
         Me.GroupBox3.ForeColor = System.Drawing.Color.Black
         Me.GroupBox3.Location = New System.Drawing.Point(89, 106)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(373, 92)
+        Me.GroupBox3.Size = New System.Drawing.Size(373, 110)
         Me.GroupBox3.TabIndex = 7
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "数据相关"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.ForeColor = System.Drawing.Color.Black
+        Me.Label15.Location = New System.Drawing.Point(39, 29)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(69, 20)
+        Me.Label15.TabIndex = 34
+        Me.Label15.Text = "极限模式"
+        '
+        'RadToggleSwitch1
+        '
+        Me.RadToggleSwitch1.Location = New System.Drawing.Point(119, 30)
+        Me.RadToggleSwitch1.Name = "RadToggleSwitch1"
+        Me.RadToggleSwitch1.Size = New System.Drawing.Size(42, 21)
+        Me.RadToggleSwitch1.TabIndex = 33
+        Me.RadToggleSwitch1.Value = False
         '
         'Debugselect
         '
@@ -648,31 +677,19 @@ Partial Class Form1
         Me.Debugselect.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Debugselect.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Debugselect.ForeColor = System.Drawing.Color.White
-        Me.Debugselect.Location = New System.Drawing.Point(241, 46)
+        Me.Debugselect.Location = New System.Drawing.Point(250, 60)
         Me.Debugselect.Name = "Debugselect"
         Me.Debugselect.Size = New System.Drawing.Size(80, 32)
         Me.Debugselect.TabIndex = 32
         Me.Debugselect.Text = "Debug"
         Me.Debugselect.UseVisualStyleBackColor = False
         '
-        'CheckBox2
-        '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Font = New System.Drawing.Font("微软雅黑", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.CheckBox2.ForeColor = System.Drawing.Color.Black
-        Me.CheckBox2.Location = New System.Drawing.Point(43, 26)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(75, 21)
-        Me.CheckBox2.TabIndex = 26
-        Me.CheckBox2.Text = "极限模式"
-        Me.CheckBox2.UseVisualStyleBackColor = True
-        '
         'RadioButton5
         '
         Me.RadioButton5.AutoSize = True
         Me.RadioButton5.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.RadioButton5.ForeColor = System.Drawing.Color.Black
-        Me.RadioButton5.Location = New System.Drawing.Point(143, 51)
+        Me.RadioButton5.Location = New System.Drawing.Point(119, 63)
         Me.RadioButton5.Name = "RadioButton5"
         Me.RadioButton5.Size = New System.Drawing.Size(87, 23)
         Me.RadioButton5.TabIndex = 9
@@ -685,7 +702,7 @@ Partial Class Form1
         Me.RadioButton4.Checked = True
         Me.RadioButton4.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.RadioButton4.ForeColor = System.Drawing.Color.Black
-        Me.RadioButton4.Location = New System.Drawing.Point(43, 52)
+        Me.RadioButton4.Location = New System.Drawing.Point(41, 63)
         Me.RadioButton4.Name = "RadioButton4"
         Me.RadioButton4.Size = New System.Drawing.Size(72, 23)
         Me.RadioButton4.TabIndex = 8
@@ -815,6 +832,7 @@ Partial Class Form1
         '
         'ComboBox4
         '
+        Me.ComboBox4.Font = New System.Drawing.Font("微软雅黑", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.ComboBox4.FormattingEnabled = True
         Me.ComboBox4.Items.AddRange(New Object() {"Pt(默认)", "HGSS", "DP", "E", "ORAS"})
         Me.ComboBox4.Location = New System.Drawing.Point(129, 103)
@@ -858,6 +876,7 @@ Partial Class Form1
         '
         'ComboBox3
         '
+        Me.ComboBox3.Font = New System.Drawing.Font("微软雅黑", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.ComboBox3.FormattingEnabled = True
         Me.ComboBox3.Items.AddRange(New Object() {"快", "中", "慢"})
         Me.ComboBox3.Location = New System.Drawing.Point(129, 145)
@@ -868,6 +887,7 @@ Partial Class Form1
         '
         'ComboBox2
         '
+        Me.ComboBox2.Font = New System.Drawing.Font("微软雅黑", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.ComboBox2.FormattingEnabled = True
         Me.ComboBox2.Items.AddRange(New Object() {"天空邮件", "空间邮件", "彩嵌邮件", "青草邮件", "水蓝邮件", "暴雪邮件", "钢铁邮件", "砖块邮件", "初次邮件", "回复邮件", "喜爱邮件", "感谢邮件", "桥梁邮件W", "桥梁邮件C", "桥梁邮件V", "桥梁邮件H", "桥梁邮件S"})
         Me.ComboBox2.Location = New System.Drawing.Point(129, 64)
@@ -922,6 +942,7 @@ Partial Class Form1
         Me.Panel4.Controls.Add(Me.LoadView)
         Me.Panel4.Controls.Add(Me.Label2)
         Me.Panel4.Controls.Add(Me.ListBox2)
+        Me.Panel4.Controls.Add(Me.DataGridView1)
         Me.Panel4.Location = New System.Drawing.Point(51, 29)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(459, 357)
@@ -974,11 +995,12 @@ Partial Class Form1
         '
         Me.ListBox2.BackColor = System.Drawing.SystemColors.Window
         Me.ListBox2.ColumnWidth = 60
+        Me.ListBox2.Font = New System.Drawing.Font("微软雅黑", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.ListBox2.FormattingEnabled = True
         Me.ListBox2.HorizontalScrollbar = True
         Me.ListBox2.ItemHeight = 20
         Me.ListBox2.Items.AddRange(New Object() {"付世凯", "陈远洋", "胡延涛", "解晓东", "陈词", "侯重", "贺梦婷", "张博", "胡振华", "聂冉", "蔡巍", "李重", "罗福林", "易聪聪", "娄文杰", "张文卓", "吴雨璠", "王雅婷", "李佳乐", "王俊祥", "张晴", "雷光迅", "刘粤", "常祺璐", "崔涵笑", "张语轩", "何雯馨", "关东阳", "陈岩", "汤佳蔚", "崔灿", "甘宸宇", "郏坤豪", "郭文超", "张福苑", "张棒", "赵银欣", "陈梦楠", "顾健", "王梓铭", "王暄昊", "刘博涵", "王岩森", "李子涵", "李书坤", "张益翔", "王玉缘", "黄婧", "刘妍", "刘欣葶", "郭洋辰", "陈熙", "闫晨曦", "路智森", "王雷雨", "王子磊", "樊永康", "胡媛媛", "郭芮含", "贾恩泽", "付子怡", "郭怡宁", "李姝慧", "张校", "宋保建", "焦子聪", "靳崴淏", "胡迪", "张庆中", "张沛龙"})
-        Me.ListBox2.Location = New System.Drawing.Point(58, 18)
+        Me.ListBox2.Location = New System.Drawing.Point(47, 13)
         Me.ListBox2.MultiColumn = True
         Me.ListBox2.Name = "ListBox2"
         Me.ListBox2.ScrollAlwaysVisible = True
@@ -993,12 +1015,6 @@ Partial Class Form1
         Me.SaveFileDialog1.FileName = "RMConfig"
         Me.SaveFileDialog1.InitialDirectory = """D:\"""
         Me.SaveFileDialog1.RestoreDirectory = True
-        '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.DefaultExt = "txt"
-        Me.OpenFileDialog1.FileName = "default"
-        Me.OpenFileDialog1.RestoreDirectory = True
         '
         'Timer2
         '
@@ -1017,6 +1033,33 @@ Partial Class Form1
         Me.SaveFileDialog2.DefaultExt = "txt"
         Me.SaveFileDialog2.InitialDirectory = "D:\"
         '
+        'RadSaveFileDialog1
+        '
+        Me.RadSaveFileDialog1.DefaultExt = "ini"
+        '
+        'RadSaveFileDialog2
+        '
+        Me.RadSaveFileDialog2.DefaultExt = "txt"
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.DefaultExt = "txt"
+        Me.OpenFileDialog1.FileName = "default"
+        Me.OpenFileDialog1.RestoreDirectory = True
+        '
+        'RadOpenFileDialog1
+        '
+        Me.RadOpenFileDialog1.DefaultExt = "txt"
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(47, 13)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.RowTemplate.Height = 23
+        Me.DataGridView1.Size = New System.Drawing.Size(375, 266)
+        Me.DataGridView1.TabIndex = 34
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -1027,18 +1070,22 @@ Partial Class Form1
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
-        Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.Panel2)
-        Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel4)
+        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.Panel3)
+        Me.Controls.Add(Me.Panel2)
         Me.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MaximizeBox = False
         Me.Name = "Form1"
+        '
+        '
+        '
+        Me.RootElement.ApplyShapeToControl = True
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "减速风扇抽号发生器.NET 5.0"
+        Me.Text = "抽号发生器.NET 5.1.1"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
@@ -1048,11 +1095,13 @@ Partial Class Form1
         Me.ToolStrip1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.RadProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RadButton1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        CType(Me.RadToggleSwitch1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.pool, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1062,6 +1111,8 @@ Partial Class Form1
         Me.GroupBox2.PerformLayout()
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1107,11 +1158,9 @@ Partial Class Form1
     Friend WithEvents Label6 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents ProgressBar1 As ProgressBar
     Friend WithEvents ComboBox2 As ComboBox
     Friend WithEvents Label8 As Label
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
-    Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents ToolStripStatusLabel3 As ToolStripStatusLabel
     Friend WithEvents Label9 As Label
@@ -1133,7 +1182,6 @@ Partial Class Form1
     Friend WithEvents Saver As Button
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label12 As Label
-    Friend WithEvents CheckBox2 As CheckBox
     Friend WithEvents LoadView As Button
     Friend WithEvents SaveView As Button
     Friend WithEvents Label13 As Label
@@ -1144,5 +1192,13 @@ Partial Class Form1
     Friend WithEvents Debugselect As Button
     Friend WithEvents SaveFileDialog2 As SaveFileDialog
     Friend WithEvents RadButton1 As Telerik.WinControls.UI.RadButton
-    Friend WithEvents FluentDarkTheme1 As Telerik.WinControls.Themes.FluentDarkTheme
+    Friend WithEvents RadProgressBar1 As Telerik.WinControls.UI.RadProgressBar
+    Friend WithEvents FluentTheme1 As Telerik.WinControls.Themes.FluentTheme
+    Friend WithEvents Label15 As Label
+    Friend WithEvents RadToggleSwitch1 As Telerik.WinControls.UI.RadToggleSwitch
+    Friend WithEvents RadSaveFileDialog1 As Telerik.WinControls.UI.RadSaveFileDialog
+    Friend WithEvents RadSaveFileDialog2 As Telerik.WinControls.UI.RadSaveFileDialog
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents RadOpenFileDialog1 As Telerik.WinControls.UI.RadOpenFileDialog
+    Friend WithEvents DataGridView1 As DataGridView
 End Class

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class SplashScreen1
     Inherits System.Windows.Forms.Form
 
     'Form 重写 Dispose，以清理组件列表。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -30,6 +30,9 @@ Partial Class SplashScreen1
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Timer4 = New System.Windows.Forms.Timer(Me.components)
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.RadWaitingBar1 = New Telerik.WinControls.UI.RadWaitingBar()
+        Me.DotsLineWaitingBarIndicatorElement1 = New Telerik.WinControls.UI.DotsLineWaitingBarIndicatorElement()
+        CType(Me.RadWaitingBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -70,7 +73,7 @@ Partial Class SplashScreen1
         '
         'Timer4
         '
-        Me.Timer4.Interval = 250
+        Me.Timer4.Interval = 1000
         '
         'Label3
         '
@@ -82,7 +85,29 @@ Partial Class SplashScreen1
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(132, 17)
         Me.Label3.TabIndex = 3
-        Me.Label3.Text = "Version 5.1.0 Release"
+        Me.Label3.Text = "Version 5.1.1 Release"
+        '
+        'RadWaitingBar1
+        '
+        Me.RadWaitingBar1.Location = New System.Drawing.Point(17, 21)
+        Me.RadWaitingBar1.Name = "RadWaitingBar1"
+        Me.RadWaitingBar1.Size = New System.Drawing.Size(332, 41)
+        Me.RadWaitingBar1.TabIndex = 4
+        Me.RadWaitingBar1.Text = "RadWaitingBar1"
+        Me.RadWaitingBar1.WaitingIndicators.Add(Me.DotsLineWaitingBarIndicatorElement1)
+        Me.RadWaitingBar1.WaitingIndicatorSize = New System.Drawing.Size(100, 14)
+        Me.RadWaitingBar1.WaitingSpeed = 80
+        Me.RadWaitingBar1.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.DotsLine
+        '
+        'DotsLineWaitingBarIndicatorElement1
+        '
+        Me.DotsLineWaitingBarIndicatorElement1.AutoSize = True
+        Me.DotsLineWaitingBarIndicatorElement1.BackColor = System.Drawing.Color.Black
+        Me.DotsLineWaitingBarIndicatorElement1.BackColor2 = System.Drawing.Color.Black
+        Me.DotsLineWaitingBarIndicatorElement1.DistanceBetweenDots = 7.0R
+        Me.DotsLineWaitingBarIndicatorElement1.DotRadius = 6
+        Me.DotsLineWaitingBarIndicatorElement1.DrawFill = True
+        Me.DotsLineWaitingBarIndicatorElement1.Name = "DotsLineWaitingBarIndicatorElement1"
         '
         'SplashScreen1
         '
@@ -91,6 +116,7 @@ Partial Class SplashScreen1
         Me.BackgroundImage = Global.RandomMaker.My.Resources.Resources.PG0
         Me.ClientSize = New System.Drawing.Size(373, 108)
         Me.ControlBox = False
+        Me.Controls.Add(Me.RadWaitingBar1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
@@ -101,6 +127,7 @@ Partial Class SplashScreen1
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.TopMost = True
+        CType(Me.RadWaitingBar1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -113,4 +140,6 @@ Partial Class SplashScreen1
     Friend WithEvents Label2 As Label
     Friend WithEvents Timer4 As Timer
     Friend WithEvents Label3 As Label
+    Friend WithEvents RadWaitingBar1 As Telerik.WinControls.UI.RadWaitingBar
+    Friend WithEvents DotsLineWaitingBarIndicatorElement1 As Telerik.WinControls.UI.DotsLineWaitingBarIndicatorElement
 End Class
