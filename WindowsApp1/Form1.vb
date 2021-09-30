@@ -8,7 +8,7 @@
     Public Area, mimo, seo As Integer
 
     '最大范围，单列
-    Public Const readme As String = "The preview effect of the dialog box can be displayed here."
+    Public Const readme As String = "这里可以显示对话框的预览效果."
 
     '常量列表
     Public tp(10), TypeN, mdname(10), doex(10) As String, mxarea, tomode As Integer, extime(10), exrange(10) As Integer
@@ -37,8 +37,8 @@
                 Label6.Text = Str(ranges)
                 If ulcheck = True Then
                     ListBox1.Items.Clear()
-                    temp2 = "Random number mode is ready. Waiting for extraction."
-                    ListBox1.Items.Add(mdname(xr) & "is ready.")
+                    temp2 = "随机数模式已就绪.等待抽取."
+                    ListBox1.Items.Add(mdname(xr) & "就绪.")
                 End If
                 ToolStripLabel4.Enabled = False
             Else
@@ -51,8 +51,8 @@
                 Label6.Text = Str(exe)
                 If ulcheck = True Then
                     ListBox1.Items.Clear()
-                    temp2 = "Item mode is ready. Waiting for extraction."
-                    ListBox1.Items.Add(mdname(xr) & "is ready.")
+                    temp2 = "数据驱动模式已就绪.等待抽取."
+                    ListBox1.Items.Add(mdname(xr) & "就绪.")
                 End If
                 ToolStripLabel4.Enabled = True
             End If
@@ -72,7 +72,7 @@
                 RadButton1.Enabled = True
                 Label14.Visible = False
             End If
-            ToolStripStatusLabel3.Text = "Current Mode:" & mdname(xr)
+            ToolStripStatusLabel3.Text = "当前模式:" & mdname(xr)
             Call ColorSwitch(xc:=xr)
         End If
         CheckBox2.Enabled = True
@@ -153,21 +153,21 @@
         tms = NumericUpDown1.Value
         donew = True
         If dodata = False Then
-            ComboBox1.Text = "Custom mode"
+            ComboBox1.Text = "自定义模式"
             RadioButton4.Checked = True
             RadioButton5.Checked = False
             Label6.Text = Str(ranges)
             Label7.Text = Str(tms)
             ListBox1.ForeColor = Color.Black
-            ToolStripStatusLabel3.Text = "Current Mode:" & ComboBox1.Text
+            ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         Else
-            ComboBox1.Text = "Custom item mode"
+            ComboBox1.Text = "数据驱动模式Personaize"
             RadioButton4.Checked = False
             RadioButton5.Checked = True
             Label6.Text = Str(exe)
             Label7.Text = Str(tms)
             ListBox1.ForeColor = Color.Chocolate
-            ToolStripStatusLabel3.Text = "Current Mode:" & ComboBox1.Text
+            ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         End If
         TextBox1.Text = ComboBox1.Text & dodata - 3
     End Sub
@@ -187,9 +187,9 @@
             Label7.Text = Str(tms)
             pool.Value = 16
             ranges = pool.Value
-            ComboBox1.Text = "Custom mode"
+            ComboBox1.Text = "自定义模式"
             ListBox1.ForeColor = Color.Black
-            ToolStripStatusLabel3.Text = "Current Mode:" & ComboBox1.Text
+            ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
             TextBox1.Text = ComboBox1.Text & dodata - 3
         Else
             Exit Sub
@@ -205,7 +205,7 @@
             pool.Maximum = Area
             pool.Value = Area
             exe = pool.Value
-            ComboBox1.Text = "Custom item mode"
+            ComboBox1.Text = "数据驱动模式Personaize"
             RadioButton5.Checked = True
             RadioButton4.Checked = False
             ToolStripLabel4.Enabled = True
@@ -213,7 +213,7 @@
             Label6.Text = Str(exe)
             Label7.Text = Str(tms)
             ListBox1.ForeColor = Color.Chocolate
-            ToolStripStatusLabel3.Text = "Current Mode:" & ComboBox1.Text
+            ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
             TextBox1.Text = ComboBox1.Text & dodata - 3
         Else
             Exit Sub
@@ -250,55 +250,55 @@
     Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox2.SelectedIndexChanged
         ulcheck = False
         Select Case ComboBox2.Text
-            Case Is = "Space Mail"
+            Case Is = "空间邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.空间邮件
                 Call Wht()
-            Case Is = "Mosaic Mail"
+            Case Is = "彩嵌邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.彩嵌邮件
                 Call Bla()
-            Case Is = "Grass Mail"
+            Case Is = "青草邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.青草邮件
                 Call Bla()
-            Case Is = "Greet Mail"
+            Case Is = "初次邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.初次邮件
                 Call Bla()
-            Case Is = "Steel Mail"
+            Case Is = "钢铁邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.钢铁邮件
                 Call Wht()
-            Case Is = "Reply Mail"
+            Case Is = "回复邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.回复邮件
                 Call Bla()
-            Case Is = "BridgeMail W"
+            Case Is = "桥梁邮件W"
                 Me.BackgroundImage = RandomMaker.My.Resources.桥梁邮件Ｗ
                 Call Bla()
-            Case Is = "BridgeMail C"
+            Case Is = "桥梁邮件C"
                 Me.BackgroundImage = RandomMaker.My.Resources.桥梁邮件Ｃ
                 Call Bla()
-            Case Is = "BridgeMail V"
+            Case Is = "桥梁邮件V"
                 Me.BackgroundImage = RandomMaker.My.Resources.桥梁邮件Ｖ
                 Call Bla()
-            Case Is = "BridgeMail H"
+            Case Is = "桥梁邮件H"
                 Me.BackgroundImage = RandomMaker.My.Resources.桥梁邮件Ｈ
                 Call Wht()
-            Case Is = "BridgeMail S"
+            Case Is = "桥梁邮件S"
                 Me.BackgroundImage = RandomMaker.My.Resources.桥梁邮件Ｓ
                 Call Bla()
-            Case Is = "Bubble Mail"
+            Case Is = "水蓝邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.水蓝邮件
                 Call Wht()
-            Case Is = "Brick Mail"
+            Case Is = "砖块邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.砖块邮件
                 Call Wht()
-            Case Is = "Snow Mail"
+            Case Is = "暴雪邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.暴雪邮件
                 Call Bla()
-            Case Is = "Air Mail"
+            Case Is = "天空邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.天空邮件
                 Call Bla()
-            Case Is = "Favored Mail"
+            Case Is = "喜爱邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.喜爱邮件
                 Call Bla()
-            Case Is = "Thanks Mail"
+            Case Is = "感谢邮件"
                 Me.BackgroundImage = RandomMaker.My.Resources.感谢邮件
                 Call Bla()
         End Select
@@ -500,7 +500,7 @@ CX6:
             Case Is = "E"
                 Label1.Image = My.Resources.EDialog
                 Label9.Image = My.Resources.EDialog
-            Case Is = "Pt(Default)"
+            Case Is = "Pt(默认)"
                 Label1.Image = My.Resources.PtDialog
                 Label9.Image = My.Resources.PtDialog
             Case Is = "HGSS"
@@ -523,13 +523,13 @@ CX6:
 
     Private Sub ComboBox3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox3.SelectedIndexChanged
         Select Case ComboBox3.SelectedItem
-            Case Is = "Fast"
+            Case Is = "快"
                 Timer2.Interval = 10
                 Timer4.Interval = 10
-            Case Is = "Medium"
+            Case Is = "中"
                 Timer2.Interval = 25
                 Timer4.Interval = 25
-            Case Is = "Slow"
+            Case Is = "慢"
                 Timer2.Interval = 100
                 Timer4.Interval = 100
         End Select
@@ -538,8 +538,6 @@ CX6:
         Call Xs()
         ulcheck = True
     End Sub
-
-
 
     '语速
     Private Sub Timer4_Tick(sender As Object, e As EventArgs) Handles Timer4.Tick
@@ -555,7 +553,7 @@ CX6:
     End Sub
 
     Private Sub Xs()
-        Const frontline As String = "=====The Configuration Of RM MKIV====="
+        Const frontline As String = "=====The Configuration Of RandomMakerv5.x====="
         Dim et(15) As String, temp2, ex(3) As Integer
         Dim temp As Integer
         Dim temp3 As Boolean
@@ -565,7 +563,7 @@ CX6:
         FileOpen(2, "D:\RMConfig.ini", OpenMode.Output, OpenAccess.Default)
         WriteLine(2, frontline)
         WriteLine(2, "TypeName:")
-        PrintLine(2, "AutoSave")
+        PrintLine(2, "AutoSave" & Date.Now)
         WriteLine(2, "MaximaArea")
         WriteLine(2, Area)
         WriteLine(2, "totalmode")
@@ -598,7 +596,7 @@ CX6:
             WriteLine(2, doextreme)
         Next
         WriteLine(2, "CreateTime:" & Date.Now)
-        WriteLine(2, "Using:")
+        WriteLine(2, "使用的模式:")
         ComboBox1.SelectedIndex = seo
         WriteLine(2, ComboBox1.SelectedIndex)
         FileClose(2)
@@ -613,7 +611,7 @@ CX6:
         xr = ComboBox1.SelectedIndex
         donew = False
         ListBox1.Items.Clear()
-        ListBox1.Items.Add(ComboBox1.Text & "is ready.")
+        ListBox1.Items.Add(ComboBox1.Text & "就绪.")
         Select Case dodata
             Case Is = False
                 circle = 1
@@ -633,8 +631,8 @@ CX6:
                 RadioButton5.Checked = False
                 Label6.Text = Str(ranges)
                 Label7.Text = Str(tms)
-                temp2 = "Random number mode has been initialized."
-                ToolStripStatusLabel3.Text = "Current Mode:" & ComboBox1.Text
+                temp2 = "随机数模式已初始化完毕."
+                ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
             Case Is = True
                 circle = 1
                 tms = extime(xr)
@@ -650,8 +648,8 @@ CX6:
                 Label7.Text = Str(tms)
                 RadioButton4.Checked = False
                 RadioButton5.Checked = True
-                temp2 = "Item mode has been initialized."
-                ToolStripStatusLabel3.Text = "Current Mode:" & ComboBox1.Text
+                temp2 = "数据驱动模式已初始化完毕."
+                ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         End Select
         If doex(xr) = "#TRUE#" Then
             doextreme = True
@@ -687,7 +685,7 @@ CX6:
 
     '还原自定义设置
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-        If MsgBox("The app will be restored to the default state. The custom configuration will be lost. Are you sure?"， vbOKCancel + vbQuestion, "Warning") = MsgBoxResult.Ok Then
+        If MsgBox("即将恢复至默认状态,自定义配置将丢失,确定吗"， vbOKCancel + vbQuestion, "注意") = MsgBoxResult.Ok Then
             Label1.ForeColor = Color.Black
             Dim cir As Byte
             def = True
@@ -702,19 +700,23 @@ CX6:
             extime(0) = 1
             extime(1) = 1
             extime(2) = 1
+            extime(3) = 1
             memories = 0
             ranges = 16
             exrange(0) = 16
             exrange(1) = 16
-            Area = 8
+            Area = 70
             exe = Area
             exrange(2) = Area
+            exrange(3) = 36
             tp(0) = "#FALSE#"
             tp(1) = "#FALSE#"
             tp(2) = "#TRUE#"
+            tp(3) = "#TRUE#"
             doex(0) = "#FALSE#"
             doex(1) = "#TRUE#"
             doex(2) = "#FALSE#"
+            doex(3) = "#FALSE#"
             makesure = 0
             CheckBox1.Checked = False
             CheckBox2.Checked = False
@@ -738,10 +740,11 @@ CX6:
             Me.BackgroundImage = RandomMaker.My.Resources.天空邮件
             Label1.Image = My.Resources.PtDialog
             Label9.Image = My.Resources.PtDialog
-            mdname(0) = "Number mode(Normal)"
-            mdname(1) = "Number mode(Extreme)"
-            mdname(2) = "Item mode"
-            For cir = 3 To 10
+            mdname(0) = "英语/语文模式(正常)"
+            mdname(1) = "英语/语文模式(极限)"
+            mdname(2) = "数据驱动模式Normal"
+            mdname(3) = "数据驱动模式Premium"
+            For cir = 4 To 10
                 mdname(cir) = Nothing
                 tp(cir) = Nothing
                 doex(cir) = Nothing
@@ -749,23 +752,25 @@ CX6:
                 exrange(cir) = 0
             Next
             ComboBox1.Items.Clear()
-            ComboBox1.Items.Add("Number mode(Normal)")
-            ComboBox1.Items.Add("Number mode(Extreme)")
-            ComboBox1.Items.Add("Item mode")
+            ComboBox1.Items.Add("英语/语文模式(正常)")
+            ComboBox1.Items.Add("英语/语文模式(极限)")
+            ComboBox1.Items.Add("数据驱动模式Normal")
+            ComboBox1.Items.Add("数据驱动模式Premium")
             ComboBox1.SelectedIndex = 0
             ListBox1.Items.Clear()
-            ListBox1.Items.Add("Ready.")
+            ListBox1.Items.Add("准备就绪.")
             Label14.Visible = False
             Timer2.Enabled = True
             ulcheck = False
             Call Bla()
             lock = False
             ulcheck = True
+            ComboBox1.SelectedIndex = 0
             ComboBox1.Text = ComboBox1.Items(0)
             temp2 = "重置成功."
             Timer2.Enabled = True
             ToolStripStatusLabel2.Text = Date.Now
-            ToolStripStatusLabel3.Text = "Current mode:" & ComboBox1.Text
+            ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         Else
             Exit Sub
         End If
@@ -796,7 +801,7 @@ CX6:
                 RadioButton5.Checked = False
                 Label6.Text = Str(ranges)
                 Label7.Text = Str(tms)
-                ToolStripStatusLabel3.Text = "Current mode:" & ComboBox1.Text
+                ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
             Case Is = True
 SX2:
                 circle = 1
@@ -814,7 +819,7 @@ SX2:
                 Label7.Text = Str(tms)
                 RadioButton4.Checked = False
                 RadioButton5.Checked = True
-                ToolStripStatusLabel3.Text = "Current mode:" & ComboBox1.Text
+                ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         End Select
         If doex(xr) = "#TRUE#" Then
             doextreme = True
@@ -833,15 +838,15 @@ SX2:
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         lock = True
-        Const frontline As String = "=====The Configuration Of RM v5.1.1====="
+        Const frontline As String = "=====The Configuration Of RM MKIV====="
         If SaveFileDialog1.ShowDialog = DialogResult.OK Then
-            SaveFileDialog1.Title = "Export config..."
-            SaveFileDialog1.Filter = "Files|*.ini"
+            SaveFileDialog1.Title = "导出配置..."
+            SaveFileDialog1.Filter = "抽号发生器配置文件|*.ini"
             Dim et(15) As String, mymodename As String, temp2, ex(3) As Integer
             Static temp As Integer
             Dim temp3 As Boolean
             temp = ComboBox1.Items.Count
-            mymodename = InputBox("Name your onfig?", "Confirm")
+            mymodename = InputBox("为该配置命名?", "保存确认")
             SaveFileDialog1.CreatePrompt = False
             FileOpen(2, SaveFileDialog1.FileName, OpenMode.Output, OpenAccess.Default)
             WriteLine(2, frontline)
@@ -880,7 +885,7 @@ SX2:
                 WriteLine(2, doextreme)
             Next
             WriteLine(2, "CreateTime:" & Date.Now)
-            WriteLine(2, "Using:")
+            WriteLine(2, "使用的模式:")
             WriteLine(2, ComboBox1.SelectedIndex)
             FileClose(2)
             ComboBox1.SelectedIndex = seo
@@ -889,7 +894,7 @@ SX2:
         Else
             Exit Sub
         End If
-        MsgBox("Done", vbInformation + vbOKOnly, "Congratulations")
+        MsgBox("保存成功", vbInformation + vbOKOnly, "祝贺")
         lock = False
         'memo = True
         'Timer3.Enabled = True
@@ -914,9 +919,9 @@ SX2:
     Private Sub LoadView_Click(sender As Object, e As EventArgs) Handles LoadView.Click
         If dodata = True Then
             Dim eo(2) As String, mc, ic As Integer
-            OpenFileDialog1.Title = "Load list..."
+            OpenFileDialog1.Title = "载入列表..."
             OpenFileDialog1.FileName = "Listview1"
-            OpenFileDialog1.Filter = "抽号发生器配置文件|*.ini"
+            OpenFileDialog1.Filter = "抽号发生器配置文件|*.txt"
             OpenFileDialog1.ShowReadOnly = True
             If OpenFileDialog1.ShowDialog = DialogResult.OK Then
                 FileOpen(2, OpenFileDialog1.FileName, OpenMode.Input, OpenAccess.Read)
@@ -947,19 +952,20 @@ SX2:
     '载入列表
     Private Sub SaveView_Click(sender As Object, e As EventArgs) Handles SaveView.Click
         If dodata = True Then
-            If SaveFileDialog1.ShowDialog = DialogResult.OK Then
+            SaveFileDialog2.FileName = "Listview1"
+            SaveFileDialog2.Title = "保存列表..."
+            SaveFileDialog2.Filter = "抽号发生器配置文件|*.txt"
+            If SaveFileDialog2.ShowDialog = DialogResult.OK Then
                 Dim temp As Integer
-                SaveFileDialog1.Title = "保存列表..."
-                SaveFileDialog1.Filter = "抽号发生器配置文件|*.ini"
-                SaveFileDialog1.CreatePrompt = True
-                FileOpen(2, SaveFileDialog1.FileName, OpenMode.Output, OpenAccess.Default)
+                SaveFileDialog2.CreatePrompt = True
+                FileOpen(2, SaveFileDialog2.FileName, OpenMode.Output, OpenAccess.Default)
                 WriteLine(2, Date.Now)
                 WriteLine(2, Area)
-                For temp = 0 To Area - 2
+                For temp = 0 To Area - 1
                     PrintLine(2, ListBox2.Items.Item(temp))
                 Next
                 FileClose(2)
-                MsgBox("Done", vbOKOnly, "Congratulations")
+                MsgBox("保存成功", vbOKOnly, "祝贺")
             Else
                 Exit Sub
             End If
@@ -970,9 +976,8 @@ SX2:
 
     '保存列表
     Private Sub Saver_Click(sender As Object, e As EventArgs) Handles Saver.Click
-
         If ComboBox1.Items.Count > 10 Then
-            MsgBox("There are at most 11 modes in total", vbOKOnly)
+            MsgBox("最多存在11个模式", vbOKOnly, "提示")
             Exit Sub
         End If
         If lock = True Then Exit Sub
@@ -1001,8 +1006,8 @@ SX2:
 
     '保存自定义模式
     Private Sub Button6_Click_1(sender As Object, e As EventArgs) Handles Button6.Click
-        OpenFileDialog1.Title = "Load config..."
-        OpenFileDialog1.Filter = "Files|*.ini"
+        OpenFileDialog1.Title = "导入配置..."
+        OpenFileDialog1.Filter = "抽号发生器配置文件|*.ini"
         OpenFileDialog1.ShowReadOnly = True
         If OpenFileDialog1.ShowDialog = DialogResult.OK Then
             lock = True
@@ -1064,8 +1069,8 @@ SX2:
                 doextreme = True
             End If
             ListBox1.Items.Clear()
-            ListBox1.Items.Add(mdname(mimo) & "is ready")
-            ToolStripStatusLabel3.Text = "Current Mode:" & ComboBox1.Text
+            ListBox1.Items.Add(mdname(mimo) & "就绪")
+            ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
             Form5.Show()
         Else
             Exit Sub
@@ -1082,16 +1087,16 @@ SX2:
             ranges = pool.Value
             Label6.Text = Str(ranges)
             Label7.Text = Str(NumericUpDown1.Value)
-            ComboBox1.Text = "Custom mode"
-            ToolStripStatusLabel3.Text = "Current Mode:" & ComboBox1.Text
+            ComboBox1.Text = "自定义模式"
+            ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
             TextBox1.Text = ComboBox1.Text & tomode - 3
         Else
             pool.Maximum = Area
             exe = pool.Value
             Label6.Text = Str(exe)
             Label7.Text = Str(NumericUpDown1.Value)
-            ComboBox1.Text = "Custom item mode"
-            ToolStripStatusLabel3.Text = "Current Mode:" & ComboBox1.Text
+            ComboBox1.Text = "数据驱动模式Personaize"
+            ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
             TextBox1.Text = ComboBox1.Text & tomode - 3
         End If
     End Sub
@@ -1109,23 +1114,22 @@ SX2:
 
     '？？
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        If SaveFileDialog1.ShowDialog = DialogResult.OK Then
+        SaveFileDialog2.FileName = "抽取记录" & Date.Now
+        SaveFileDialog2.Title = "保存记录..."
+        SaveFileDialog2.CreatePrompt = True
+        If SaveFileDialog2.ShowDialog = DialogResult.OK Then
             Dim temp As Integer
-            SaveFileDialog1.Title = "保存记录..."
-            SaveFileDialog1.CreatePrompt = True
-            FileOpen(2, SaveFileDialog1.FileName, OpenMode.Output, OpenAccess.Default)
+            FileOpen(2, SaveFileDialog2.FileName, OpenMode.Output, OpenAccess.Default)
             WriteLine(2, "抽取时间" & Date.Now)
             For temp = 1 To memories
                 WriteLine(2, ListBox1.Items.Item(temp))
             Next
-            WriteLine(2, "抽取次数:" & NumericUpDown1.Value)
             WriteLine(2, "一共抽取了" & ListBox1.Items.Count - 1 & "次!")
             WriteLine(2, "使用的模式:" & ComboBox1.SelectedItem)
             FileClose(2)
         Else
             Exit Sub
         End If
-        SaveFileDialog1.DefaultExt = "*.ini"
         MsgBox("保存成功", vbOKOnly + vbInformation, "祝贺")
     End Sub
 
@@ -1163,8 +1167,6 @@ SX2:
     End Sub
 
     '实时时间
-
-
 
     '核心程序
     Public Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -1242,7 +1244,7 @@ SX2:
         Else
             doextreme = True
         End If
-        ToolStripStatusLabel3.Text = "Current Mode:" & ComboBox1.Text
+        ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
         Call ColorSwitch(xc:=mimo)
         def = True
         lock = False

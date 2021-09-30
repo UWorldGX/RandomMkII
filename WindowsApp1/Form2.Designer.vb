@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class Form2
     Inherits System.Windows.Forms.Form
 
     'Form 重写 Dispose，以清理组件列表。
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Form2
     '注意: 以下过程是 Windows 窗体设计器所必需的
     '可以使用 Windows 窗体设计器修改它。  
     '不要使用代码编辑器修改它。
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -34,7 +34,7 @@ Partial Class Form2
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(68, 33)
         Me.Button1.TabIndex = 0
-        Me.Button1.Text = "OK"
+        Me.Button1.Text = "确认"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Label1
@@ -56,9 +56,9 @@ Partial Class Form2
         Me.Label2.Location = New System.Drawing.Point(27, 82)
         Me.Label2.MaximumSize = New System.Drawing.Size(160, 200)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(150, 200)
+        Me.Label2.Size = New System.Drawing.Size(157, 53)
         Me.Label2.TabIndex = 3
-        Me.Label2.Text = resources.GetString("Label2.Text")
+        Me.Label2.Text = "基于Visual Basic .NET技术构建" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "具有多种实用功能"
         '
         'Form2
         '
@@ -76,7 +76,7 @@ Partial Class Form2
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "Form2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "About"
+        Me.Text = "关于抽号发生器"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
