@@ -49,6 +49,8 @@ Partial Class Form1
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripLabel5 = New System.Windows.Forms.ToolStripLabel()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.RadProgressBar1 = New Telerik.WinControls.UI.RadProgressBar()
         Me.RadButton1 = New Telerik.WinControls.UI.RadButton()
         Me.Label14 = New System.Windows.Forms.Label()
@@ -56,8 +58,6 @@ Partial Class Form1
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Button4 = New System.Windows.Forms.Button()
@@ -96,7 +96,14 @@ Partial Class Form1
         Me.SaveView = New System.Windows.Forms.Button()
         Me.LoadView = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.字段1DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SPDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.StudentsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Database1DataSet = New RandomMaker.Database1DataSet()
         Me.ListBox2 = New System.Windows.Forms.ListBox()
+        Me.StudentsBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
@@ -107,7 +114,7 @@ Partial Class Form1
         Me.RadSaveFileDialog2 = New Telerik.WinControls.UI.RadSaveFileDialog()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.RadOpenFileDialog1 = New Telerik.WinControls.UI.RadOpenFileDialog()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.StudentsTableAdapter = New RandomMaker.Database1DataSetTableAdapters.StudentsTableAdapter()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -125,6 +132,9 @@ Partial Class Form1
         Me.GroupBox2.SuspendLayout()
         Me.Panel4.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.StudentsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Database1DataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.StudentsBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -363,6 +373,8 @@ Partial Class Form1
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Transparent
+        Me.Panel1.Controls.Add(Me.Label3)
+        Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.RadProgressBar1)
         Me.Panel1.Controls.Add(Me.RadButton1)
         Me.Panel1.Controls.Add(Me.Label14)
@@ -370,8 +382,6 @@ Partial Class Form1
         Me.Panel1.Controls.Add(Me.CheckBox1)
         Me.Panel1.Controls.Add(Me.Label7)
         Me.Panel1.Controls.Add(Me.Label6)
-        Me.Panel1.Controls.Add(Me.Label3)
-        Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.ComboBox1)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Controls.Add(Me.ListBox1)
@@ -380,6 +390,30 @@ Partial Class Form1
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(455, 359)
         Me.Panel1.TabIndex = 21
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(285, 145)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(73, 19)
+        Me.Label3.TabIndex = 20
+        Me.Label3.Text = "抽取次数:"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Black
+        Me.Label4.Location = New System.Drawing.Point(271, 112)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(88, 19)
+        Me.Label4.TabIndex = 19
+        Me.Label4.Text = "随机数范围:"
         '
         'RadProgressBar1
         '
@@ -471,30 +505,6 @@ Partial Class Form1
         Me.Label6.Size = New System.Drawing.Size(75, 21)
         Me.Label6.TabIndex = 21
         Me.Label6.Text = "抽取模式:"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(290, 145)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(73, 19)
-        Me.Label3.TabIndex = 20
-        Me.Label3.Text = "抽取次数:"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(276, 112)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(88, 19)
-        Me.Label4.TabIndex = 19
-        Me.Label4.Text = "随机数范围:"
         '
         'ListBox1
         '
@@ -941,8 +951,8 @@ Partial Class Form1
         Me.Panel4.Controls.Add(Me.SaveView)
         Me.Panel4.Controls.Add(Me.LoadView)
         Me.Panel4.Controls.Add(Me.Label2)
-        Me.Panel4.Controls.Add(Me.ListBox2)
         Me.Panel4.Controls.Add(Me.DataGridView1)
+        Me.Panel4.Controls.Add(Me.ListBox2)
         Me.Panel4.Location = New System.Drawing.Point(51, 29)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(459, 357)
@@ -991,6 +1001,46 @@ Partial Class Form1
         Me.Label2.TabIndex = 22
         Me.Label2.Text = "提示:选中某个对象以在实际抽取中忽略它."
         '
+        'DataGridView1
+        '
+        Me.DataGridView1.AutoGenerateColumns = False
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn, Me.字段1DataGridViewTextBoxColumn, Me.SPDataGridViewCheckBoxColumn})
+        Me.DataGridView1.DataSource = Me.StudentsBindingSource
+        Me.DataGridView1.Location = New System.Drawing.Point(47, 13)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.RowTemplate.Height = 23
+        Me.DataGridView1.Size = New System.Drawing.Size(375, 266)
+        Me.DataGridView1.TabIndex = 34
+        '
+        'IDDataGridViewTextBoxColumn
+        '
+        Me.IDDataGridViewTextBoxColumn.DataPropertyName = "ID"
+        Me.IDDataGridViewTextBoxColumn.HeaderText = "ID"
+        Me.IDDataGridViewTextBoxColumn.Name = "IDDataGridViewTextBoxColumn"
+        '
+        '字段1DataGridViewTextBoxColumn
+        '
+        Me.字段1DataGridViewTextBoxColumn.DataPropertyName = "字段1"
+        Me.字段1DataGridViewTextBoxColumn.HeaderText = "字段1"
+        Me.字段1DataGridViewTextBoxColumn.Name = "字段1DataGridViewTextBoxColumn"
+        '
+        'SPDataGridViewCheckBoxColumn
+        '
+        Me.SPDataGridViewCheckBoxColumn.DataPropertyName = "SP"
+        Me.SPDataGridViewCheckBoxColumn.HeaderText = "SP"
+        Me.SPDataGridViewCheckBoxColumn.Name = "SPDataGridViewCheckBoxColumn"
+        '
+        'StudentsBindingSource
+        '
+        Me.StudentsBindingSource.DataMember = "Students"
+        Me.StudentsBindingSource.DataSource = Me.Database1DataSet
+        '
+        'Database1DataSet
+        '
+        Me.Database1DataSet.DataSetName = "Database1DataSet"
+        Me.Database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'ListBox2
         '
         Me.ListBox2.BackColor = System.Drawing.SystemColors.Window
@@ -1007,6 +1057,12 @@ Partial Class Form1
         Me.ListBox2.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple
         Me.ListBox2.Size = New System.Drawing.Size(375, 264)
         Me.ListBox2.TabIndex = 21
+        Me.ListBox2.Visible = False
+        '
+        'StudentsBindingSource1
+        '
+        Me.StudentsBindingSource1.DataMember = "Students"
+        Me.StudentsBindingSource1.DataSource = Me.Database1DataSet
         '
         'SaveFileDialog1
         '
@@ -1051,14 +1107,9 @@ Partial Class Form1
         '
         Me.RadOpenFileDialog1.DefaultExt = "txt"
         '
-        'DataGridView1
+        'StudentsTableAdapter
         '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(47, 13)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.RowTemplate.Height = 23
-        Me.DataGridView1.Size = New System.Drawing.Size(375, 266)
-        Me.DataGridView1.TabIndex = 34
+        Me.StudentsTableAdapter.ClearBeforeFill = True
         '
         'Form1
         '
@@ -1070,10 +1121,10 @@ Partial Class Form1
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
-        Me.Controls.Add(Me.Panel4)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Panel4)
         Me.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -1112,6 +1163,9 @@ Partial Class Form1
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.StudentsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Database1DataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.StudentsBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -1200,5 +1254,12 @@ Partial Class Form1
     Friend WithEvents RadSaveFileDialog2 As Telerik.WinControls.UI.RadSaveFileDialog
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents RadOpenFileDialog1 As Telerik.WinControls.UI.RadOpenFileDialog
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents Database1DataSet As Database1DataSet
+    Friend WithEvents StudentsBindingSource As BindingSource
+    Friend WithEvents StudentsTableAdapter As Database1DataSetTableAdapters.StudentsTableAdapter
+    Friend WithEvents IDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents 字段1DataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents SPDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
+    Public WithEvents DataGridView1 As DataGridView
+    Friend WithEvents StudentsBindingSource1 As BindingSource
 End Class

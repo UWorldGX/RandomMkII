@@ -1,4 +1,10 @@
 ﻿Imports System.IO
+Imports System.Data
+Imports System.Deployment
+Imports Telerik.WinForms.UI
+Imports Telerik.WinControls.UI
+Imports Telerik.WinControls.Themes.FluentTheme
+Imports Telerik.WinControls.RadMessageBox
 Public Class Form1
     Public circle, tms, ranges, memories, exe, makesure, checked, checked2 As Integer, temp2 As String
 
@@ -96,7 +102,6 @@ Public Class Form1
         ToolStripLabel4.LinkVisited = False
         ToolStripLabel5.LinkVisited = False
         ToolStripLabel5.Enabled = True
-
     End Sub
 
     Private Sub ToolStripLabel3_Click(sender As Object, e As EventArgs) Handles ToolStripLabel3.Click
@@ -392,7 +397,13 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+        Dim selCell As DataGridViewCell, lblCellInfoColIndex, lblCellInfoRowIndex As Byte
+        selCell = DataGridView1.CurrentCell
+        lblCellInfoColIndex = selCell.ColumnIndex
+        lblCellInfoRowIndex = selCell.RowIndex
 
+    End Sub
 
     Private Sub ComboBox4_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox4.SelectedIndexChanged
         Select Case ComboBox4.SelectedItem
@@ -1050,7 +1061,8 @@ SX2:
     End Sub
     '核心程序
     Public Sub CoreProgram()
-        Dim datas, tmsreal As Integer, temp As String
+        Dim datas, tmsreal As Integer, temp As String, ko As Object
+        Dim selCell As DataGridViewCell
         tmsreal = tms - 1
         memories = 1 + memories
         RadProgressBar1.Value1 = 10
@@ -1094,9 +1106,10 @@ CX2:
             RadProgressBar1.Value1 = 30
             Dim repeat(6) As Integer, check, check2 As String, trigger As Integer
             '一次监测
-            For trigger = 0 To exe + tmsreal Step 1
-                check2 = ListBox2.Items.Item(trigger)
-                If ListBox2.SelectedItems.Contains（check2) = False Then
+            For trigger = 1 To exe + tmsreal Step 1
+                selCell = DataGridView1(2, trigger)
+                check2 = selCell.Value
+                If selCell.Value = False Then
                     GoTo CX7
                 End If
                 trigger += 1
@@ -1111,8 +1124,10 @@ CX7:
             datas = Rnd() * exe
             If datas >= Area - 2 Then GoTo CX10
             repeat(0) = datas
-            temp = ListBox2.Items.Item(datas)
-            If ListBox2.SelectedItems.Contains（temp) = False Then
+            selCell = DataGridView1(1, datas)
+            temp = selCell.Value
+            selCell = DataGridView1(2, datas)
+            If selCell.Value = False Then
                 temp2 = "抽取对象为:" & temp
                 temp = "第" & Str(memories) & "次:" & temp
                 RadProgressBar1.Value1 = 60
@@ -1121,9 +1136,11 @@ CX6:
                     Randomize()
                     datas = Rnd() * exe
                     If datas = 0 Then GoTo CX6
-                    check = ListBox2.Items.Item(datas)
+                    selCell = DataGridView1(1, datas)
+                    check = temp = selCell.Value
                     RadProgressBar1.Value1 = 70
-                    If ListBox2.SelectedItems.Contains（check) = False Then
+                    selCell = DataGridView1(2, datas)
+                    If selCell.Value = False Then
                         repeat(circle) = datas
                         Dim repeat2 As Integer
                         For repeat2 = 0 To circle - 1 Step 1
@@ -1133,8 +1150,9 @@ CX6:
                         GoTo CX6
                     End If
                     On Error GoTo CX10
-                    temp2 += "/" & ListBox2.Items.Item(datas)
-                    temp = temp & "/" & ListBox2.Items.Item(datas)
+                    selCell = DataGridView1(1, datas)
+                    temp2 += "/" & selCell.Value
+                    temp = temp & "/" & selCell.Value
                 Next
                 On Error GoTo CX10
                 RadProgressBar1.Value1 = 90
@@ -1154,6 +1172,8 @@ CX6:
 
     End Sub
     Public Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: 这行代码将数据加载到表“Database1DataSet.Students”中。您可以根据需要移动或删除它。
+        Me.StudentsTableAdapter.Fill(Me.Database1DataSet.Students)
         lock = True
         ToolStripStatusLabel2.Text = Date.Now
         Timer1.Enabled = True

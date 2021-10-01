@@ -1,9 +1,24 @@
 ﻿Public Class DebugForm
-    Private Sub DebugOutput_Click(sender As Object, e As EventArgs) Handles DebugOutput.Click
+
+
+
+    Private Sub RadMenuItem1_Click(sender As Object, e As EventArgs) Handles RadMenuItem1.Click
+        RadWaitingBar1.StartWaiting()
+        Form1.makesure = 1
+        Dim cir As Int16
+        For cir = 1 To 10000
+            Call DebugCoreProgram()
+        Next
+        MsgBox("调试完成.", vbOKOnly)
+        Call AutoSaveRecord()
+        RadWaitingBar1.StopWaiting()
+    End Sub
+
+    Private Sub RadMenuItem2_Click(sender As Object, e As EventArgs) Handles RadMenuItem2.Click
         Const frontline As String = "=====The Crash Log Of RM MKIV====="
         If SaveFileDialog1.ShowDialog = DialogResult.OK Then
-            SaveFileDialog1.Title = "导出配置..."
-            SaveFileDialog1.Filter = "抽号发生器配置文件|*.ini"
+            SaveFileDialog1.Title = "导出崩溃报告..."
+            SaveFileDialog1.Filter = "抽号发生器配置文件|*.txt"
             Dim et(15) As String, temp2, ex(3) As Integer
             Static temp As Integer
             Dim temp3 As Boolean
@@ -51,16 +66,13 @@
         MsgBox("保存成功", vbInformation + vbOKOnly, "祝贺")
     End Sub
 
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        Process.Start("https: //github.com/UWorldGX/RandomMkII")
+    End Sub
 
-    Private Sub RadMenuItem1_Click(sender As Object, e As EventArgs) Handles RadMenuItem1.Click
-        RadWaitingBar1.StartWaiting()
-        Form1.makesure = 1
-        Dim cir As Int16
-        For cir = 1 To 10000
-            Call DebugCoreProgram()
-        Next
-        MsgBox("调试完成.", vbOKOnly)
-        Call AutoSaveRecord()
-        RadWaitingBar1.StopWaiting()
+
+
+    Private Sub RadTabbedFormControl1_SelectedTabChanged(sender As Object, e As EventArgs) Handles RadTabbedFormControl1.SelectedTabChanged
+
     End Sub
 End Class
