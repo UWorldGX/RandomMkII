@@ -21,68 +21,7 @@ Public Class Form1
     Public tp(10), TypeN, mdname(10), doex(10) As String, mxarea, tomode As Integer, extime(10), exrange(10) As Integer
 
     '内部存储
-    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
-        If memo = True Then Exit Sub
-        If def = True Then
-            Dim xr As Int16
-            lock = True
-            donew = False
-            xr = ComboBox1.SelectedIndex
-            tms = extime(xr)
-            NumericUpDown1.Value = tms
-            If tp(xr) = "#FALSE#" Then
-                ranges = exrange(xr)
-                pool.Maximum = 100
-                pool.Value = ranges
-                RadioButton4.Checked = True
-                RadioButton5.Checked = False
-                dodata = False
-                Label6.Text = Str(ranges)
-                If ulcheck = True Then
-                    ListBox1.Items.Clear()
-                    temp2 = "随机数模式已就绪.等待抽取."
-                    ListBox1.Items.Add(mdname(xr) & "就绪.")
-                End If
-                ToolStripLabel4.Enabled = False
-            Else
-                exe = exrange(xr)
-                pool.Maximum = Area
-                pool.Value = exe
-                dodata = True
-                RadioButton4.Checked = False
-                RadioButton5.Checked = True
-                Label6.Text = Str(exe)
-                If ulcheck = True Then
-                    ListBox1.Items.Clear()
-                    temp2 = "数据驱动模式已就绪.等待抽取."
-                    ListBox1.Items.Add(mdname(xr) & "就绪.")
-                End If
-                ToolStripLabel4.Enabled = True
-            End If
-            If ulcheck = True Then
-                memories = 0
-            End If
-            Label7.Text = Str(NumericUpDown1.Value)
-            If doex(xr) = "#TRUE#" Then
-                RadToggleSwitch1.Value = True
-                doextreme = True
-                RadButton1.Enabled = True
-                Label14.Visible = True
-            Else
-                RadToggleSwitch1.Value = False
-                doextreme = False
-                RadButton1.Enabled = True
-                Label14.Visible = False
-            End If
-            ToolStripStatusLabel3.Text = "当前模式:" & mdname(xr)
-            Call ColorSwitch(xc:=xr)
-        End If
-        ToolStripLabel5.Enabled = True
-        Timer2.Enabled = True
-        lock = False
-    End Sub
 
-    '切换模式
     Private Sub 更新记录ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 更新记录ToolStripMenuItem.Click
         Form3.Show()
     End Sub
@@ -91,85 +30,61 @@ Public Class Form1
         Form2.Show()
     End Sub
 
-    Private Sub ToolStripLabel1_Click(sender As Object, e As EventArgs) Handles ToolStripLabel1.Click
-        Panel1.Visible = True
-        Panel2.Visible = False
-        Panel3.Visible = False
-        Panel4.Visible = False
-        ToolStripLabel2.LinkVisited = False
-        ToolStripLabel1.LinkVisited = True
-        ToolStripLabel3.LinkVisited = False
-        ToolStripLabel4.LinkVisited = False
-        ToolStripLabel5.LinkVisited = False
-        ToolStripLabel5.Enabled = True
-    End Sub
+    'Private Sub ToolStripLabel1_Click(sender As Object, e As EventArgs) Handles ToolStripLabel1.Click
+    '    Panel1.Visible = True
+    '    Panel2.Visible = False
+    '    Panel3.Visible = False
+    '    Panel4.Visible = False
+    '    ToolStripLabel2.LinkVisited = False
+    '    ToolStripLabel1.LinkVisited = True
+    '    ToolStripLabel3.LinkVisited = False
+    '    ToolStripLabel4.LinkVisited = False
+    '    ToolStripLabel5.LinkVisited = False
+    '    ToolStripLabel5.Enabled = True
+    'End Sub
 
-    Private Sub ToolStripLabel3_Click(sender As Object, e As EventArgs) Handles ToolStripLabel3.Click
-        Panel1.Visible = False
-        Panel2.Visible = False
-        Panel3.Visible = True
-        Panel4.Visible = False
-        ToolStripLabel2.LinkVisited = False
-        ToolStripLabel1.LinkVisited = False
-        ToolStripLabel3.LinkVisited = True
-        ToolStripLabel4.LinkVisited = False
-        ToolStripLabel5.LinkVisited = False
-        ToolStripLabel5.Enabled = False
-    End Sub
+    'Private Sub ToolStripLabel3_Click(sender As Object, e As EventArgs) Handles ToolStripLabel3.Click
+    '    Panel1.Visible = False
+    '    Panel2.Visible = False
+    '    Panel3.Visible = True
+    '    Panel4.Visible = False
+    '    ToolStripLabel2.LinkVisited = False
+    '    ToolStripLabel1.LinkVisited = False
+    '    ToolStripLabel3.LinkVisited = True
+    '    ToolStripLabel4.LinkVisited = False
+    '    ToolStripLabel5.LinkVisited = False
+    '    ToolStripLabel5.Enabled = False
+    'End Sub
 
-    Private Sub ToolStripLabel4_Click(sender As Object, e As EventArgs) Handles ToolStripLabel4.Click
-        Panel1.Visible = False
-        Panel2.Visible = False
-        Panel3.Visible = False
-        Panel4.Visible = True
-        ToolStripLabel2.LinkVisited = False
-        ToolStripLabel1.LinkVisited = False
-        ToolStripLabel3.LinkVisited = False
-        ToolStripLabel4.LinkVisited = True
-        ToolStripLabel5.LinkVisited = False
-        ToolStripLabel5.Enabled = False
-    End Sub
+    'Private Sub ToolStripLabel4_Click(sender As Object, e As EventArgs) Handles ToolStripLabel4.Click
+    '    Panel1.Visible = False
+    '    Panel2.Visible = False
+    '    Panel3.Visible = False
+    '    Panel4.Visible = True
+    '    ToolStripLabel2.LinkVisited = False
+    '    ToolStripLabel1.LinkVisited = False
+    '    ToolStripLabel3.LinkVisited = False
+    '    ToolStripLabel4.LinkVisited = True
+    '    ToolStripLabel5.LinkVisited = False
+    '    ToolStripLabel5.Enabled = False
+    'End Sub
 
-    Private Sub ToolStripLabel2_Click(sender As Object, e As EventArgs) Handles ToolStripLabel2.Click
-        Panel1.Visible = False
-        Panel2.Visible = True
-        Panel3.Visible = False
-        Panel4.Visible = False
-        ToolStripLabel2.LinkVisited = True
-        ToolStripLabel1.LinkVisited = False
-        ToolStripLabel3.LinkVisited = False
-        ToolStripLabel4.LinkVisited = False
-        ToolStripLabel5.LinkVisited = False
-        ToolStripLabel5.Enabled = False
-    End Sub
+    'Private Sub ToolStripLabel2_Click(sender As Object, e As EventArgs) Handles ToolStripLabel2.Click
+    '    Panel1.Visible = False
+    '    Panel2.Visible = True
+    '    Panel3.Visible = False
+    '    Panel4.Visible = False
+    '    ToolStripLabel2.LinkVisited = True
+    '    ToolStripLabel1.LinkVisited = False
+    '    ToolStripLabel3.LinkVisited = False
+    '    ToolStripLabel4.LinkVisited = False
+    '    ToolStripLabel5.LinkVisited = False
+    '    ToolStripLabel5.Enabled = False
+    'End Sub
 
     '切换页面
-    Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
-        If lock = True Then Exit Sub
-        tms = NumericUpDown1.Value
-        donew = True
-        If dodata = False Then
-            ComboBox1.Text = "自定义模式"
-            RadioButton4.Checked = True
-            RadioButton5.Checked = False
-            Label6.Text = Str(ranges)
-            Label7.Text = Str(tms)
-            ListBox1.ForeColor = Color.Black
-            ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
-        Else
-            ComboBox1.Text = "数据驱动模式Personaize"
-            RadioButton4.Checked = False
-            RadioButton5.Checked = True
-            Label6.Text = Str(exe)
-            Label7.Text = Str(tms)
-            ListBox1.ForeColor = Color.Chocolate
-            ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
-        End If
-        TextBox1.Text = ComboBox1.Text & dodata - 3
-    End Sub
 
-    '抽取次数调节
-    Private Sub RadioButton4_Click(sender As Object, e As EventArgs) Handles RadioButton4.Click
+    Private Sub RadioButton4_Click(sender As Object, e As EventArgs)
         If dodata = True Then
             dodata = False
             If lock = True Then Exit Sub
@@ -193,7 +108,7 @@ Public Class Form1
     End Sub
 
     '随机数开关
-    Private Sub RadioButton5_Click(sender As Object, e As EventArgs) Handles RadioButton5.Click
+    Private Sub RadioButton5_Click(sender As Object, e As EventArgs)
         If dodata = False Then
             dodata = True
             If lock = True Then Exit Sub
@@ -217,7 +132,7 @@ Public Class Form1
     End Sub
 
     '数据驱动开关
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs)
         ColorDialog1.Color = Label1.ForeColor
         If ColorDialog1.ShowDialog = DialogResult.OK Then
             Label1.ForeColor = ColorDialog1.Color
@@ -228,7 +143,7 @@ Public Class Form1
     End Sub
 
     '更换颜色
-    Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click_1(sender As Object, e As EventArgs)
         FontDialog1.Font = Label1.Font
         FontDialog1.ShowColor = True
         If FontDialog1.ShowDialog = DialogResult.OK Then
@@ -243,7 +158,7 @@ Public Class Form1
 
     '更换字体
 
-    Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox2.SelectedIndexChanged
+    Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs)
         ulcheck = False
         Select Case ComboBox2.Text
             Case Is = "空间邮件"
@@ -380,31 +295,22 @@ Public Class Form1
                 ListBox1.ForeColor = Color.Brown
         End Select
     End Sub
+    '颜色切换核心程序
 
-    Private Sub Debugselect_Click(sender As Object, e As EventArgs) Handles Debugselect.Click
-        DebugForm.Show()
-    End Sub
-
-    Private Sub RadToggleSwitch1_ValueChanged(sender As Object, e As EventArgs) Handles RadToggleSwitch1.ValueChanged
-        If doextreme = False Then
-            doextreme = True
-            RadButton1.Enabled = True
-            Label14.Visible = True
-        Else
-            doextreme = False
-            RadButton1.Enabled = True
-            Label14.Visible = False
-        End If
-    End Sub
-
-    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
         Dim selCell As DataGridViewCell, lblCellInfoColIndex, lblCellInfoRowIndex As Byte
         selCell = DataGridView1.CurrentCell
         lblCellInfoColIndex = selCell.ColumnIndex
         lblCellInfoRowIndex = selCell.RowIndex
 
     End Sub
+    '更改数据库数据
 
+
+    Private Sub RadButton1_Click_1(sender As Object, e As EventArgs) Handles RadButton1.Click
+        Call CoreProgram()
+    End Sub
+    '核心程序触发
     Private Sub ComboBox4_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox4.SelectedIndexChanged
         Select Case ComboBox4.SelectedItem
             Case Is = "E"
@@ -428,96 +334,107 @@ Public Class Form1
         Call Xs()
         ulcheck = True
     End Sub
-
-    '更换背景
-
-    Private Sub ComboBox3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox3.SelectedIndexChanged
-        Select Case ComboBox3.SelectedItem
-            Case Is = "快"
-                Timer2.Interval = 10
-                Timer4.Interval = 10
-            Case Is = "中"
-                Timer2.Interval = 25
-                Timer4.Interval = 25
-            Case Is = "慢"
-                Timer2.Interval = 100
-                Timer4.Interval = 100
-        End Select
-        If lock = True Then Exit Sub
-        ulcheck = False
-        Call Xs()
-        ulcheck = True
-        Timer4.Enabled = True
-    End Sub
-
-    '语速
-    Private Sub Timer4_Tick(sender As Object, e As EventArgs) Handles Timer4.Tick
-        Dim iris As Integer
-        If readme = Nothing Then Exit Sub
-        iris = readme.Length
-        checked2 += 1
-        Label9.Text = readme.Substring(0, checked2)
-        If checked2 > iris - 1 Then
-            checked2 = 1
-            Timer4.Enabled = False
+    '更换对话框
+    Private Sub RadToggleSwitch1_ValueChanged_1(sender As Object, e As EventArgs) Handles RadToggleSwitch1.ValueChanged
+        If doextreme = False Then
+            doextreme = True
+            RadButton1.Enabled = True
+            Label14.Visible = True
+        Else
+            doextreme = False
+            RadButton1.Enabled = True
+            Label14.Visible = False
         End If
     End Sub
-
-    Private Sub Xs()
-        Const frontline As String = "=====The Configuration Of RandomMakerv5.x====="
-        Dim et(15) As String, temp2, ex(3) As Integer
-        Dim temp As Integer
-        Dim temp3 As Boolean
-        seo = ComboBox1.SelectedIndex
-        lock = True
-        temp = ComboBox1.Items.Count
-        FileOpen(2, "D:\RMConfig.ini", OpenMode.Output, OpenAccess.Default)
-        WriteLine(2, frontline)
-        WriteLine(2, "TypeName:")
-        PrintLine(2, "AutoSave" & Date.Now)
-        WriteLine(2, "MaximaArea")
-        WriteLine(2, Area)
-        WriteLine(2, "totalmode")
-        WriteLine(2, tomode)
-        WriteLine(2, "Speakers:")
-        WriteLine(2, Timer2.Interval)
-        WriteLine(2, "BackgroundImage:")
-        PrintLine(2, ComboBox2.SelectedItem)
-        WriteLine(2, "DialogImage:")
-        PrintLine(2, ComboBox4.SelectedItem)
-        For temp2 = 0 To temp - 1
-            ComboBox1.SelectedIndex = temp2
-            temp3 = dodata
-            WriteLine(2, "=====Mode" & temp2 + 1 & “=====”)
-            WriteLine(2, "ModeName:")
-            PrintLine(2, ComboBox1.SelectedItem)
-            ex(0) = Str(extime(temp2)）
-            If dodata = True Then
-                ex(2) = exe
+    '极限模式
+    Private Sub ComboBox1_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+        If memo = True Then Exit Sub
+        If def = True Then
+            Dim xr As Int16
+            lock = True
+            donew = False
+            xr = ComboBox1.SelectedIndex
+            tms = extime(xr)
+            NumericUpDown1.Value = tms
+            If tp(xr) = "#FALSE#" Then
+                ranges = exrange(xr)
+                pool.Maximum = 100
+                pool.Value = ranges
+                RadioButton4.Checked = True
+                RadioButton5.Checked = False
+                dodata = False
+                Label6.Text = Str(ranges)
+                If ulcheck = True Then
+                    ListBox1.Items.Clear()
+                    temp2 = "随机数模式已就绪.等待抽取."
+                    ListBox1.Items.Add(mdname(xr) & "就绪.")
+                End If
+                ToolStripLabel4.Enabled = False
             Else
-                ex(2) = ranges
+                exe = exrange(xr)
+                pool.Maximum = Area
+                pool.Value = exe
+                dodata = True
+                RadioButton4.Checked = False
+                RadioButton5.Checked = True
+                Label6.Text = Str(exe)
+                If ulcheck = True Then
+                    ListBox1.Items.Clear()
+                    temp2 = "数据驱动模式已就绪.等待抽取."
+                    ListBox1.Items.Add(mdname(xr) & "就绪.")
+                End If
+                ToolStripLabel4.Enabled = True
             End If
-            WriteLine(2, "Extract Times:")
-            WriteLine(2, ex(0))
-            WriteLine(2, "Extract Ranges:")
-            WriteLine(2, ex(2))
-            WriteLine(2, "ModeType:")
-            WriteLine(2, temp3)
-            WriteLine(2, "DoExtremeMode")
-            WriteLine(2, doextreme)
-        Next
-        WriteLine(2, "CreateTime:" & Date.Now)
-        WriteLine(2, "使用的模式:")
-        ComboBox1.SelectedIndex = seo
-        WriteLine(2, ComboBox1.SelectedIndex)
-        FileClose(2)
-        ComboBox1.Text = mdname(seo)
+            If ulcheck = True Then
+                memories = 0
+            End If
+            Label7.Text = Str(NumericUpDown1.Value)
+            If doex(xr) = "#TRUE#" Then
+                RadToggleSwitch1.Value = True
+                doextreme = True
+                RadButton1.Enabled = True
+                Label14.Visible = True
+            Else
+                RadToggleSwitch1.Value = False
+                doextreme = False
+                RadButton1.Enabled = True
+                Label14.Visible = False
+            End If
+            ToolStripStatusLabel3.Text = "当前模式:" & mdname(xr)
+            Call ColorSwitch(xc:=xr)
+        End If
+        ToolStripLabel5.Enabled = True
+        Timer2.Enabled = True
         lock = False
-        Timer3.Enabled = True
     End Sub
-
-    '保存通用过程
-    Private Sub ToolStripLabel5_Click(sender As Object, e As EventArgs) Handles ToolStripLabel5.Click
+    '更改模式
+    Private Sub Button7_Click_1(sender As Object, e As EventArgs) Handles Button7.Click
+        RadSaveFileDialog2.FileName = "抽取记录" & Date.Now
+        If RadSaveFileDialog2.ShowDialog = DialogResult.OK Then
+            Dim temp As Integer
+            FileOpen(2, RadSaveFileDialog2.FileName, OpenMode.Output, OpenAccess.Default)
+            WriteLine(2, "抽取时间" & Date.Now)
+            For temp = 1 To memories
+                WriteLine(2, ListBox1.Items.Item(temp))
+            Next
+            WriteLine(2, "一共抽取了" & ListBox1.Items.Count - 1 & "次!")
+            WriteLine(2, "使用的模式:" & ComboBox1.SelectedItem)
+            FileClose(2)
+        Else
+            Exit Sub
+        End If
+        MsgBox("保存成功", vbOKOnly + vbInformation, "祝贺")
+    End Sub
+    '保存抽取记录
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+        If CheckBox1.Checked = True Then
+            makesure = 1
+        Else
+            makesure = 0
+        End If
+    End Sub
+    '确认对话框
+    Private Sub RadButton2_Click(sender As Object, e As EventArgs) Handles RadButton2.Click
         Dim xr As Integer
         xr = ComboBox1.SelectedIndex
         donew = False
@@ -575,27 +492,53 @@ Public Class Form1
         End If
         Timer2.Enabled = True
     End Sub
-
     '初始化
-    'Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-    '    Dim cx As Integer
-    '    For cx = 0 To tomode - 1
-    '        If MsgBox("是否删除第" & cx + 1 & "项:" & Chr(13) & Chr(10) & mdname(cx) & "?", vbOKCancel, "提示") = MsgBoxResult.Ok Then ComboBox1.Items.Remove(mdname(cx))
-    '    Next
-    '    MsgBox("完毕", vbOKOnly + vbInformation, "祝贺")
-    'End Sub
-    '动画效果预览
-    Private Sub ReDiveP_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles ReDiveP.LinkClicked
-        Me.BackgroundImage = RandomMaker.My.Resources.天空邮件
-        ulcheck = False
-        Call Bla()
-        ulcheck = True
-        Label1.Image = My.Resources.PtDialog
-        Label9.Image = My.Resources.PtDialog
+    Private Sub NumericUpDown1_ValueChanged_1(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
+        If lock = True Then Exit Sub
+        tms = NumericUpDown1.Value
+        donew = True
+        If dodata = False Then
+            ComboBox1.Text = "自定义模式"
+            RadioButton4.Checked = True
+            RadioButton5.Checked = False
+            Label6.Text = Str(ranges)
+            Label7.Text = Str(tms)
+            ListBox1.ForeColor = Color.Black
+            ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
+        Else
+            ComboBox1.Text = "数据驱动模式Personaize"
+            RadioButton4.Checked = False
+            RadioButton5.Checked = True
+            Label6.Text = Str(exe)
+            Label7.Text = Str(tms)
+            ListBox1.ForeColor = Color.Chocolate
+            ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
+        End If
+        TextBox1.Text = ComboBox1.Text & dodata - 3
     End Sub
-
-    '还原自定义设置
-    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
+    '抽取次数
+    Private Sub pool_ValueChanged_1(sender As Object, e As EventArgs) Handles pool.ValueChanged
+        If lock = True Then Exit Sub
+        If dodata = False Then
+            pool.Maximum = 100
+            ranges = pool.Value
+            Label6.Text = Str(ranges)
+            Label7.Text = Str(NumericUpDown1.Value)
+            ComboBox1.Text = "自定义模式"
+            ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
+            TextBox1.Text = ComboBox1.Text & tomode - 3
+        Else
+            pool.Maximum = Area
+            exe = pool.Value
+            Label6.Text = Str(exe)
+            Label7.Text = Str(NumericUpDown1.Value)
+            ComboBox1.Text = "数据驱动模式Personaize"
+            ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
+            TextBox1.Text = ComboBox1.Text & tomode - 3
+        End If
+    End Sub
+    '微调范围
+    Private Sub LinkLabel2_LinkClicked_1(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
         If MsgBox("即将恢复至默认状态,自定义配置将丢失,确定吗"， vbOKCancel + vbQuestion, "注意") = MsgBoxResult.Ok Then
             Label1.ForeColor = Color.Black
             Dim cir As Byte
@@ -638,13 +581,6 @@ Public Class Form1
             tomode = 4
             RadButton1.Enabled = True
             Timer1.Enabled = True
-            Panel1.Visible = True
-            Panel2.Visible = False
-            Panel3.Visible = False
-            Panel4.Visible = False
-            ToolStripLabel1.LinkVisited = True
-            ToolStripLabel2.LinkVisited = False
-            ToolStripLabel4.Enabled = False
             Label6.Text = Str(ranges)
             Label7.Text = Str(tms)
             lock = True
@@ -686,9 +622,8 @@ Public Class Form1
             Exit Sub
         End If
     End Sub
-
     '全重置
-    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+    Private Sub LinkLabel1_LinkClicked_1(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         Dim xr As Integer
         xr = ComboBox1.SelectedIndex
         donew = False
@@ -744,10 +679,151 @@ SX2:
             RadToggleSwitch1.Value = False
         End If
     End Sub
-
     '部分重置
+    Private Sub Debugselect_Click_1(sender As Object, e As EventArgs) Handles Debugselect.Click
+        DebugForm.Show()
+    End Sub
+    'Debug
+    Private Sub Saver_Click_1(sender As Object, e As EventArgs) Handles Saver.Click
+        If ComboBox1.Items.Count > 10 Then
+            MsgBox("最多存在11个模式", vbOKOnly, "提示")
+            Exit Sub
+        End If
+        If lock = True Then Exit Sub
+        ComboBox1.Items.Add(TextBox1.Text)
+        tomode += 1
+        If dodata = True Then
+            exrange(tomode - 1) = exe
+            tp(tomode - 1) = "#TRUE#"
+        Else
+            exrange(tomode - 1) = ranges
+            tp(tomode - 1) = "#FALSE#"
+        End If
+        extime(tomode - 1) = tms
+        If doextreme = True Then
+            doex(tomode - 1) = "#TRUE#"
+        Else
+            doex(tomode - 1) = "#FALSE#"
+        End If
+        mdname(tomode - 1) = TextBox1.Text
+        donew = False
+        MsgBox("保存成功,请返回模式列表查看", vbOKOnly + vbInformation, "祝贺")
+        ulcheck = False
+        Call Xs()
+        ulcheck = True
+    End Sub
 
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+
+
+    '更换背景
+
+    Private Sub ComboBox3_SelectedIndexChanged(sender As Object, e As EventArgs)
+        Select Case ComboBox3.SelectedItem
+            Case Is = "快"
+                Timer2.Interval = 10
+                Timer4.Interval = 10
+            Case Is = "中"
+                Timer2.Interval = 25
+                Timer4.Interval = 25
+            Case Is = "慢"
+                Timer2.Interval = 100
+                Timer4.Interval = 100
+        End Select
+        If lock = True Then Exit Sub
+        ulcheck = False
+        Call Xs()
+        ulcheck = True
+        Timer4.Enabled = True
+    End Sub
+
+    '语速
+    Private Sub Timer4_Tick(sender As Object, e As EventArgs) Handles Timer4.Tick
+        Dim iris As Integer
+        If readme = Nothing Then Exit Sub
+        iris = readme.Length
+        checked2 += 1
+        Label9.Text = readme.Substring(0, checked2)
+        If checked2 > iris - 1 Then
+            checked2 = 1
+            Timer4.Enabled = False
+        End If
+    End Sub
+    '预览
+    Private Sub Xs()
+        Const frontline As String = "=====The Configuration Of RandomMakerv5.x====="
+        Dim et(15) As String, temp2, ex(3) As Integer
+        Dim temp As Integer
+        Dim temp3 As Boolean
+        seo = ComboBox1.SelectedIndex
+        lock = True
+        temp = ComboBox1.Items.Count
+        FileOpen(2, "D:\RMConfig.ini", OpenMode.Output, OpenAccess.Default)
+        WriteLine(2, frontline)
+        WriteLine(2, "TypeName:")
+        PrintLine(2, "AutoSave" & Date.Now)
+        WriteLine(2, "MaximaArea")
+        WriteLine(2, Area)
+        WriteLine(2, "totalmode")
+        WriteLine(2, tomode)
+        WriteLine(2, "Speakers:")
+        WriteLine(2, Timer2.Interval)
+        WriteLine(2, "BackgroundImage:")
+        PrintLine(2, ComboBox2.SelectedItem)
+        WriteLine(2, "DialogImage:")
+        PrintLine(2, ComboBox4.SelectedItem)
+        For temp2 = 0 To temp - 1
+            ComboBox1.SelectedIndex = temp2
+            temp3 = dodata
+            WriteLine(2, "=====Mode" & temp2 + 1 & “=====”)
+            WriteLine(2, "ModeName:")
+            PrintLine(2, ComboBox1.SelectedItem)
+            ex(0) = Str(extime(temp2)）
+            If dodata = True Then
+                ex(2) = exe
+            Else
+                ex(2) = ranges
+            End If
+            WriteLine(2, "Extract Times:")
+            WriteLine(2, ex(0))
+            WriteLine(2, "Extract Ranges:")
+            WriteLine(2, ex(2))
+            WriteLine(2, "ModeType:")
+            WriteLine(2, temp3)
+            WriteLine(2, "DoExtremeMode")
+            WriteLine(2, doextreme)
+        Next
+        WriteLine(2, "CreateTime:" & Date.Now)
+        WriteLine(2, "使用的模式:")
+        ComboBox1.SelectedIndex = seo
+        WriteLine(2, ComboBox1.SelectedIndex)
+        FileClose(2)
+        ComboBox1.Text = mdname(seo)
+        lock = False
+        Timer3.Enabled = True
+    End Sub
+
+    '保存通用过程
+
+    'Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    '    Dim cx As Integer
+    '    For cx = 0 To tomode - 1
+    '        If MsgBox("是否删除第" & cx + 1 & "项:" & Chr(13) & Chr(10) & mdname(cx) & "?", vbOKCancel, "提示") = MsgBoxResult.Ok Then ComboBox1.Items.Remove(mdname(cx))
+    '    Next
+    '    MsgBox("完毕", vbOKOnly + vbInformation, "祝贺")
+    'End Sub
+    '动画效果预览
+    Private Sub ReDiveP_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
+        Me.BackgroundImage = RandomMaker.My.Resources.天空邮件
+        ulcheck = False
+        Call Bla()
+        ulcheck = True
+        Label1.Image = My.Resources.PtDialog
+        Label9.Image = My.Resources.PtDialog
+    End Sub
+
+    '还原自定义设置
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs)
         lock = True
         Const frontline As String = "=====The Configuration Of RM MKIV====="
         If RadSaveFileDialog1.ShowDialog = DialogResult.OK Then
@@ -810,7 +886,7 @@ SX2:
     End Sub
 
 
-    Private Sub LoadView_Click(sender As Object, e As EventArgs) Handles LoadView.Click
+    Private Sub LoadView_Click(sender As Object, e As EventArgs)
         If dodata = True Then
             Dim eo(2) As String, mc, ic As Integer
             RadOpenFileDialog1.FileName = "Listview1"
@@ -843,7 +919,7 @@ SX2:
     End Sub
 
     '载入列表
-    Private Sub SaveView_Click(sender As Object, e As EventArgs) Handles SaveView.Click
+    Private Sub SaveView_Click(sender As Object, e As EventArgs)
         If dodata = True Then
             RadSaveFileDialog1.FileName = "Listview1"
             RadSaveFileDialog1.Filter = "抽号发生器配置文件|*.txt"
@@ -867,37 +943,10 @@ SX2:
     End Sub
 
     '保存列表
-    Private Sub Saver_Click(sender As Object, e As EventArgs) Handles Saver.Click
-        If ComboBox1.Items.Count > 10 Then
-            MsgBox("最多存在11个模式", vbOKOnly, "提示")
-            Exit Sub
-        End If
-        If lock = True Then Exit Sub
-        ComboBox1.Items.Add(TextBox1.Text)
-        tomode += 1
-        If dodata = True Then
-            exrange(tomode - 1) = exe
-            tp(tomode - 1) = "#TRUE#"
-        Else
-            exrange(tomode - 1) = ranges
-            tp(tomode - 1) = "#FALSE#"
-        End If
-        extime(tomode - 1) = tms
-        If doextreme = True Then
-            doex(tomode - 1) = "#TRUE#"
-        Else
-            doex(tomode - 1) = "#FALSE#"
-        End If
-        mdname(tomode - 1) = TextBox1.Text
-        donew = False
-        MsgBox("保存成功,请返回模式列表查看", vbOKOnly + vbInformation, "祝贺")
-        ulcheck = False
-        Call Xs()
-        ulcheck = True
-    End Sub
+
 
     '保存自定义模式
-    Private Sub Button6_Click_1(sender As Object, e As EventArgs) Handles Button6.Click
+    Private Sub Button6_Click_1(sender As Object, e As EventArgs)
         RadOpenFileDialog1.Filter = "抽号发生器配置文件|*.ini"
         RadOpenFileDialog1.ShowReadOnly = True
         If RadOpenFileDialog1.ShowDialog = DialogResult.OK Then
@@ -971,31 +1020,8 @@ SX2:
     End Sub
 
     '加载配置
-    Private Sub Pool_ValueChanged(sender As Object, e As EventArgs) Handles pool.ValueChanged
-        If lock = True Then Exit Sub
-        If dodata = False Then
-            pool.Maximum = 100
-            ranges = pool.Value
-            Label6.Text = Str(ranges)
-            Label7.Text = Str(NumericUpDown1.Value)
-            ComboBox1.Text = "自定义模式"
-            ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
-            TextBox1.Text = ComboBox1.Text & tomode - 3
-        Else
-            pool.Maximum = Area
-            exe = pool.Value
-            Label6.Text = Str(exe)
-            Label7.Text = Str(NumericUpDown1.Value)
-            ComboBox1.Text = "数据驱动模式Personaize"
-            ToolStripStatusLabel3.Text = "当前模式:" & ComboBox1.Text
-            TextBox1.Text = ComboBox1.Text & tomode - 3
-        End If
-    End Sub
 
-    '微调范围
-    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        Timer4.Enabled = True
-    End Sub
+
 
     '预览效果
     Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
@@ -1004,25 +1030,7 @@ SX2:
     End Sub
 
     '？？
-    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        RadSaveFileDialog2.FileName = "抽取记录" & Date.Now
-        If RadSaveFileDialog2.ShowDialog = DialogResult.OK Then
-            Dim temp As Integer
-            FileOpen(2, RadSaveFileDialog2.FileName, OpenMode.Output, OpenAccess.Default)
-            WriteLine(2, "抽取时间" & Date.Now)
-            For temp = 1 To memories
-                WriteLine(2, ListBox1.Items.Item(temp))
-            Next
-            WriteLine(2, "一共抽取了" & ListBox1.Items.Count - 1 & "次!")
-            WriteLine(2, "使用的模式:" & ComboBox1.SelectedItem)
-            FileClose(2)
-        Else
-            Exit Sub
-        End If
-        MsgBox("保存成功", vbOKOnly + vbInformation, "祝贺")
-    End Sub
 
-    '保存抽取记录
 
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
         Dim iris As Integer
@@ -1042,13 +1050,7 @@ SX2:
     End Sub
 
     '动画效果主
-    Private Sub CheckBox1_Click(sender As Object, e As EventArgs) Handles CheckBox1.Click
-        If CheckBox1.Checked = True Then
-            makesure = 1
-        Else
-            makesure = 0
-        End If
-    End Sub
+
 
     '确认对话框
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -1056,7 +1058,7 @@ SX2:
     End Sub
 
     '实时时间
-    Public Sub RadButton1_Click(sender As Object, e As EventArgs) Handles RadButton1.Click
+    Public Sub RadButton1_Click(sender As Object, e As EventArgs)
         Call CoreProgram()
     End Sub
     '核心程序
@@ -1257,10 +1259,10 @@ CX6:
         def = True
         lock = False
         Timer2.Enabled = True
-        Panel1.Visible = True
-        Panel2.Visible = False
-        Panel3.Visible = False
-        Panel4.Visible = False
+        'Panel1.Visible = True
+        'Panel2.Visible = False
+        'Panel3.Visible = False
+        'Panel4.Visible = False
         ToolStripLabel1.LinkVisited = True
         ulcheck = True
         Me.Show()
