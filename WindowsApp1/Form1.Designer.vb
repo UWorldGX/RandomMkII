@@ -49,7 +49,7 @@ Partial Class Form1
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripLabel5 = New System.Windows.Forms.ToolStripLabel()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.RadButton1 = New Telerik.WinControls.UI.RadButton()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.Button7 = New System.Windows.Forms.Button()
@@ -71,8 +71,8 @@ Partial Class Form1
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.Debugselect = New System.Windows.Forms.Button()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.RadioButton5 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton4 = New System.Windows.Forms.RadioButton()
+        Me.ItemSwitch = New System.Windows.Forms.RadioButton()
+        Me.NumberSwitch = New System.Windows.Forms.RadioButton()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.pool = New System.Windows.Forms.NumericUpDown()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -92,6 +92,7 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.SaveView = New System.Windows.Forms.Button()
         Me.LoadView = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -102,13 +103,18 @@ Partial Class Form1
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer4 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog2 = New System.Windows.Forms.SaveFileDialog()
-        Me.FluentDarkTheme1 = New Telerik.WinControls.Themes.FluentDarkTheme()
+        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
+        Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IsCheckedDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.StudentsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Database1DataSet = New RandomMaker.Database1DataSet()
+        Me.StudentsTableAdapter = New RandomMaker.Database1DataSetTableAdapters.StudentsTableAdapter()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
-        CType(Me.RadButton1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -117,6 +123,9 @@ Partial Class Form1
         Me.Panel3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.Panel4.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.StudentsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Database1DataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -354,7 +363,7 @@ Partial Class Form1
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Transparent
-        Me.Panel1.Controls.Add(Me.RadButton1)
+        Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.Label14)
         Me.Panel1.Controls.Add(Me.ProgressBar1)
         Me.Panel1.Controls.Add(Me.Button7)
@@ -372,19 +381,19 @@ Partial Class Form1
         Me.Panel1.Size = New System.Drawing.Size(762, 359)
         Me.Panel1.TabIndex = 21
         '
-        'RadButton1
+        'Button1
         '
-        Me.RadButton1.Font = New System.Drawing.Font("微软雅黑", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadButton1.Location = New System.Drawing.Point(308, 232)
-        Me.RadButton1.Name = "RadButton1"
-        '
-        '
-        '
-        Me.RadButton1.RootElement.BorderHighlightColor = System.Drawing.Color.White
-        Me.RadButton1.RootElement.CustomFont = "None"
-        Me.RadButton1.Size = New System.Drawing.Size(99, 45)
-        Me.RadButton1.TabIndex = 28
-        Me.RadButton1.Text = "抽取"
+        Me.Button1.BackgroundImage = Global.RandomMaker.My.Resources.Resources.bton1
+        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.ForeColor = System.Drawing.SystemColors.ButtonFace
+        Me.Button1.Location = New System.Drawing.Point(311, 231)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(96, 43)
+        Me.Button1.TabIndex = 29
+        Me.Button1.Text = "抽取"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'Label14
         '
@@ -392,7 +401,7 @@ Partial Class Form1
         Me.Label14.BackColor = System.Drawing.Color.Transparent
         Me.Label14.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label14.ForeColor = System.Drawing.Color.Red
-        Me.Label14.Location = New System.Drawing.Point(189, 295)
+        Me.Label14.Location = New System.Drawing.Point(189, 303)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(99, 19)
         Me.Label14.TabIndex = 27
@@ -417,7 +426,7 @@ Partial Class Form1
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button7.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Button7.ForeColor = System.Drawing.Color.White
-        Me.Button7.Location = New System.Drawing.Point(339, 286)
+        Me.Button7.Location = New System.Drawing.Point(353, 296)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(80, 32)
         Me.Button7.TabIndex = 26
@@ -430,7 +439,7 @@ Partial Class Form1
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.Font = New System.Drawing.Font("微软雅黑", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.CheckBox1.ForeColor = System.Drawing.Color.Black
-        Me.CheckBox1.Location = New System.Drawing.Point(39, 292)
+        Me.CheckBox1.Location = New System.Drawing.Point(39, 304)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(123, 21)
         Me.CheckBox1.TabIndex = 25
@@ -498,7 +507,7 @@ Partial Class Form1
         Me.ListBox1.Location = New System.Drawing.Point(43, 84)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.ScrollAlwaysVisible = True
-        Me.ListBox1.Size = New System.Drawing.Size(207, 172)
+        Me.ListBox1.Size = New System.Drawing.Size(207, 189)
         Me.ListBox1.TabIndex = 15
         '
         'Panel2
@@ -627,10 +636,11 @@ Partial Class Form1
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.CheckBox3)
         Me.GroupBox3.Controls.Add(Me.Debugselect)
         Me.GroupBox3.Controls.Add(Me.CheckBox2)
-        Me.GroupBox3.Controls.Add(Me.RadioButton5)
-        Me.GroupBox3.Controls.Add(Me.RadioButton4)
+        Me.GroupBox3.Controls.Add(Me.ItemSwitch)
+        Me.GroupBox3.Controls.Add(Me.NumberSwitch)
         Me.GroupBox3.ForeColor = System.Drawing.Color.Black
         Me.GroupBox3.Location = New System.Drawing.Point(89, 106)
         Me.GroupBox3.Name = "GroupBox3"
@@ -667,31 +677,31 @@ Partial Class Form1
         Me.CheckBox2.Text = "极限模式"
         Me.CheckBox2.UseVisualStyleBackColor = True
         '
-        'RadioButton5
+        'ItemSwitch
         '
-        Me.RadioButton5.AutoSize = True
-        Me.RadioButton5.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.RadioButton5.ForeColor = System.Drawing.Color.Black
-        Me.RadioButton5.Location = New System.Drawing.Point(143, 51)
-        Me.RadioButton5.Name = "RadioButton5"
-        Me.RadioButton5.Size = New System.Drawing.Size(87, 23)
-        Me.RadioButton5.TabIndex = 9
-        Me.RadioButton5.Text = "数据驱动"
-        Me.RadioButton5.UseVisualStyleBackColor = True
+        Me.ItemSwitch.AutoSize = True
+        Me.ItemSwitch.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.ItemSwitch.ForeColor = System.Drawing.Color.Black
+        Me.ItemSwitch.Location = New System.Drawing.Point(143, 51)
+        Me.ItemSwitch.Name = "ItemSwitch"
+        Me.ItemSwitch.Size = New System.Drawing.Size(87, 23)
+        Me.ItemSwitch.TabIndex = 9
+        Me.ItemSwitch.Text = "数据驱动"
+        Me.ItemSwitch.UseVisualStyleBackColor = True
         '
-        'RadioButton4
+        'NumberSwitch
         '
-        Me.RadioButton4.AutoSize = True
-        Me.RadioButton4.Checked = True
-        Me.RadioButton4.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.RadioButton4.ForeColor = System.Drawing.Color.Black
-        Me.RadioButton4.Location = New System.Drawing.Point(43, 52)
-        Me.RadioButton4.Name = "RadioButton4"
-        Me.RadioButton4.Size = New System.Drawing.Size(72, 23)
-        Me.RadioButton4.TabIndex = 8
-        Me.RadioButton4.TabStop = True
-        Me.RadioButton4.Text = "随机数"
-        Me.RadioButton4.UseVisualStyleBackColor = True
+        Me.NumberSwitch.AutoSize = True
+        Me.NumberSwitch.Checked = True
+        Me.NumberSwitch.Font = New System.Drawing.Font("微软雅黑", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.NumberSwitch.ForeColor = System.Drawing.Color.Black
+        Me.NumberSwitch.Location = New System.Drawing.Point(43, 52)
+        Me.NumberSwitch.Name = "NumberSwitch"
+        Me.NumberSwitch.Size = New System.Drawing.Size(72, 23)
+        Me.NumberSwitch.TabIndex = 8
+        Me.NumberSwitch.TabStop = True
+        Me.NumberSwitch.Text = "随机数"
+        Me.NumberSwitch.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
@@ -918,6 +928,7 @@ Partial Class Form1
         'Panel4
         '
         Me.Panel4.BackColor = System.Drawing.Color.Transparent
+        Me.Panel4.Controls.Add(Me.DataGridView1)
         Me.Panel4.Controls.Add(Me.SaveView)
         Me.Panel4.Controls.Add(Me.LoadView)
         Me.Panel4.Controls.Add(Me.Label2)
@@ -926,6 +937,18 @@ Partial Class Form1
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(459, 357)
         Me.Panel4.TabIndex = 24
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.AutoGenerateColumns = False
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.IsCheckedDataGridViewCheckBoxColumn})
+        Me.DataGridView1.DataSource = Me.StudentsBindingSource
+        Me.DataGridView1.Location = New System.Drawing.Point(52, 17)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.RowTemplate.Height = 23
+        Me.DataGridView1.Size = New System.Drawing.Size(380, 267)
+        Me.DataGridView1.TabIndex = 34
         '
         'SaveView
         '
@@ -1017,6 +1040,50 @@ Partial Class Form1
         Me.SaveFileDialog2.DefaultExt = "txt"
         Me.SaveFileDialog2.InitialDirectory = "D:\"
         '
+        'CheckBox3
+        '
+        Me.CheckBox3.AutoSize = True
+        Me.CheckBox3.Font = New System.Drawing.Font("微软雅黑", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.CheckBox3.ForeColor = System.Drawing.Color.Black
+        Me.CheckBox3.Location = New System.Drawing.Point(143, 26)
+        Me.CheckBox3.Name = "CheckBox3"
+        Me.CheckBox3.Size = New System.Drawing.Size(75, 21)
+        Me.CheckBox3.TabIndex = 33
+        Me.CheckBox3.Text = "允许重复"
+        Me.CheckBox3.UseVisualStyleBackColor = True
+        '
+        'IDDataGridViewTextBoxColumn
+        '
+        Me.IDDataGridViewTextBoxColumn.DataPropertyName = "ID"
+        Me.IDDataGridViewTextBoxColumn.HeaderText = "ID"
+        Me.IDDataGridViewTextBoxColumn.Name = "IDDataGridViewTextBoxColumn"
+        '
+        'NameDataGridViewTextBoxColumn
+        '
+        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "Name"
+        Me.NameDataGridViewTextBoxColumn.HeaderText = "Name"
+        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
+        '
+        'IsCheckedDataGridViewCheckBoxColumn
+        '
+        Me.IsCheckedDataGridViewCheckBoxColumn.DataPropertyName = "IsChecked"
+        Me.IsCheckedDataGridViewCheckBoxColumn.HeaderText = "IsChecked"
+        Me.IsCheckedDataGridViewCheckBoxColumn.Name = "IsCheckedDataGridViewCheckBoxColumn"
+        '
+        'StudentsBindingSource
+        '
+        Me.StudentsBindingSource.DataMember = "Students"
+        Me.StudentsBindingSource.DataSource = Me.Database1DataSet
+        '
+        'Database1DataSet
+        '
+        Me.Database1DataSet.DataSetName = "Database1DataSet"
+        Me.Database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'StudentsTableAdapter
+        '
+        Me.StudentsTableAdapter.ClearBeforeFill = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -1038,7 +1105,7 @@ Partial Class Form1
         Me.MaximizeBox = False
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "减速风扇抽号发生器.NET 5.0"
+        Me.Text = "减速风扇抽号发生器.NET 5.3.1b"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
@@ -1048,7 +1115,6 @@ Partial Class Form1
         Me.ToolStrip1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.RadButton1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
@@ -1062,6 +1128,9 @@ Partial Class Form1
         Me.GroupBox2.PerformLayout()
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.StudentsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Database1DataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1096,8 +1165,8 @@ Partial Class Form1
     Friend WithEvents ToolStripLabel4 As ToolStripLabel
     Friend WithEvents Label5 As Label
     Friend WithEvents NumericUpDown1 As NumericUpDown
-    Friend WithEvents RadioButton5 As RadioButton
-    Friend WithEvents RadioButton4 As RadioButton
+    Friend WithEvents ItemSwitch As RadioButton
+    Friend WithEvents NumberSwitch As RadioButton
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents Button3 As Button
@@ -1143,6 +1212,13 @@ Partial Class Form1
     Friend WithEvents ToolStripLabel5 As ToolStripLabel
     Friend WithEvents Debugselect As Button
     Friend WithEvents SaveFileDialog2 As SaveFileDialog
-    Friend WithEvents RadButton1 As Telerik.WinControls.UI.RadButton
-    Friend WithEvents FluentDarkTheme1 As Telerik.WinControls.Themes.FluentDarkTheme
+    Friend WithEvents Button1 As Button
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents Database1DataSet As Database1DataSet
+    Friend WithEvents StudentsBindingSource As BindingSource
+    Friend WithEvents StudentsTableAdapter As Database1DataSetTableAdapters.StudentsTableAdapter
+    Friend WithEvents IDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents NameDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents IsCheckedDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
+    Friend WithEvents CheckBox3 As CheckBox
 End Class

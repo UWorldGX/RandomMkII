@@ -50,4 +50,15 @@
         End If
         MsgBox("保存成功", vbInformation + vbOKOnly, "祝贺")
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Form1.makesure = 1
+        Dim cir As Int16
+        For cir = 1 To 10000
+            Call DebugCoreProgram()
+        Next
+        MsgBox("调试完成.", vbOKOnly)
+        Call AutoSaveRecord()
+
+    End Sub
 End Class
