@@ -11,7 +11,10 @@ You can simply run "Quick Setup" to create a copy of "RMConfig.ini" in Disk D ro
 >Save records in One-Cilck
 >
 >Make a random choice among certain items by using item mode
+>
+>A Dice Mode,https://github.com/UWorldGX/RandomMKII-DICE
 # Further development:
-Support for Database(Like SQL Server or MS Access) will be introduced soon.And a DICE Mode,which offers a virtual dice,will be added in next release(v5.2.0).
+Support for Database(Like SQL Server or MS Access) will be introduced soon.
 For more information or feedback,contact me at huyantaor@126.com.
+>
 RandomMaker is licensed under GNU LGPLv3, a free and open-source license. 
